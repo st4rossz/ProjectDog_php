@@ -1,6 +1,6 @@
 <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
-        <a href="https://www.creative-tim.com" class="simple-text logo-mini">
+        <a href="#" class="simple-text logo-mini">
           <div class="logo-image-small">
             <img src="assets/img/logo-small.png">
           </div>
@@ -18,11 +18,23 @@
           <li class="active ">
             <a href="adminindex.php">
               <i class="nc-icon nc-single-02"></i>
-              <p>Member Approve</p>
+              <p>ยืนยันการสมัคร</p>
             </a>
-            <a href="adminindex.php">
-              <i class="nc-icon nc-single-02"></i>
-              <p>Member Approve</p>
+            <a href="base_store.php">
+              <i class="nc-icon nc-simple-add"></i>
+              <p>เพิ่มข้อมูลร้าน</p>
+            </a>
+            <a href="base_room.php">
+              <i class="nc-icon nc-simple-add"></i>
+              <p>เพิ่มข้อมูลห้องพัก</p>
+            </a>
+            <a href="base_service.php">
+              <i class="nc-icon nc-simple-add"></i>
+              <p>เพิ่มข้อมูลบริการ</p>
+            </a>
+            <a href="base_dog.php">
+              <i class="nc-icon nc-simple-add"></i>
+              <p>เพิ่มข้อมูลสุนัข</p>
             </a>
           </li>
         </ul>
