@@ -1,14 +1,21 @@
 <?php
  include '../server.php';
 
-
-    $id = $_REQUEST["userid"];
-    $sql = "UPDATE user SET status= 1 WHERE id='$id' " ;
+    $store_name = $_POST['store_name'];
+    $store_add = $_POST['store_add'];
+    
+    $sql = "INSERT INTO store (store_name, store_add) VALUES ('$store_name', '$store_add')";
     $query = mysqli_query($conn,$sql) ;
 
-    echo "<script>";
-    echo "alert(\"ยืนยันสิทธิ์เสร็จสิ้น\");";
-    echo "window.location=\"../backend/adminindex.php\"";
-    echo "</script>";
-
+    if($query){
+        echo "<script>";
+        echo "alert(\"เพิ่มร้านสำเร็จ\");";
+        echo "window.location=\"../../backend/base_store.php\"";
+        echo "</script>";
+    }else{
+        echo "<script>";
+        echo "alert(\"เกิดข้อผิดพลาด\");";
+        echo "window.location=\"../../backend/base_store.php\"";
+        echo "</script>";
+    }
 ?> 

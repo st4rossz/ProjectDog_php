@@ -45,13 +45,12 @@ include 'layout/header.php';
                         <td><?= $row["username"] ?></td>
                         <td><?= $row["email"] ?></td>
                         <td><?= $row["status"] ?></td>
-                        <td> <a class="btn btn-primary btn-lg" href="../api/_updatestatus.php?userid=<?= $row["id"] ?>">ยืนยัน</a>
+                        <td><a class="btn btn-primary btn-lg" href="../api/_updatestatus.php?userid=<?= $row["id"] ?>">ยืนยัน</a>
                         </td>
                       </tr>
                     <?php } ?>
                   </tbody>
                 </table>
-
               </div>
             </div>
           </div>

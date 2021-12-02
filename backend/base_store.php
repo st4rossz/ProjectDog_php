@@ -21,38 +21,13 @@ include 'layout/header.php';
             <div class="card">
               <!-- <div class="header"> -->
               <h4 class="title">เพิ่มข้อมูลร้าน </h4>
+
+              <!-- ปุ่มเพิ่มร้าน -->
                 <div class="d-flex">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">เพิ่ม</button>
-              
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">โปรดกรอกข้อมูลร้าน</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">ชื่อ : </label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">ที่อยู่ : </label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-        <button type="button" class="btn btn-primary">เพิ่ม</button>
-      </div>
-    </div>
-  </div>
-</div>
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addstore" data-whatever="@mdo">เพิ่ม</button>
                 </div>
+                
+
               <hr>
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
@@ -67,7 +42,7 @@ include 'layout/header.php';
                   </thead>
                   <tbody>
                     <?php
-                    $sql = "SELECT * FROM store";
+                    $sql = "SELECT * FROM store ";
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
                       ?>
@@ -75,8 +50,13 @@ include 'layout/header.php';
                         <th scope="row"> <?= $row["store_id"] ?> </th>
                         <td><?= $row["store_name"] ?></td>
                         <td><?= $row["store_add"] ?></td>
-
+                        <td>
+                          <a class="btn btn-warning" href="editstore.php?store_id=<?= $row["store_id"] ?>">แก้ไข</a>
+                        <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editstore" data-whatever="@mdo">แก้ไข</button> -->
+                        <a href="../api/store/delstore.php?store_id=<?= $row['store_id'] ?>" onclick="javascript:return confirm('คุณต้องการลบข้อมูลใช่หรือไม่');" class="btn btn-danger">ลบ</a>
                         </td>
+                        <?php
+                        ?>
                       </tr>
                     <?php } ?>
                   </tbody>
@@ -86,7 +66,7 @@ include 'layout/header.php';
             </div>
           </div>
         </div>
- 
+
         <?php
         include 'layout/footer.php';
         ?>
