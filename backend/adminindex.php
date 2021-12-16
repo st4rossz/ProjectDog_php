@@ -41,17 +41,17 @@ include 'layout/header.php';
                     while ($row = mysqli_fetch_assoc($query)) {
                       ?>
                       <tr>
-                        <th scope="row"> <?= $row["id"] ?> </th>
+                        <?php echo $row["user_id"] ?>
+                        <th scope="row"> <?= $row["user_id"] ?> </th>
                         <td><?= $row["username"] ?></td>
                         <td><?= $row["email"] ?></td>
                         <td><?= $row["status"] ?></td>
-                        <td> <a class="btn btn-primary btn-lg" href="../api/_updatestatus.php?userid=<?= $row["id"] ?>">ยืนยัน</a>
+                        <td><a class="btn btn-primary btn-lg" href="../api/_updatestatus.php?user_id=<?= $row["user_id"] ?>">ยืนยัน</a>
                         </td>
                       </tr>
                     <?php } ?>
                   </tbody>
                 </table>
-
               </div>
             </div>
           </div>

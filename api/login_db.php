@@ -24,6 +24,7 @@ if (isset($_POST['login_user'])) {
         if (mysqli_num_rows($result) == 1) {
             $query2 = mysqli_query($conn,"SELECT * FROM user WHERE username = '$username' AND password = '$password' ");
             $row = mysqli_fetch_assoc($query2);
+            $_SESSION['user_id'] = $row['user_id'];
             $_SESSION['username'] = $username;
             $_SESSION['status'] = $row['status'];
             $_SESSION['email'] = $row['email'];

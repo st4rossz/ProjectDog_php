@@ -1,9 +1,11 @@
+
+
 <?php
  include 'server.php';
 
 
-    $id = $_REQUEST["userid"];
-    $sql = "UPDATE user SET status= 1 WHERE id='$id' " ;
+    $user_id = $_REQUEST["user_id"];
+    $sql = "UPDATE user SET status= 1 WHERE user_id='$user_id' " ;
     $query = mysqli_query($conn,$sql) ;
 
     echo "<script>";

@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    include ('userlayout/header.php');
 
     if (!isset($_SESSION['username'])){
         $_SESSION['msg'] = "You must log in first";
@@ -16,58 +16,80 @@
     }else{
 
     }
-    
+
+    // if (isset($_SESSION['user_id'])){
+    //     echo "<script>";
+    //     echo "alert(\"มี ID\");";
+    //     echo "</script>";
+    // }
 
     if (isset($_GET['logout'])){
         session_destroy();
         unset($_SESSION['username']);
         header('location: login.php'); 
     }
+    $user_id = $_SESSION['user_id'];
+    // $room_id = $_SESSION['room_id'];
 ?>
 
+<body class="">
+    <?php include ('userlayout/nav.php') ?>
+    <div class="container-fluid bg-warning">
+        <div class="row" style="padding-top: 25px;">
+            <div class="col-xl-6 mt-4 mx-auto text-center">
+                <div class="d-flex">
+                    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#uadddog"
+                        data-whatever="@mdo">เพิ่มสุนัข</button>
+                </div>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
-    </script>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UserIndex</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <div class="homeheader">
-        <h2>UserIndex</h2>
+
+                    <p>ตารางสุนัขของท่าน</p>
+                <table class="table table-bordered table-dark">
+                  <thead>
+                    <tr>
+                      <th>dog_id</th>
+                      <th>dog_name</th>
+                      <th>user_id</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $sql = "SELECT * FROM dog WHERE user_id = '$user_id' ";
+                    $query = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_assoc($query)) {
+                      ?>
+                      <tr>
+                        <th scope="row"> <?= $row["dog_id"] ?> </th>
+                        <td><?= $row["dog_name"] ?></td>
+                        <td><?= $row["user_id"] ?></td>
+                        <?php
+                        ?>
+                      </tr>
+                    <?php } ?>
+                  </tbody>
+                </table>
+            </div>
+            <div class="col-xl-6 mt-4 mx-auto text-center">
+                <div class="d-flex">
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#deposit"
+                        data-whatever="@mdo">ฝากเลี้ยง</button>
+                </div>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#useservice"
+                        data-whatever="@mdo">ใช้บริการ</button>
+                </div>
+                <p>2</p>
+            </div>
+        </div>
     </div>
 
-    <div class="homecontent">
-        <!--logged in user information -->
-        <?php if (isset($_SESSION['success'])) : ?>
-            <div class="success">
-                <h3>
-                    <?php
-                    echo $_SESSION['success'];
-                    unset($_SESSION['success']);
-                    ?>
-                </h3>
-            </div>
-        <?php endif ?>
-        
-        <?php if (isset($_SESSION['username'])) : ?>
-            <p>Welcome You are User<strong><?php echo $_SESSION['username']; ?></strong></p>
-            <p><a href="api/logout.php" style="color: red;">Logout</a></p>
-            <?php endif ?>
-        </div>
+
+
+
+
+
+
+    <?php include ('userlayout/footer.php') ?>
 </body>
+
 </html>

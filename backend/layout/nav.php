@@ -15,7 +15,7 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
-          <a href="../api/logout.php"  type="button" class="btn btn-danger btn-lg">ออกจากระบบ</a>
+          <a href="../api/logout.php"  type="button" class="btn btn-outline-danger">ออกจากระบบ</a>
           <!-- <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <form>
               <div class="input-group no-border">
