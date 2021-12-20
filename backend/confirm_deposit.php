@@ -25,8 +25,8 @@ include 'layout/header.php';
               <hr>
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
-              <div class="content table-responsive table-full-width">
-                <table class="table table-bordered">
+              <div class="content table-full-width">
+                <table class="table table-striped table-bordered">
                   <thead>
                     <tr align="center">
                       <th>รหัสสุนัข</th>

@@ -34,11 +34,11 @@
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">อายุสุนัข : </label>
-            <input type="text" class="form-control" name="dog_age" id="inputdog_age" placeholder="น้ำหนักสุนัข" required>
+            <input type="text" class="form-control" name="dog_age" id="inputdog_age" placeholder="ปี" required>
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">โรคประจำตัว,อาหารที่แพ้ : </label>
-            <input type="text" class="form-control" name="dog_sickness" id="inputdog_sickness" placeholder="โรคประจำตัว,อาหารที่แพ้" required>
+            <input type="text" class="form-control" name="dog_sickness" id="inputdog_sickness" placeholder="โรคประจำตัว,อาหารที่แพ้">
           </div>
 
       </div>
@@ -69,14 +69,6 @@
                             placeholder="กรอกบริการ" required>
           </div> -->
           <div class="form-group">
-            <label for="" class="col-form-label">วันที่เริ่มเข้าพัก : </label>
-            <input type="date" class="form-control" name="dep_sdate" id="dep_sdate" placeholder="วันที่เริ่มเข้าพัก" required>
-          </div>
-          <div class="form-group">
-            <label for="" class="col-form-label">วันที่สิ้นสุดการเข้าพัก : </label>
-            <input type="date" class="form-control" name="dep_edate" id="dep_edate" placeholder="วันที่สิ้นสุดการเข้าพัก" required>
-          </div>
-          <div class="form-group">
             <label for="" class="col-form-label">สุนัขของท่าน : </label>
             <select name="dog_id" class="form-control" id="">
               <option value="">เลือกสุนัขของท่าน</option>
@@ -88,6 +80,14 @@
                 <option value="<?php echo $row["dog_id"]; ?>"><?php echo $row["dog_name"]; ?> , [<?php echo $row["dog_id"]; ?>]</option>
               <?php } ?>
             </select>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-form-label">วันที่เริ่มเข้าพัก : </label>
+            <input type="date" class="form-control" name="dep_sdate" id="dep_sdate" placeholder="วันที่เริ่มเข้าพัก" required>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-form-label">วันที่สิ้นสุดการเข้าพัก : </label>
+            <input type="date" class="form-control" name="dep_edate" id="dep_edate" placeholder="วันที่สิ้นสุดการเข้าพัก" required>
           </div>
           <!-- <button onclick="myFunction()">Try it</button>
                     <div id="myDIV">

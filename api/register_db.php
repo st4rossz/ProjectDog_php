@@ -48,8 +48,8 @@
             echo "window.location=\"../login.php\"";
             echo "</script>";
         }else {
-            array_push($errors, "Username/Email already exists");
-            $_SESSION['error'] = "Username/Email already exists";
+            array_push($errors, "มีชื่อผู้ใช้ / อีเมล์อยู่แล้ว!");
+            $_SESSION['error'] = "มีชื่อผู้ใช้ / อีเมล์อยู่แล้ว!";
             header("location: ../register.php");
         }
     }

@@ -25,7 +25,7 @@ include 'layout/header.php';
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
               <div class="content table-responsive table-full-width">
-                <table class="table table-striped">
+                <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
                       <th>ID</th>

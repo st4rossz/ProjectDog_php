@@ -26,23 +26,21 @@ include 'layout/header.php';
               <!-- </div> -->
                    <!-- ปุ่มเพิ่มร้าน -->
                    <div class="d-flex">
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#adddog" data-whatever="@mdo">เพิ่มข้อมูลห้องพักสุนัข</button>
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#adddog" data-whatever="@mdo">เพิ่มข้อมูลสุนัข</button>
                 </div>
-                
-
-              <hr>
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
-              <div class="content table-responsive table-full-width">
-                <table class="table table-bordered ">
+              <div class="content table-full-width">
+                <table class="table table-striped table-bordered ">
                   <thead>
                     <tr>
-                      <th>Dog_id</th>
-                      <th>Dog_name</th>
-                      <th>Dog_type</th>
-                      <th>Dog_weight</th>
-                      <th>Dog_age</th>
-                      <th>Dog_sickness</th>
+                      <th>รหัสสุนัข</th>
+                      <th>ชื่อสุนัข</th>
+                      <th>พันธ์ุสุนัข</th>
+                      <th>น้ำหนักสุนัข</th>
+                      <th>อายุสุนัข</th>
+                      <th>แพ้ยา/แพ้อาหาร</th>
+                      <th>รหัสเจ้าของ</th>
                       <!-- <th>user_id</th> -->
                     </tr>
                   </thead>
@@ -59,7 +57,7 @@ include 'layout/header.php';
                         <td><?= $row["dog_weight"] ?></td>
                         <td><?= $row["dog_age"] ?></td>
                         <td><?= $row["dog_sickness"] ?></td>
-                        <!-- <td><?= $row["user_id"] ?></td> -->
+                        <td><?= $row["user_id"] ?></td>
                         <td>
                           <a class="btn btn-warning" href="editdog.php?dog_id=<?= $row["dog_id"] ?>">แก้ไข</a>
                         <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editstore" data-whatever="@mdo">แก้ไข</button> -->

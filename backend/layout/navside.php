@@ -15,7 +15,7 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="active ">
+            <li class="active">
                 <a href="adminindex.php">
                     <i class="nc-icon nc-single-02"></i>
                     <p>ยืนยันการสมัคร</p>

@@ -28,13 +28,10 @@ include 'layout/header.php';
                    <div class="d-flex">
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addservice" data-whatever="@mdo">เพิ่มข้อมูลบริการ</button>
                 </div>
-                
-
-              <hr>
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
-              <div class="content table-responsive table-full-width">
-                <table class="table table-bordered">
+              <div class="content table-full-width">
+                <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
                       <th>ID</th>
