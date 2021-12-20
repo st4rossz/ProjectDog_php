@@ -47,9 +47,9 @@
                 <table class="table table-bordered table-dark">
                   <thead>
                     <tr>
-                      <th>dog_id</th>
-                      <th>dog_name</th>
-                      <th>user_id</th>
+                    <th>รหัสสุนัข</th>
+                      <th>ชื่อสุนัข</th>
+                      <th>รหัสลูกค้า</th>
                     </tr>
                   </thead>
                   <tbody>
