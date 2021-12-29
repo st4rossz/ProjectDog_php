@@ -1,9 +1,7 @@
 /* Container holding the image and the text */
 
-
-
 .background {
-    background-image: url('../images/dog1.jpg');
+    background: url('./../images/dog1.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 200px;

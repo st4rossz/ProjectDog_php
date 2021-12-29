@@ -41,4 +41,28 @@ include 'api/server.php'
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="backend/assets/demo/demo.css" rel="stylesheet" />
   <link href="css/bg.css" rel="stylesheet" />
-</head>
+
+  <!-- style.css.bg -->
+  <style>
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+    }
+
+    .bg {
+      /* The image used */
+      background-image: url("images/dog1.jpg");
+
+      /* Full height */
+      height: 100%;
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      opacity: 0.75;
+    }
+</style>
+    </head>
