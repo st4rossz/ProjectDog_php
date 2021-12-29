@@ -1,8 +1,13 @@
 /* Container holding the image and the text */
-.container {
-    position: relative;
-    text-align: center;
-    color: white;
+
+
+
+.background {
+    background-image: url('../images/dog1.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 100vh;
   }
   
   /* Bottom left text */

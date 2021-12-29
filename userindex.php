@@ -31,16 +31,36 @@ $user_id = $_SESSION['user_id'];
 ?>
 
 <body class="">
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("images/dog1.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  opacity: 0.75;
+}
+</style>
     <?php include('userlayout/nav.php') ?>
-    <div class="container">
-        <div class="row">
-            <img src="images/dog1.jpg" alt="Snow" style="width:100%;">
-            <div class="bottom-left">Bottom Left</div>
+    <div class="bg">
+
+            <!-- <div class="bottom-left">Bottom Left</div>
             <div class="top-left">Top Left</div>
             <div class="top-right">Top Right</div>
             <div class="bottom-right">Bottom Right</div>
-            <div class="centered">Centered</div>
-        </div>
+            <div class="centered">Centered</div> -->
+
     </div>
     <!-- <div class="text-center">
                 <div class="d-flex">
