@@ -26,7 +26,7 @@
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">พันธุ์สุนัข : </label>
-            <select name="dog_type" class="form-control" id="">
+            <select name="dog_type" class="form-control" id="" required>
               <option value="">เลือกพันธุ์สุนัขของท่าน</option>
               <?php
               $sql = "SELECT * FROM dog_breed";
@@ -56,7 +56,7 @@
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">อายุสุนัข (ปี) : </label>
-            <select name="dog_age" class="form-control" id="">
+            <select name="dog_age" class="form-control" id="" required>
               <option value="0">0</option>
               <?php
               for ($i = 1; $i <= 50; $i++) {

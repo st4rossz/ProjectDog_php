@@ -65,14 +65,15 @@ $user_id = $_SESSION['user_id'];
                 <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#uadddog" data-whatever="@mdo">เพิ่มสุนัข</button>
                 <p>ตารางสุนัขของท่าน</p>
                 <table class="table table-bordered table-dark">
-                    <thead>
-                        <tr>
-                            <th>รหัสสุนัข</th>
-                            <th>ชื่อสุนัข</th>
-                            <th>รหัสลูกค้า</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                  <thead>
+                    <tr>
+                    <th>รหัสสุนัข</th>
+                      <th>ชื่อสุนัข</th>
+                      <th>พันธุ์สุนัข</th>
+                      <th>น้ำหนักสุนัข</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                         <?php
                         $sql = "SELECT * FROM dog WHERE user_id = '$user_id' ";
                         $query = mysqli_query($conn, $sql);
@@ -81,7 +82,8 @@ $user_id = $_SESSION['user_id'];
                             <tr>
                                 <th scope="row"> <?= $row["dog_id"] ?> </th>
                                 <td><?= $row["dog_name"] ?></td>
-                                <td><?= $row["user_id"] ?></td>
+                                <td><?= $row["dog_type"] ?></td>
+                                <td><?= $row["dog_weight"] ?></td>
                                 <?php
                                     ?>
                             </tr>
