@@ -64,6 +64,7 @@ $user_id = $_SESSION['user_id'];
             <div class="col-6 text-center">
                 <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#uadddog" data-whatever="@mdo">เพิ่มสุนัข</button>
                 <p>ตารางสุนัขของท่าน</p>
+                <p>test</p>
                 <table class="table table-bordered table-dark">
                   <thead>
                     <tr>
