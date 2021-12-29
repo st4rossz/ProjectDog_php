@@ -26,15 +26,46 @@
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">พันธุ์สุนัข : </label>
-            <input type="text" class="form-control" name="dog_type" id="inputdog_type" placeholder="พันธุ์สุนัข" required>
+            <select name="dog_type" class="form-control" id="">
+              <option value="">เลือกพันธุ์สุนัขของท่าน</option>
+              <?php
+              $sql = "SELECT * FROM dog_breed";
+              $query = mysqli_query($conn, $sql);
+              while ($row = mysqli_fetch_array($query)) {
+                ?>
+                <option value="<?php echo $row["dogbreed_name"]; ?>"><?php echo $row["dogbreed_name"]; ?></option>
+              <?php
+              }
+              ?>
+            </select>
+            <!-- <input type="text" class="form-control" name="dog_type" id="inputdog_type" placeholder="พันธุ์สุนัข" required> -->
           </div>
           <div class="form-group">
-            <label for="" class="col-form-label">น้ำหนักสุนัข : </label>
-            <input type="text" class="form-control" name="dog_weight" id="inputdog_weight" placeholder="กิโลกรัม" required>
+            <label for="" class="col-form-label">น้ำหนักสุนัข (กิโลกรัม) : </label>
+            <select name="dog_weight" class="form-control" id="">
+              <option value="0">0</option>
+              <?php
+              for ($i = 1; $i <= 100; $i++) {
+                ?>
+                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+              <?php
+              }
+              ?>
+            </select>
+            <!-- <input type="text" class="form-control" name="dog_weight" id="inputdog_weight" placeholder="กิโลกรัม" required> -->
           </div>
           <div class="form-group">
-            <label for="" class="col-form-label">อายุสุนัข : </label>
-            <input type="text" class="form-control" name="dog_age" id="inputdog_age" placeholder="ปี" required>
+            <label for="" class="col-form-label">อายุสุนัข (ปี) : </label>
+            <select name="dog_age" class="form-control" id="">
+              <option value="0">0</option>
+              <?php
+              for ($i = 1; $i <= 50; $i++) {
+                ?>
+                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+              <?php
+              }
+              ?>
+            </select>
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">โรคประจำตัว,อาหารที่แพ้ : </label>
@@ -43,8 +74,9 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">ปิด</button>
         <button type="submit" class="btn btn-primary btn-lg">เพิ่ม</button>
+        <button type="reset" class="btn btn-dark btn-lg">ล้างค่า</button>
+        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
       </div>
       </form>
     </div>
@@ -63,11 +95,6 @@
       </div>
       <div class="modal-body">
         <form method="post" action="api/deposit.php">
-          <!-- <div class="form-group">
-                        <label for="" class="col-form-label">บริการ : </label>
-                        <input type="text" class="form-control" name="service_name" id="inputservice_name"
-                            placeholder="กรอกบริการ" required>
-          </div> -->
           <div class="form-group">
             <label for="" class="col-form-label">สุนัขของท่าน : </label>
             <select name="dog_id" class="form-control" id="">
@@ -89,20 +116,7 @@
             <label for="" class="col-form-label">วันที่สิ้นสุดการเข้าพัก : </label>
             <input type="date" class="form-control" name="dep_edate" id="dep_edate" placeholder="วันที่สิ้นสุดการเข้าพัก" required>
           </div>
-          <!-- <button onclick="myFunction()">Try it</button>
-                    <div id="myDIV">
-                        This is my DIV element.
-                    </div>
-                    <script>
-                    function myFunction() {
-                        var x = document.getElementById("myDIV");
-                        if (x.style.display === "none") {
-                            x.style.display = "block";
-                        } else {
-                            x.style.display = "none";
-                        }
-                    }
-                    </script> -->
+
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">ปิด</button> -->
@@ -130,7 +144,7 @@
           <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>" id="">
           <div class="form-group">
             <label for="" class="col-form-label">สุนัขของท่าน : </label>
-            <select name="dog_id" class="form-control" id="" >
+            <select name="dog_id" class="form-control" id="">
               <option value="">เลือกสุนัขของท่าน</option>
               <?php
               $sql = "SELECT * FROM dog WHERE user_id = '$user_id'";
@@ -166,6 +180,7 @@
     </div>
   </div>
 </div>
+
 
 
 

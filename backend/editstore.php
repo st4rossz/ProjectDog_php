@@ -31,12 +31,20 @@ include 'layout/header.php';
             <form method="POST" action="../api/store/editstoredb.php">
                     <input type="hidden" name="store_id" value="<?= $row['store_id']; ?>" id="inputstoreid">
                     <div class="col-md-12">
-                        <label for="inputstorename" class="form-label">ชื่อร้าน</label>
-                        <input name="store_name" value="<?= $row['store_name']; ?>" type="text" class="form-control" id="inputstorename" placeholder="ชื่อร้าน" required>
+                        <label for="inputstorename" class="form-label">ชื่อร้าน :</label>
+                        <input name="store_name" value="<?= $row['store_name']; ?>" type="text" class="form-control" id="inputstorename" placeholder="กรอกชื่อร้าน" required>
                     </div>
                     <div class="col-md-12">
-                        <label for="inputstoreadd" class="form-label">ที่อยู่ร้าน</label>
-                        <input name="store_add" value="<?= $row['store_add']; ?>" type="text" class="form-control" id="inputstoreadd" placeholder="ที่อยู่ร้าน" required>
+                        <label for="inputstoreadd" class="form-label">ที่อยู่ร้าน :</label>
+                        <input name="store_add" value="<?= $row['store_add']; ?>" type="text" class="form-control" id="inputstoreadd" placeholder="กรอกที่อยู่ร้าน" required>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="inputstoretel" class="form-label">เบอร์โทร :</label>
+                        <input name="store_tel" value="<?= $row['store_tel']; ?>" type="tel" class="form-control" id="inputstoretel" placeholder="กรอกเบอร์โทร" required>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="inputstoreemail" class="form-label">อีเมล์ :</label>
+                        <input name="store_email" value="<?= $row['store_email']; ?>" type="email" class="form-control" id="inputstoreemail" placeholder="กรอกอีเมล์" required>
                     </div>
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-success">บันทึก</button>

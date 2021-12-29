@@ -11,6 +11,7 @@ include 'layout/header.php';
       <!-- Navbar -->
       <?php
       include 'layout/nav.php';
+      // print_r($_SESSION);
       ?>
       <!-- End Navbar -->
 
@@ -41,12 +42,13 @@ include 'layout/header.php';
                     while ($row = mysqli_fetch_assoc($query)) {
                       ?>
                       <tr>
-                        <?php echo $row["user_id"] ?>
                         <th scope="row"> <?= $row["user_id"] ?> </th>
                         <td><?= $row["username"] ?></td>
                         <td><?= $row["email"] ?></td>
                         <td><?= $row["status"] ?></td>
-                        <td><a class="btn btn-primary btn-lg" href="../api/_updatestatus.php?user_id=<?= $row["user_id"] ?>">ยืนยัน</a>
+                        <td>
+                          <a class="btn btn-success btn-lg" href="../api/_approveuser.php?user_id=<?= $row["user_id"] ?>" onclick="javascript:return confirm('ยืนยันสิทธิ์ผู้ใช้ท่านนี้ใช่หรือไม่?');" >ยืนยันสิทธิ์</a>
+                          <a class="btn btn-danger btn-lg" href="../api/_declineuser.php?user_id=<?= $row["user_id"] ?>" onclick="javascript:return confirm('ต้องการลบคำขอนี้ใช่หรือไม่?');" >ยกเลิก</a>
                         </td>
                       </tr>
                     <?php } ?>

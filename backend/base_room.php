@@ -24,20 +24,20 @@ include 'layout/header.php';
               <hr>
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
-                   <!-- ปุ่มเพิ่มร้าน -->
-                   <div class="d-flex">
+              <!-- ปุ่มเพิ่มร้าน -->
+              <div class="d-flex">
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addroom" data-whatever="@mdo">เพิ่มข้อมูลห้องพักสุนัข</button>
-                </div>
+              </div>
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
               <div class="content table-full-width">
                 <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
-                      <th>Room_id</th>
-                      <th>Room_type</th>
-                      <th>Room_Quantity</th>
-                      <th>Room_price</th>
+                      <th>รหัสห้องพัก</th>
+                      <th>ประเภทห้องพัก</th>
+                      <th>จำนวนห้องพัก</th>
+                      <th>ราคาห้องพัก</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -53,11 +53,11 @@ include 'layout/header.php';
                         <td><?= $row["room_price"] ?></td>
                         <td>
                           <a class="btn btn-warning" href="editroom.php?room_id=<?= $row["room_id"] ?>">แก้ไข</a>
-                        <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editstore" data-whatever="@mdo">แก้ไข</button> -->
-                        <a href="../api/room/delroom.php?room_id=<?= $row['room_id'] ?>" onclick="javascript:return confirm('คุณต้องการลบข้อมูลใช่หรือไม่');" class="btn btn-danger">ลบ</a>
+                          <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editstore" data-whatever="@mdo">แก้ไข</button> -->
+                          <a href="../api/room/delroom.php?room_id=<?= $row['room_id'] ?>" onclick="javascript:return confirm('คุณต้องการลบข้อมูลใช่หรือไม่');" class="btn btn-danger">ลบ</a>
                         </td>
                         <?php
-                        ?>
+                          ?>
                       </tr>
                     <?php } ?>
                   </tbody>

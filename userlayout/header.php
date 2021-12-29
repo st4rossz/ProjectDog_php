@@ -1,27 +1,28 @@
 <?php
-    session_start();
-    include 'api/server.php'
-    // if (!isset($_SESSION['username'])){
-    //     $_SESSION['msg'] = "You must log in first";
-    //     header('location: ../login.php');
-    // }
+session_start();
+include 'api/server.php'
+// if (!isset($_SESSION['username'])){
+//     $_SESSION['msg'] = "You must log in first";
+//     header('location: ../login.php');
+// }
 
-    // if($_SESSION['status'] != 2){
-    //     echo "<script>";
-    //     echo "alert(\"คุณไม่ใช่ Admin!!\");";
-    //     echo "window.location=\"../login.php\"";
-    //     echo "</script>";
-    // }
+// if($_SESSION['status'] != 2){
+//     echo "<script>";
+//     echo "alert(\"คุณไม่ใช่ Admin!!\");";
+//     echo "window.location=\"../login.php\"";
+//     echo "</script>";
+// }
 
-    // if (isset($_GET['logout'])){
-    //     session_destroy();
-    //     unset($_SESSION['username']);
-    //     header('location: ../login.php'); 
-    // }
+// if (isset($_GET['logout'])){
+//     session_destroy();
+//     unset($_SESSION['username']);
+//     header('location: ../login.php'); 
+// }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
@@ -39,5 +40,5 @@
   <link href="backend/assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="backend/assets/demo/demo.css" rel="stylesheet" />
-
+  <link href="css/bg.css" rel="stylesheet" />
 </head>

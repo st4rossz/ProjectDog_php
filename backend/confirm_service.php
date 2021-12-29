@@ -47,18 +47,18 @@ include 'layout/header.php';
                       <tr align="center">
                         <th scope="row"> <?= $row["us_id"] ?> </th>
                         <td><?= $row["us_date"] ?></td>
-                        <td><?= $row["us_status"]?></td>
-                        <td><?= $row["dog_id"]?></td>
+                        <td><?= $row["us_status"] ?></td>
+                        <td><?= $row["dog_id"] ?></td>
                         <td><?= $row["service_id"] ?></td>
                         <td><a class="btn btn-primary btn-lg" href="../api/_updateus_status.php?us_id=<?= $row["us_id"] ?>">เข้ารับบริการ</a>
-                        <!-- <td><a href=""></a></td> -->
-                        <!-- <td>
+                          <!-- <td><a href=""></a></td> -->
+                          <!-- <td>
                           <a class="btn btn-warning" href="editstore.php?store_id=<?= $row["store_id"] ?>">แก้ไข</a>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editstore" data-whatever="@mdo">แก้ไข</button>
                         <a href="../api/store/delstore.php?store_id=<?= $row['store_id'] ?>" onclick="javascript:return confirm('คุณต้องการลบข้อมูลใช่หรือไม่');" class="btn btn-danger">ลบ</a>
                         </td> -->
-                        <?php
-                        ?>
+                          <?php
+                            ?>
                       </tr>
                     <?php } ?>
                   </tbody>
