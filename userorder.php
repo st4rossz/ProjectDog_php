@@ -1,28 +1,11 @@
 
 <?php
-    include ('userlayout/header.php');
-
     if (!isset($_SESSION['username'])){
         $_SESSION['msg'] = "You must log in first";
         header('location: login.php');
     }
-
-    if($_SESSION['status'] == 0){
-        echo "<script>";
-        echo "alert(\"กรุณารอการยืนยันจาก admin\");";
-        echo "window.location=\"login.php\"";
-        echo "</script>";
-    }elseif($_SESSION['status'] == 2){
-        header('location: backend/adminindex.php');
-    }else{
-
-    }
-
-    if (isset($_GET['logout'])){
-        session_destroy();
-        unset($_SESSION['username']);
-        header('location: login.php'); 
-    }
+    
+    include ('userlayout/header.php');
 ?>
 <body class="">
     <?php include ('userlayout/nav.php') ?>

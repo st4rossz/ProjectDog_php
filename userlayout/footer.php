@@ -1,11 +1,26 @@
-<footer class="footer footer-black  footer-white ">
-  <div class="container-fluid">
-    <div class="row">
+<footer class="bg-dark text-center text-white" style="font-family: Kanit Thin;">
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <p>Contact Us :</p>
+      <hr>
+      <!-- Facebook -->
+      <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/GoodDogHome/" role="button"><i class="fab fa-facebook-f"></i></a>
 
-    </div>
+      <!-- Google -->
+      <a class="btn btn-outline-light btn-floating m-1" href="https://gooddoghome.business.site/" role="button"><i class="fab fa-google"></i></a>
+
+      <p style="font-size: 16px;">Tel : 084 974 4978</p>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
 </footer>
 </div>
 </div>
+
 
 <!-- ADD DOG MODAL FOR USER -->
 <div class="modal fade" id="uadddog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -74,7 +89,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary btn-lg">เพิ่ม</button>
+        <button type="submit" class="btn btn-primary btn-lg">เพิ่มสุนัข</button>
         <button type="reset" class="btn btn-dark btn-lg">ล้างค่า</button>
         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
       </div>
@@ -83,8 +98,10 @@
   </div>
 </div>
 
+
+
 <!-- USE DEPOSIT MODAL PROCESS_5 -->
-<div class="modal fade" id="deposit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="deposit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -116,11 +133,109 @@
             <label for="" class="col-form-label">วันที่สิ้นสุดการเข้าพัก : </label>
             <input type="date" class="form-control" name="dep_edate" id="dep_edate" placeholder="วันที่สิ้นสุดการเข้าพัก" required>
           </div>
+          <form method="post" action="api/deposit.php">
+            <?php include 'api/errors.php' ?>
+            <?php if (isset($_SESSION['error'])) : ?>
+              <div class="error">
+                <h3>
+                  <?php
+                    echo $_SESSION['error'];
+                    unset($_SESSION['error']);
+                    ?>
+                </h3>
+              </div>
+            <?php endif ?>
+            <div class="form-group">
+              <label for="" class="col-form-label">สุนัขของท่าน : </label>
+              <select name="dog_id" class="form-control" id="" required>
+                <option value="">เลือกสุนัขของท่าน</option>
+                <?php
+                $sql = "SELECT * FROM dog WHERE user_id = '$user_id'";
+                $result = mysqli_query($conn, $sql);
+                while ($row = mysqli_fetch_array($result)) {
+                  ?>
+                  <option value="<?php echo $row["dog_id"]; ?>"><?php echo $row["dog_name"]; ?> , [<?php echo $row["dog_id"]; ?>]</option>
+                <?php } ?>
+              </select>
+            </div>
 
+            <div class="form-group">
+              <label for="" class="col-form-label">วันที่เริ่มเข้าพัก : </label>
+              <input type="date" class="form-control" name="dep_sdate" id="dep_sdate" placeholder="วันที่เริ่มเข้าพัก" required>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-form-label">วันที่สิ้นสุดการเข้าพัก : </label>
+              <input type="date" class="form-control" name="dep_edate" id="dep_edate" placeholder="วันที่สิ้นสุดการเข้าพัก" required>
+            </div>
+            <button type="submit" name="bookdeposit" class="btn btn-primary btn-lg">ยืนยันการใช้บริการ</button>
+          </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="modal-footer"> -->
+<!-- <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">ปิด</button> -->
+<!-- <button type="submit" name="bookdeposit" class="btn btn-primary btn-lg">ยืนยันการใช้บริการ</button>
+  <button type="reset" class="btn btn-dark btn-lg">ล้างค่า</button>
+  <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
+</div>
+</form>
+</div>
+</div>
+</div> -->
+
+
+
+<!-- Deposit -->
+<div class="modal fade" id="deposit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">บริการฝากเลี้ยงสุนัข</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="api/deposit.php">
+          <?php include 'api/errors.php' ?>
+          <?php if (isset($_SESSION['error'])) : ?>
+            <div class="error">
+              <h3>
+                <?php
+                  echo $_SESSION['error'];
+                  unset($_SESSION['error']);
+                  ?>
+              </h3>
+            </div>
+          <?php endif ?>
+          <div class="form-group">
+            <label for="" class="col-form-label">สุนัขของท่าน : </label>
+            <select name="dog_id" class="form-control" id="" required>
+              <option value="">เลือกสุนัขของท่าน</option>
+              <?php
+              $sql = "SELECT * FROM dog WHERE user_id = '$user_id'";
+              $result = mysqli_query($conn, $sql);
+              while ($row = mysqli_fetch_array($result)) {
+                ?>
+                <option value="<?php echo $row["dog_id"]; ?>"><?php echo $row["dog_name"]; ?> , [<?php echo $row["dog_id"]; ?>]</option>
+              <?php } ?>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-form-label">วันที่เริ่มเข้าพัก : </label>
+            <input type="date" class="form-control" name="dep_sdate" id="dep_sdate" placeholder="วันที่เริ่มเข้าพัก" required>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-form-label">วันที่สิ้นสุดการเข้าพัก : </label>
+            <input type="date" class="form-control" name="dep_edate" id="dep_edate" placeholder="วันที่สิ้นสุดการเข้าพัก" required>
+          </div>
       </div>
       <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">ปิด</button> -->
-        <button type="submit" class="btn btn-primary btn-lg">ยืนยันการใช้บริการ</button>
+        <button type="submit" name="bookdeposit" class="btn btn-primary btn-lg">ยืนยัน</button>
+        <button type="reset" class="btn btn-dark btn-lg">ล้างค่า</button>
+        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
       </div>
       </form>
     </div>
@@ -129,12 +244,12 @@
 
 
 
-<!-- USE SERVICE MODAL PROCESS_5 -->
+<!-- UseService -->
 <div class="modal fade" id="useservice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">เลือกบริการ</h5>
+        <h5 class="modal-title" id="exampleModalLabel">บริการสปาร์สุนัข</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -174,13 +289,14 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary btn-lg">เพิ่มบริการ</button>
+        <button type="submit" class="btn btn-primary btn-lg">ยืนยัน</button>
+        <button type="reset" class="btn btn-dark btn-lg">ล้างค่า</button>
+        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
       </div>
       </form>
     </div>
   </div>
 </div>
-
 
 
 
@@ -199,9 +315,30 @@
 <script src="backend/assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 <script src="backend/assets/demo/demo.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
   $(document).ready(function() {
     // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
     demo.initChartsPages();
+  });
+</script>
+
+<!-- previous date disable -->
+<script>
+  $(document).ready(function() {
+    $(function() {
+      var dtToday = new Date();
+      var month = dtToday.getMonth() + 1;
+      var year = dtToday.getFullYear();
+      if (month < 10)
+        month = '0' + month.toString();
+      if (day < 10)
+        day = '0' + day.toString();
+
+      var maxDate = year + '-' + month + '-' + day;
+
+      $('#dep_sdate').attr('min', maxDate);
+    });
   });
 </script>
