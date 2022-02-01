@@ -92,7 +92,7 @@
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">จำนวนห้อง : </label>
-            <select name="dog_weight" class="form-control" id="">
+            <select name="room_quantity" class="form-control" id="">
               <option value="0">0</option>
               <?php
 

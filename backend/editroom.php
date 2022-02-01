@@ -14,7 +14,7 @@ include 'layout/header.php';
       <!-- End Navbar -->
 
       <!-- Content -->
-      <div class="content">
+      <div class="content" style="font-family: Kanit Thin;">
         <div class="row">
           <div class="col-md-12">
             <div class="card">
@@ -39,7 +39,7 @@ include 'layout/header.php';
                         <input name="room_quantity" value="<?= $row['room_quantity']; ?>" type="text" class="form-control" id="inputroomquantity" placeholder="กรอกจำนวนห้องพัก" required>
                     </div>
                     <div class="col-md-12">
-                        <label for="inputroomprice" class="form-label">จำนวนห้องพัก</label>
+                        <label for="inputroomprice" class="form-label">ราคาห้องพัก</label>
                         <input name="room_price" value="<?= $row['room_price']; ?>" type="text" class="form-control" id="inputroomprice" placeholder="กรอกจำนวนห้องพัก" required>
                     </div>
                     <div class="col-md-12">

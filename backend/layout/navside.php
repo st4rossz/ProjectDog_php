@@ -20,31 +20,90 @@
                     <i class="nc-icon nc-single-02"></i>
                     <p>ยืนยันการสมัคร</p>
                 </a>
+                <hr>
+            </li>
+            <li class="active">
+                <a href="">
+                    <i class="nc-icon nc-simple-add"></i>
+                    <p>ข้อมูลพื้นฐาน</p>
+                </a>
+                <ul style="padding-left: 30%;">
+                    <li class="active">
+                        <a href="base_store.php">
+                            <p>ข้อมูลร้าน</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul style="padding-left: 30%;">
+                    <li class="active">
+                        <a href="base_room.php">
+                            <p>ข้อมูลห้องพัก</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul style="padding-left: 30%;">
+                    <li class="active">
+                        <a href="base_service.php">
+                            <p>ข้อมูลบริการ</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul style="padding-left: 30%;">
+                    <li class="active">
+                        <a href="base_dog.php">
+                            <p>ข้อมูลสุนัข</p>
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+            </li>
+            <li class="active">
+                <a href="useservice_confirm.php">
+                    <i class="nc-icon nc-check-2"></i>
+                    <p>ยืนยันเข้าใช้บริการ</p>
+                </a>
+                <hr>
+            </li>
+            <li class="active">
+                <a href="dep_confirm.php">
+                    <i class="nc-icon nc-check-2"></i>
+                    <p>ยืนยันการจองฝากเลี้ยง</p>
+                </a>
+                <hr>
+            </li>
+
+
+
+            <!-- 
+            <li class="active">
                 <a href="base_store.php">
                     <i class="nc-icon nc-simple-add"></i>
                     <p>เพิ่มข้อมูลร้าน</p>
                 </a>
+            </li>
+            <li class="active">
                 <a href="base_room.php">
                     <i class="nc-icon nc-simple-add"></i>
                     <p>เพิ่มข้อมูลห้องพัก</p>
                 </a>
+            </li>
+            <li class="active">
                 <a href="base_service.php">
                     <i class="nc-icon nc-simple-add"></i>
                     <p>เพิ่มข้อมูลบริการ</p>
                 </a>
+            </li>
+            <li class="active">
                 <a href="base_dog.php">
                     <i class="nc-icon nc-simple-add"></i>
                     <p>เพิ่มข้อมูลสุนัข</p>
                 </a>
-                <a href="confirm_service.php">
-                    <i class="nc-icon nc-check-2"></i>
-                    <p>ยืนยันเข้าใช้บริการ</p>
-                </a>
-                <a href="confirm_deposit.php">
-                    <i class="nc-icon nc-check-2"></i>
-                    <p>ยืนยันการจองฝากเลี้ยง</p>
-                </a>
             </li>
+  -->
+
+
+
+
         </ul>
     </div>
 

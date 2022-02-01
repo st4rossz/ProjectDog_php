@@ -15,28 +15,33 @@ include 'layout/header.php';
       <!-- End Navbar -->
 
       <!-- Content -->
-      <div class="content">
+      <div class="content" style="font-family: Kanit Thin;">
         <div class="row">
+        <div class="col-md-12">
+            <div class="col-12" >
+              <h4 class="title" style="color: black;">ข้อมูลบริการ</h4>
+            </div>
+            <hr>
           <div class="col-md-12">
             <div class="card">
               <!-- <div class="header"> -->
-              <h4 class="title">เพิ่มข้อมูลบริการ</h4>
-              <hr>
+              <!-- <h4 class="title">ข้อมูลบริการ</h4> -->
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
               <!-- ปุ่มเพิ่มร้าน -->
-              <div class="d-flex">
+              <!-- <div class="d-flex">
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addservice" data-whatever="@mdo">เพิ่มข้อมูลบริการ</button>
-              </div>
+              </div> -->
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
               <div class="content table-full-width">
                 <table class="table table-striped table-bordered">
                   <thead>
-                    <tr>
-                      <th>รหัสบริการ</th>
-                      <th>ชื่อบริการ</th>
-                      <th>ราคา</th>
+                    <tr align="center">
+                      <th>รหัส</th>
+                      <th>ชื่อประเภทบริการ</th>
+                      <th>ราคา(บาท)</th>
+                      <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addservice" data-whatever="@mdo">เพิ่มข้อมูลบริการ</button></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -45,7 +50,7 @@ include 'layout/header.php';
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
                       ?>
-                      <tr>
+                      <tr align="center">
                         <th scope="row"> <?= $row["service_id"] ?> </th>
                         <td><?= $row["service_name"] ?></td>
                         <td><?= $row["service_price"] ?></td>

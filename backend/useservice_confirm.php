@@ -15,42 +15,44 @@ include 'layout/header.php';
       <!-- End Navbar -->
 
       <!-- Content -->
-      <div class="content">
+      <div class="content" style="font-family: Kanit Thin;">
         <div class="row">
           <div class="col-md-12">
+            <div class="col-12">
+              <h4 class="title" style="color: black;">ยืนยันการเข้าใช้บริการ</h4>
+            </div>
+            <hr>
             <div class="card">
               <!-- <div class="header"> -->
-              <h4 class="title">ยืนยันเข้าใช้บริการ </h4>
-
-              <hr>
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
               <div class="content table-full-width">
                 <table class="table table-striped table-bordered">
                   <thead>
                     <tr align="center">
-                      <th>รหัสเข้าใช้บริการ</th>
+                      <th>รหัสการจองบริการ</th>
+                      <th>ชื่อสุนัข</th>
                       <th>วันที่เลือกใช้บริการ</th>
-                      <th>สถานะบริการ</th>
-                      <th>รหัสสุนัข</th>
                       <th>ชื่อบริการ</th>
+                      <th>สถานะบริการ</th>
+
                       <!-- <th>dog_sickness</th> -->
                     </tr>
                   </thead>
                   <tbody>
                     <?php
                     // $sql = "SELECT * FROM deposit WHERE room_id IS NULL ";
-                    $sql = "SELECT * FROM use_service INNER JOIN service ON use_service.service_id = service.service_id WHERE us_status = 0";
+                    $sql = "SELECT * FROM use_service INNER JOIN service ON (use_service.service_id = service.service_id) INNER JOIN dog ON use_service.dog_id = dog.dog_id WHERE us_status = 0";
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
                       ?>
                       <tr align="center">
                         <th scope="row"> <?= $row["us_id"] ?> </th>
+                        <td><?= $row["dog_name"] ?></td>
                         <td><?= $row["us_date"] ?></td>
+                        <td><?= $row["service_name"] ?></td>
                         <td><?= $row["us_status"] ?></td>
-                        <td><?= $row["dog_id"] ?></td>
-                        <td><?= $row["service_id"] ?></td>
-                        <td><a class="btn btn-primary btn-lg" href="../api/_updateus_status.php?us_id=<?= $row["us_id"] ?>">เข้ารับบริการ</a>
+                        <td><a class="btn btn-primary btn-lg" href="useserv_detail.php?us_id=<?= $row["us_id"] ?>">รายละเอียด</a>
                           <!-- <td><a href=""></a></td> -->
                           <!-- <td>
                           <a class="btn btn-warning" href="editstore.php?store_id=<?= $row["store_id"] ?>">แก้ไข</a>

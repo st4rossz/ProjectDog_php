@@ -210,7 +210,35 @@
               </h3>
             </div>
           <?php endif ?>
+
           <div class="form-group">
+            <label for="" class="col-form-label">วันที่เริ่มเข้าพัก : </label>
+            <input type="date" class="form-control" name="dep_sdate" id="dep_sdateid" placeholder="วันที่เริ่มเข้าพัก" required>
+          </div>
+
+          <div class="form-group">
+            <label for="" class="col-form-label">วันที่สิ้นสุดการเข้าพัก : </label>
+            <input type="date" class="form-control" name="dep_edate" id="dep_edateid" placeholder="วันที่สิ้นสุดการเข้าพัก" required>
+          </div>
+
+          <div class="form-group">
+            <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>" id="">
+
+            <label for="" class="col-form-label">เลือกห้องพักสุนัข : </label>
+            <select name="room_id" class="form-control" id="" required>
+              <option value="">เลือกประเภทห้อง</option>
+              <?php
+              $sql = "SELECT * FROM room";
+              $result = mysqli_query($conn, $sql);
+              while ($row = mysqli_fetch_array($result)) {
+                ?>
+                <option value="<?php echo $row["room_id"]; ?>"><?php echo $row["room_type"]; ?></option>
+              <?php } ?>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>" id="">
             <label for="" class="col-form-label">สุนัขของท่าน : </label>
             <select name="dog_id" class="form-control" id="" required>
               <option value="">เลือกสุนัขของท่าน</option>
@@ -223,14 +251,7 @@
               <?php } ?>
             </select>
           </div>
-          <div class="form-group">
-            <label for="" class="col-form-label">วันที่เริ่มเข้าพัก : </label>
-            <input type="date" class="form-control" name="dep_sdate" id="dep_sdate" placeholder="วันที่เริ่มเข้าพัก" required>
-          </div>
-          <div class="form-group">
-            <label for="" class="col-form-label">วันที่สิ้นสุดการเข้าพัก : </label>
-            <input type="date" class="form-control" name="dep_edate" id="dep_edate" placeholder="วันที่สิ้นสุดการเข้าพัก" required>
-          </div>
+
       </div>
       <div class="modal-footer">
         <button type="submit" name="bookdeposit" class="btn btn-primary btn-lg">ยืนยัน</button>
@@ -241,8 +262,6 @@
     </div>
   </div>
 </div>
-
-
 
 <!-- UseService -->
 <div class="modal fade" id="useservice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -257,6 +276,7 @@
       <div class="modal-body">
         <form method="post" action="api/useservice.php">
           <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>" id="">
+
           <div class="form-group">
             <label for="" class="col-form-label">สุนัขของท่าน : </label>
             <select name="dog_id" class="form-control" id="">
@@ -272,8 +292,8 @@
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">เลือกบริการ : </label>
-            <select name="service_id" class="form-control" id="" required>
-              <option value="">เลือกบริการ</option>
+            <select onchange="sendService(this.value)" name="service_id" class="form-control" id="" required>
+              <option value="" selected disabled>เลือกบริการ</option>
               <?php
               $sql = "SELECT * FROM service";
               $result = mysqli_query($conn, $sql);
@@ -282,6 +302,11 @@
                 <option value="<?php echo $row["service_id"]; ?>"><?php echo $row["service_name"]; ?></option>
               <?php } ?>
             </select>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-form-label">ค่าบริการ :</label>
+            <input type="text" class="form-control" name="show_price" id="us_price" disabled>
+            <input type="hidden" class="form-control" name="price" id="us_price2">
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">วันเข้าใช้บริการ : </label>
@@ -301,6 +326,7 @@
 
 
 <!--   Core JS Files   -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="backend/assets/js/core/jquery.min.js"></script>
 <script src="backend/assets/js/core/popper.min.js"></script>
 <script src="backend/assets/js/core/bootstrap.min.js"></script>
@@ -315,30 +341,51 @@
 <script src="backend/assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 <script src="backend/assets/demo/demo.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script>
+
+<script type="text/javascript">
+  $(function() {
+    var today = new Date();
+    var month = ('0' + (today.getMonth() + 1)).slice(-2);
+    var day = ('0' + today.getDate()).slice(-2);
+    var year = today.getFullYear();
+    var date = year + '-' + month + '-' + day;
+    $('[id*=dep_sdateid]').attr('min', date);
+  });
+
+  $(function() {
+    var today = new Date();
+    var month = ('0' + (today.getMonth() + 1)).slice(-2);
+    var day = ('0' + today.getDate()).slice(-2);
+    var year = today.getFullYear();
+    var date = year + '-' + month + '-' + day;
+    $('[id*=dep_edateid]').attr('min', date);
+  });
+
+  $(function() {
+    var today = new Date();
+    var month = ('0' + (today.getMonth() + 1)).slice(-2);
+    var day = ('0' + today.getDate()).slice(-2);
+    var year = today.getFullYear();
+    var date = year + '-' + month + '-' + day;
+    $('[id*=us_date]').attr('min', date);
+  });
+
+  function sendService(id_service) {
+    // console.log(id_service)
+    $.post('api/service/priceload.php', {
+      id_service: id_service
+    }, function(data) {
+      if (data.success) {
+        document.getElementById("us_price").value = data.price
+        document.getElementById("us_price2").value = data.price
+      }
+    }, 'json')
+  }
+
+
   $(document).ready(function() {
     // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
     demo.initChartsPages();
-  });
-</script>
-
-<!-- previous date disable -->
-<script>
-  $(document).ready(function() {
-    $(function() {
-      var dtToday = new Date();
-      var month = dtToday.getMonth() + 1;
-      var year = dtToday.getFullYear();
-      if (month < 10)
-        month = '0' + month.toString();
-      if (day < 10)
-        day = '0' + day.toString();
-
-      var maxDate = year + '-' + month + '-' + day;
-
-      $('#dep_sdate').attr('min', maxDate);
-    });
   });
 </script>

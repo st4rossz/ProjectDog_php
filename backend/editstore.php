@@ -14,7 +14,7 @@ include 'layout/header.php';
       <!-- End Navbar -->
 
       <!-- Content -->
-      <div class="content">
+      <div class="content" style="font-family: Kanit Thin;">
         <div class="row">
           <div class="col-md-12">
             <div class="card">
@@ -28,7 +28,7 @@ include 'layout/header.php';
             while($row = mysqli_fetch_assoc($query)){
 
             ?>
-            <form method="POST" action="../api/store/editstoredb.php">
+            <form method="POST" action="../api/store/editstoredb.php" enctype="multipart/form-data">
                     <input type="hidden" name="store_id" value="<?= $row['store_id']; ?>" id="inputstoreid">
                     <div class="col-md-12">
                         <label for="inputstorename" class="form-label">ชื่อร้าน :</label>
@@ -47,7 +47,11 @@ include 'layout/header.php';
                         <input name="store_email" value="<?= $row['store_email']; ?>" type="email" class="form-control" id="inputstoreemail" placeholder="กรอกอีเมล์" required>
                     </div>
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-success">บันทึก</button>
+                      <label for="inputstorelogo" class="form-label">โลโก้ร้าน :</label>
+                      <input type="file" name="store_logo" id="inputstorelogo" class="form-control" value="test">
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-success" value="upload" >บันทึก</button>
                     </div>
             </form>
             <?php } ?>

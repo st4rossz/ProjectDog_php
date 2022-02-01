@@ -14,7 +14,7 @@ include 'layout/header.php';
       <!-- End Navbar -->
 
       <!-- Content -->
-      <div class="content">
+      <div class="content" style="font-family: Kanit Thin;">
         <div class="row">
           <div class="col-md-12">
             <div class="card">
@@ -31,11 +31,11 @@ include 'layout/header.php';
             <form method="POST" action="../api/service/editservicedb.php">
                     <input type="hidden" name="service_id" value="<?= $row['service_id']; ?>" id="inputserviceid">
                     <div class="col-md-12">
-                        <label for="inputservicename" class="form-label">ชื่อร้าน</label>
+                        <label for="inputservicename" class="form-label">ชื่อบริการ</label>
                         <input name="service_name" value="<?= $row['service_name']; ?>" type="text" class="form-control" id="inputservicename" placeholder="บริการ" required>
                     </div>
                     <div class="col-md-12">
-                        <label for="inputserviceprice" class="form-label">ที่อยู่ร้าน</label>
+                        <label for="inputserviceprice" class="form-label">ราคาบริการ</label>
                         <input name="service_price" value="<?= $row['service_price']; ?>" type="text" class="form-control" id="inputserviceadd" placeholder="ราคา" required>
                     </div>
                     <div class="col-md-12">

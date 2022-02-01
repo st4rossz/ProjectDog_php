@@ -35,20 +35,11 @@ include 'api/server.php'
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <!-- Font Awesome -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-  rel="stylesheet"
-/>
-<!-- Google Fonts -->
-<link
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-  rel="stylesheet"
-/>
-<!-- MDB -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.css"
-  rel="stylesheet"
-/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
@@ -68,7 +59,7 @@ include 'api/server.php'
 
     .bg {
       /* The image used */
-      background-image: url("images/dog1.jpg");
+      background-image: url("images/testbg2.jpg");
 
       /* Full height */
       height: 100%;
@@ -78,7 +69,24 @@ include 'api/server.php'
       background-repeat: no-repeat;
       background-size: cover;
 
-      opacity: 0.75;
+      opacity: 1;
     }
-</style>
-    </head>
+
+    .numberCircle {
+      font-family: Kanit extralight;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 24px;
+      border: 3px solid black;
+      color: white;
+      background: black;
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      /* box-shadow: 0px 0px 10px black; */
+    }
+  </style>
+</head>

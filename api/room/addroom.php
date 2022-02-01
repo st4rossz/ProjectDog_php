@@ -5,7 +5,7 @@
     $room_quantity = $_POST['room_quantity'];
     $room_price = $_POST['room_price'];
     
-    $sql = "INSERT INTO room (room_type, room_quantity, room_price) VALUES ('$room_type', '$room_price', '$room_price')";
+    $sql = "INSERT INTO room (room_type, room_quantity, room_price) VALUES ('$room_type', '$room_quantity', '$room_price')";
     $query = mysqli_query($conn,$sql) ;
 
      if($query){

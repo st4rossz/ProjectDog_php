@@ -6,13 +6,14 @@ if (isset($_POST['bookdeposit'])) {
     $ndep_sdate = mysqli_real_escape_string($conn, $_POST['dep_sdate']);
     $ndep_edate = mysqli_real_escape_string($conn, $_POST['dep_edate']);
     $dog_id = mysqli_real_escape_string($conn, $_POST['dog_id']);
+    $room_id = mysqli_real_escape_string($conn, $_POST['room_id']);
+    // $user_id = mysqli_real_escape_string($conn, $_POST['user_id']);
     $dep_sdate = date($ndep_sdate);
     $dep_edate = date($ndep_edate);
 
     // if ($dep_sdate > $dep_edate) {
     //     array_push($errors, "กรุณากรอกวันจองให้ถูกต้อง!");
     // }
-
     $bookdatecheck = "SELECT * FROM deposit WHERE dog_id = '$dog_id' AND (dep_sdate = '$dep_sdate' AND dep_edate = '$dep_edate') ";
     $query = mysqli_query($conn, $bookdatecheck);
     $result = mysqli_fetch_assoc($query);
@@ -46,11 +47,11 @@ if (isset($_POST['bookdeposit'])) {
         echo "window.location=\"../userindex.php\"";
         echo "</script>";   
     } else {
-        $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id) VALUES ('$dep_sdate', '$dep_edate', '$dog_id')";
+        $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id')";
         $query = mysqli_query($conn, $sql);
         echo "<script>";
         echo "alert(\"จองสำเร็จ!\");";
-        echo "window.location=\"../userindex.php\"";
+        echo "window.location=\"../userdepositorder.php\"";
         echo "</script>";
     }
 }

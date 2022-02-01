@@ -10,7 +10,7 @@ $user_id = $_SESSION['user_id'];
 
 ?>
 
-<body class="">
+<body class=""  style="font-family: Kanit Thin;">
     <?php include('userlayout/nav.php') ?>
     <div class="container-fluid bg-warning">
         <div class="row" style="padding-top: 25px;">

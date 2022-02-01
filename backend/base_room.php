@@ -15,29 +15,35 @@ include 'layout/header.php';
       <!-- End Navbar -->
 
       <!-- Content -->
-      <div class="content">
+      <div class="content" style="font-family: Kanit Thin;">
         <div class="row">
+        <div class="col-md-12">
+            <div class="col-12">
+              <h4 class="title" style="color: black;">ข้อมูลห้อง</h4>
+            </div>
+            <hr>
           <div class="col-md-12">
             <div class="card">
               <!-- <div class="header"> -->
-              <h4 class="title">เพิ่มข้อมูลห้องพักสุนัข</h4>
-              <hr>
+              <!-- <h4 class="title">ข้อมูลห้อง</h4> -->
+
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
               <!-- ปุ่มเพิ่มร้าน -->
-              <div class="d-flex">
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addroom" data-whatever="@mdo">เพิ่มข้อมูลห้องพักสุนัข</button>
-              </div>
+              <!-- <div class="d-flex">
+                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#addroom" data-whatever="@mdo">เพิ่มข้อมูลห้องพักสุนัข</button>
+              </div> -->
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
               <div class="content table-full-width">
                 <table class="table table-striped table-bordered">
                   <thead>
-                    <tr>
+                    <tr align="center">
                       <th>รหัสห้องพัก</th>
-                      <th>ประเภทห้องพัก</th>
-                      <th>จำนวนห้องพัก</th>
-                      <th>ราคาห้องพัก</th>
+                      <th>ชื่อประเภทห้อง</th>
+                      <th>จำนวนห้อง</th>
+                      <th>ราคา/วัน(บาท)</th>
+                      <th><button type="button" class="btn btn-primary " data-toggle="modal" data-target="#addroom" data-whatever="@mdo">เพิ่มประเภทห้อง</button></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -46,7 +52,7 @@ include 'layout/header.php';
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
                       ?>
-                      <tr>
+                      <tr align="center">
                         <th scope="row"> <?= $row["room_id"] ?> </th>
                         <td><?= $row["room_type"] ?></td>
                         <td><?= $row["room_quantity"] ?></td>

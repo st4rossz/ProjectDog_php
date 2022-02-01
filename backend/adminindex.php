@@ -16,23 +16,25 @@ include 'layout/header.php';
       <!-- End Navbar -->
 
       <!-- Content -->
-      <div class="content">
+      <div class="content" style="font-family: Kanit Thin;">
         <div class="row">
+          <div class="col-12">
+            <h4 class="title" style="color: black;">ยืนยันการสมัคร</h4>
+            <hr>
+          </div>
+          <hr>
           <div class="col-md-12">
             <div class="card">
-              <!-- <div class="header"> -->
-              <h4 class="title">Member Approve</h4>
-              <hr>
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
-              <div class="content table-responsive table-full-width">
+              <div class="content table table-full-width">
                 <table class="table table-striped table-bordered">
                   <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Username</th>
-                      <th>Email</th>
-                      <th>Status</th>
+                    <tr align="center">
+                      <th>รหัสผู้ใช้</th>
+                      <th>ชื่อผู้ใช้</th>
+                      <th>อีเมล์ผู้ใช้</th>
+                      <th>สถานะ</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -41,14 +43,14 @@ include 'layout/header.php';
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
                       ?>
-                      <tr>
+                      <tr align="center">
                         <th scope="row"> <?= $row["user_id"] ?> </th>
                         <td><?= $row["username"] ?></td>
                         <td><?= $row["email"] ?></td>
                         <td><?= $row["status"] ?></td>
                         <td>
-                          <a class="btn btn-success btn-lg" href="../api/_approveuser.php?user_id=<?= $row["user_id"] ?>" onclick="javascript:return confirm('ยืนยันสิทธิ์ผู้ใช้ท่านนี้ใช่หรือไม่?');" >ยืนยันสิทธิ์</a>
-                          <a class="btn btn-danger btn-lg" href="../api/_declineuser.php?user_id=<?= $row["user_id"] ?>" onclick="javascript:return confirm('ต้องการลบคำขอนี้ใช่หรือไม่?');" >ยกเลิก</a>
+                          <a class="btn btn-success btn-lg" href="../api/_approveuser.php?user_id=<?= $row["user_id"] ?>" onclick="javascript:return confirm('ยืนยันสิทธิ์ผู้ใช้ท่านนี้ใช่หรือไม่?');">อนุมัติ</a>
+                          <a class="btn btn-danger btn-lg" href="../api/_declineuser.php?user_id=<?= $row["user_id"] ?>" onclick="javascript:return confirm('ต้องการลบคำขอนี้ใช่หรือไม่?');">ปฎิเสธ</a>
                         </td>
                       </tr>
                     <?php } ?>
