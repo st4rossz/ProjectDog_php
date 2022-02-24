@@ -51,7 +51,7 @@ include 'layout/header.php';
                         <td><?= $row["dog_name"] ?></td>
                         <td><?= $row["us_date"] ?></td>
                         <td><?= $row["service_name"] ?></td>
-                        <td><?= $row["us_status"] ?></td>
+                        <td><?= $row["status_name"] ?></td>
                         <td><a class="btn btn-primary btn-lg" href="useserv_detail.php?us_id=<?= $row["us_id"] ?>">รายละเอียด</a>
                           <!-- <td><a href=""></a></td> -->
                           <!-- <td>

@@ -15,12 +15,12 @@
     if($query){
         echo "<script>";
         echo "alert(\"เพิ่มข้อมูลสุนัขสำเร็จ\");";
-        echo "window.location=\"../../userindex.php\"";
+        echo "window.location=\"../../usindex.php\"";
         echo "</script>";
     }else{
         echo "<script>";
         echo "alert(\"เกิดข้อผิดพลาด\");";
-        echo "window.location=\"../../userindex.php\"";
+        echo "window.location=\"../../usindex.php\"";
         echo "</script>";
     }
 ?> 

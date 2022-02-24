@@ -71,6 +71,34 @@
                 </a>
                 <hr>
             </li>
+            <li class="active">
+                <a href="record.php">
+                    <i class="nc-icon nc-tag-content"></i>
+                    <p>บันทึกการติดตามสุนัข</p>
+                </a>
+                <hr>
+            </li>
+            <li class="active">
+                <a href="return.php">
+                    <i class="nc-icon nc-satisfied"></i>
+                    <p>ยืนยันสถานะการคืนสุนัข</p>
+                </a>
+                <hr>
+            </li>
+            <li class="active">
+                <a href="pay.php">
+                    <i class="nc-icon nc-credit-card"></i>
+                    <p>ยืนยันการชำระเงิน</p>
+                </a>
+                <hr>
+            </li>
+            <li class="active">
+                <a href="report.php">
+                    <i class="nc-icon nc-single-copy-04"></i>
+                    <p>รายงาน</p>
+                </a>
+                <hr>
+            </li>
 
 
 

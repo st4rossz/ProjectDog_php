@@ -30,40 +30,46 @@ $user_id = $_SESSION['user_id'];
 // $room_id = $_SESSION['room_id'];
 ?>
 
-<body class=""  style="font-family: Kanit Thin;">
+<body style="font-family: Kanit Light">
     <?php include('userlayout/nav.php') ?>
-    <div class="container-fluid bg-warning">
+    <div class="container-fluid" style="min-height: 100%;">
         <div class="row">
-            <div class="col-md-12" text-center>
-            <p style="padding-left: 45%; padding-top: 5%; font-family: Kanit thin; font-size: 25px;">รายการจองฝากเลี้ยงของท่าน</p>
+            <div class="col-md-12 text-center d-flex justify-content-center">
+                <p style="padding-top: 2%; font-family: Kanit thin; font-size: 25px;">รายการจองฝากเลี้ยงของท่าน</p>
             </div>
             <div class="col-md-12 text-center d-flex justify-content-center">
-                <table class="table table-bordered table-dark" style="margin-left: 15%; margin-right: 15%; margin-top: 3%; margin-bottom: 5%;">
+                <img src="images/dep_about.png" style="width: 200; height: 200px; " alt="">
+            </div>
+            <div class="col-md-12">
+                <hr style="width: 35%; border: 3px solid black; margin-left: auto; margin-right: auto;">
+            </div>
+            <div class="col-md-12 text-center d-flex justify-content-center">
+                <table class="table table-striped table-dark" style="margin-left: 15%; margin-right: 15%; margin-bottom: 5%; box-shadow: 0px 0px 4px 4px grey;">
                     <thead>
-                        <tr>
+                        <tr class="thead-dark">
                             <th>ชื่อสุนัข</th>
                             <th>วันเข้าใช้บริการ</th>
                             <th>วันรับสุนัขกลับ</th>
                             <th>จำนวนวัน</th>
                             <th>ชื่อประเภทห้อง</th>
-                            <th>สถานะ</th>
                             <th>ราคา</th>
+                            <th>สถานะ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $sql = "SELECT * FROM deposit INNER JOIN dog on (deposit.dog_id = dog.dog_id) INNER JOIN room on (deposit.room_id = room.room_id) WHERE user_id = '$user_id'";
-                        $query = mysqli_query($conn, $sql) or die( mysqli_error($conn));
+                        $sql = "SELECT * FROM deposit INNER JOIN dog on (deposit.dog_id = dog.dog_id) INNER JOIN room on (deposit.room_id = room.room_id) WHERE user_id = '$user_id' ORDER BY dep_status desc";
+                        $query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
                         while ($row = mysqli_fetch_assoc($query)) {
                             ?>
-                            <tr>
+                            <tr class="table-light">
                                 <th scope="row"> <?= $row["dog_name"] ?> </th>
                                 <td><?= $row["dep_sdate"] ?></td>
                                 <td><?= $row["dep_edate"] ?></td>
                                 <td><?= $row["dep_day"] ?></td>
-                                <td><?= $row["room_type"];?></td>
-                                <td><?= $row["dep_status"]; ?></td>
+                                <td><?= $row["room_type"]; ?></td>
                                 <td><?= $row["dep_price"]; ?></td>
+                                <td><?= $row["status_name"]; ?></td>
                                 <?php
                                     ?>
                             </tr>

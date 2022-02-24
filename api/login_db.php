@@ -32,7 +32,7 @@ if (isset($_POST['login_user'])) {
             header("location: ../userindex.php");
         } else {
             array_push($errors, "Wrong username/password combination");
-            $_SESSION['error'] = "Wrong username/password try again!";
+            $_SESSION['error'] = "กรอกชื่อผู้ใช้/รหัสผ่านให้ถูกต้อง!";
             header("location: ../login.php");
         }
     }

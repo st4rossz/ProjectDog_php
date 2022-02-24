@@ -14,9 +14,32 @@
             <div class="content" style="font-family: Kanit Thin;">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="col-12">
-                            <h4 class="title" style="color: black;">รายละเอียดการใช้บริการ</h4>
+                        <div class="row">
+                            <?php
+                            $us_id = $_GET['us_id'];
+                            $sql = "SELECT * FROM use_service WHERE us_id = '$us_id'";
+                            $query = mysqli_query($conn, $sql);
+                            while ($row = mysqli_fetch_assoc($query)) {
+                                ?>
+                                <div class="col-8">
+                                    <h4 class="title" style="color: black;">รายละเอียดการใช้บริการ</h4>
+                                </div>
+                                <div class="col-2" style="padding-top: 1%;">
+                                    <form method="POST" action="../api/use_servicestatus/_updateus_status.php">
+                                        <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>" id="us_id">
+                                        <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยันยันการจองหรือไม่?');">ยืนยันการจอง</button>
+                                    </form>
+                                </div>
+                                <div class="col-2" style="padding-top: 1%;">
+                                    <?php $us_id = $_GET['us_id']; ?>
+                                    <form method="POST" action="../api/use_servicestatus/delete.php">
+                                        <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>" id="us_id">
+                                        <button type="submit" class="btn btn-danger btn-lg btn-block" onclick="javascript:return confirm('แน่ใจว่าจะยกเลิกการจองนี้?');">ยกเลิกการจอง</button>
+                                    </form>
+                                </div>
+                            <?php } ?>
                         </div>
+
                         <hr>
                         <div class="col-md-12" style="font-family: Kanit Thin;">
                             <div class="card">
@@ -168,12 +191,14 @@
                                                     <p align="center" style="font-size: 25px;"><?= $row['dog_sickness']; ?></p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12" style=" padding-right: 5%; padding-top: 3%;">
+
+                                            <!-- <div class="col-md-12" style=" padding-right: 5%; padding-top: 3%;">
                                                 <form method="POST" action="../api/use_servicestatus/_updateus_status.php">
                                                     <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>" id="us_id">
                                                     <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยันยันการจองหรือไม่?');">ยืนยันการจอง</button>
                                                 </form>
-                                            </div>
+                                            </div> -->
+
                                         </div>
                                     </div>
                             </div>

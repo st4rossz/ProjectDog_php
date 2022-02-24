@@ -1,20 +1,5 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="javascript:;">คุณคือ : <strong><?php echo $_SESSION['username']; ?></a>
-    <li class="nav-item active">
-      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Features</a>
-    </li>
-    <a href="api/logout.php" type="button" class="btn btn-outline-danger">ออกจากระบบ</a>
-
-  </div>
-</nav>
-</div>
-</nav> -->
-<nav class="navbar navbar-expand-lg navbar-light bg-dark" style="margin-bottom: 0px; font-family: Kanit Light;">
-  <a class="navbar-brand" href="userindex.php">|Good Dog Home|</a>
+<nav class="navbar navbar-expand-lg" style="margin-bottom: 0px; font-family: Kanit Light; color: black; background-color: white;">
+  <a style="color: black;" class="navbar-brand" href="userindex.php">|Good Dog Home|</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -25,8 +10,11 @@
         <a class="nav-link" href="userindex.php">Home </a>
       </li> -->
       <li class="nav-item">
+        <a style="color: black; font-size: 20px; padding-top: 18%;" class="nav-link" href="usindex.php">ใช้บริการ</a>
+      </li>
+      <li class="nav-item">
         <div class="dropdown">
-          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: Kanit thin;">
+          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: Kanit thin; padding-top: 7%;">
             การจองของท่าน
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -48,7 +36,7 @@
       </li> -->
       <li class="nav-item">
         <a class="nav-link disabled" href="#" style="padding-top: 20%;">
-          <p>คุณคือ : <strong><?php echo $_SESSION['username']; ?></p>
+          <p style="color: black;">คุณคือ : <strong><?php echo $_SESSION['username']; ?></p>
         </a>
       </li>
     </ul>
