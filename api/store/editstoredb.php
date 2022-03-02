@@ -27,6 +27,9 @@ if ($upload <> '') {   //not select file
     //คัดลอกไฟล์ไปเก็บที่เว็บเซริ์ฟเวอร์
     move_uploaded_file($_FILES['store_logo']['tmp_name'], $path_copy);
 }
+
+
+
 // เพิ่มไฟล์เข้าไปในตาราง uploadfile
 $sql = "UPDATE store SET store_name = '$store_name', store_add = '$store_add', store_tel = '$store_tel', store_email = '$store_email', store_logo = '$newname' WHERE store_id = '$store_id'";
 $query = mysqli_query($conn, $sql);

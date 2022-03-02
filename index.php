@@ -1,10 +1,12 @@
 <?php
 
 include 'userlayout/header.php';
-// if (!isset($_SESSION['username'])){
-//     $_SESSION['msg'] = "You must log in first";
-//     header('location: ../login.php');
-// }
+// if (isset($_SESSION['status' == 1])) {
+//     header('location: userindex.php');
+// } 
+// if (!isset($_SESSION['status' == 2])) {
+//     header('location: backend/adminindex.php');
+// } 
 
 // if($_SESSION['status'] != 2){
 //     echo "<script>";
@@ -145,7 +147,7 @@ include 'userlayout/header.php';
                         <hr style="width: 75%; margin-left: 15%;">
                     </div>
                     <div class="card-footer">
-                        <button onclick="gologin()" type="button" class="btn btn-warning btn-lg" style="font-family: Kanit Thin; color:black; box-shadow: 2px 2px 0px;">ล็อคอินเลย</button>
+                        <button onclick="gogo()" type="button" class="btn btn-warning btn-lg" style="font-family: Kanit Thin; color:black; box-shadow: 2px 2px 0px;">ล็อคอินเลย</button>
                         <!-- <a class="btn btn-danger" href="adddeposit.php">ทดสอบเพิ่มวันที่</a> -->
                     </div>
                 </div>
@@ -347,10 +349,15 @@ include 'userlayout/header.php';
 
     <div class="container-fluid" style="background-color: white;">
         <div class="row" style="padding-top: 25px; padding-bottom: 25px;">
-            <div class="col-md-12 text-center justify-content-center">
-
+            <div class="col-md-5 justify-content-center ">
+                <hr style="width: 90%; margin-left: 10%; margin-top: 3%;">
+            </div>
+            <div class="col-md-2 text-center justify-content-center">
                 <p style="font-family: Kanit medium; font-size: 35px;">เกี่ยวกับเรา</p>
-                <hr style="width: 65%; margin-left: 18%;">
+                <!-- <hr style="width: 65%; margin-left: 18%;"> -->
+            </div>
+            <div class="col-md-5 justify-content-center ">
+                <hr style="width: 90%; margin-right: 5%; margin-top: 3%;">
             </div>
 
             <div class="col-md-6 justify-content-center">
@@ -370,6 +377,29 @@ include 'userlayout/header.php';
                     - เจ้าของบ้านดูแลน้องๆ เอง พร้อมพี่เลี้ยง <br>
                     - น้องหมาขนสั้น ฝากเกิน 7 วัน อาบน้ำฟรี <br>
                     - มีบริการรับ-ส่ง เริ่มต้นที่ 80 บาท จ้า</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="background-color: white;">
+        <div class="row" style="padding-top: 25px; padding-bottom: 25px;">
+            <div class="col-md-5 justify-content-center ">
+                <hr style="width: 90%; margin-left: 10%; margin-top: 3%;">
+            </div>
+            <div class="col-md-2 text-center justify-content-center">
+                <p style="font-family: Kanit medium; font-size: 35px;">แกลเลอรี่</p>
+                <!-- <hr style="width: 65%; margin-left: 18%;"> -->
+            </div>
+            <div class="col-md-5 justify-content-center ">
+                <hr style="width: 90%; margin-right: 30%; margin-top: 3%;">
+            </div>
+
+            <div class="col-md-6 justify-content-center">
+
+
+            </div>
+            <div class="col-md-6 justify-content-center">
+
             </div>
         </div>
     </div>

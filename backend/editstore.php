@@ -48,7 +48,7 @@ include 'layout/header.php';
                     </div>
                     <div class="col-md-12">
                       <label for="inputstorelogo" class="form-label">โลโก้ร้าน :</label>
-                      <input type="file" name="store_logo" id="inputstorelogo" class="form-control" value="test">
+                      <input type="file" name="store_logo" id="inputstorelogo" class="form-control">
                     </div>
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-success" value="upload" >บันทึก</button>

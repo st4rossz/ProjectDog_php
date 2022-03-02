@@ -33,7 +33,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="api/dog/uadddog.php">
+        <form method="post" action="api/dog/uadddog.php" enctype="multipart/form-data">
           <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>" id="">
           <div class="form-group">
             <label for="" class="col-form-label">ชื่อสุนัข : </label>
@@ -86,6 +86,15 @@
             <label for="" class="col-form-label">โรคประจำตัว,อาหารที่แพ้ : </label>
             <input type="text" class="form-control" name="dog_sickness" id="inputdog_sickness" placeholder="โรคประจำตัว,อาหารที่แพ้">
           </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label for="dogimagelabel" class="form-label">ใส่รูปสุนัขของท่าน :</label>
+                <input type="file" name="image" id="inputdogimage" class="form-control">
+              </div>
+            </div>
+ 
+
 
       </div>
       <div class="modal-footer">
@@ -485,5 +494,9 @@
   function gologin() {
     alert("โปรดล็อคอินก่อนเข้าใช้งาน");
     // window.location.href = 'userindex.php';
+  }
+
+  function gogo() {
+    window.location.href = 'login.php';
   }
 </script>

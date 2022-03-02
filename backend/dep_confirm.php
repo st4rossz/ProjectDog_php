@@ -17,45 +17,45 @@ include 'layout/header.php';
       <!-- Content -->
       <div class="content" style="font-family: Kanit Thin;">
         <div class="row">
-        <div class="col-md-12">
+          <div class="col-md-12">
             <div class="col-12">
               <h4 class="title" style="color: black;">ยืนยันการจอง</h4>
             </div>
             <hr>
-          <div class="col-md-12">
-            <div class="card">
-              <!-- <div class="header"> -->
-              <!-- <p class="category">Here is a subtitle for this table</p> -->
-              <!-- </div> -->
-              <div class="content table-full-width">
-                <table class="table table-striped table-bordered">
-                  <thead>
-                    <tr align="center">
-                      <th>รหัสการจอง</th>
-                      <th>ชื่อเจ้าของ</th>
-                      <th>ชื่อสุนัข</th>
-                      <th>วันที่ฝาก</th>
-                      <th>วันที่ออก</th>
-                      <th>จำนวนวัน</th>
-                      <!-- <th>dog_sickness</th> -->
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    // $sql = "SELECT * FROM deposit WHERE room_id IS NULL ";
-                    $sql = "SELECT * FROM deposit INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_status = 0";
-                    $query = mysqli_query($conn, $sql);
-                    while ($row = mysqli_fetch_assoc($query)) {
-                      ?>
+            <div class="col-md-12">
+              <div class="card">
+                <!-- <div class="header"> -->
+                <!-- <p class="category">Here is a subtitle for this table</p> -->
+                <!-- </div> -->
+                <div class="content table-full-width">
+                  <table class="table table-striped table-bordered">
+                    <thead>
                       <tr align="center">
-                        <th scope="row"> <?= $row["dep_id"] ?> </th>
-                        <td><?= $row["username"] ?></td>
-                        <td><?= $row["dog_name"] ?></td>
-                        <td><?= $row["dep_sdate"] ?></td>
-                        <td><?= $row["dep_edate"] ?></td>
-                        <td><?= $row["dep_day"]; ?></td>
-                        <!-- <td><a class="btn btn-primary btn-lg" href="../api/depositstatus/_updatedepstatus.php?user_id=<?= $row["user_id"] ?>">ยืนยัน</a></td> -->
-                        <td><a class="btn btn-primary btn-lg" href="depositdetail.php?dep_id=<?= $row["dep_id"] ?>">รายละเอียด</a></td>
+                        <th>รหัสการจอง</th>
+                        <th>ชื่อเจ้าของ</th>
+                        <th>ชื่อสุนัข</th>
+                        <th>วันที่ฝาก</th>
+                        <th>วันที่ออก</th>
+                        <th>จำนวนวัน</th>
+                        <!-- <th>dog_sickness</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      // $sql = "SELECT * FROM deposit WHERE room_id IS NULL ";
+                      $sql = "SELECT * FROM deposit INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_status = 0";
+                      $query = mysqli_query($conn, $sql);
+                      while ($row = mysqli_fetch_assoc($query)) {
+                        ?>
+                        <tr align="center">
+                          <th scope="row"> <?= $row["dep_id"] ?> </th>
+                          <td><?= $row["username"] ?></td>
+                          <td><?= $row["dog_name"] ?></td>
+                          <td><?= $row["dep_sdate"] ?></td>
+                          <td><?= $row["dep_edate"] ?></td>
+                          <td><?= $row["dep_day"]; ?></td>
+                          <!-- <td><a class="btn btn-primary btn-lg" href="../api/depositstatus/_updatedepstatus.php?user_id=<?= $row["user_id"] ?>">ยืนยัน</a></td> -->
+                          <td><a class="btn btn-primary btn-lg" href="depositdetail.php?dep_id=<?= $row["dep_id"] ?>">รายละเอียด</a></td>
                           <!-- <td><a href=""></a></td> -->
                           <!-- <td>
                           <a class="btn btn-warning" href="editstore.php?store_id=<?= $row["store_id"] ?>">แก้ไข</a>
@@ -64,19 +64,19 @@ include 'layout/header.php';
                         </td> -->
                           <?php
                             ?>
-                      </tr>
-                    <?php } ?>
-                  </tbody>
-                </table>
+                        </tr>
+                      <?php } ?>
+                    </tbody>
+                  </table>
 
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <?php
-        include 'layout/footer.php';
-        ?>
+          <?php
+          include 'layout/footer.php';
+          ?>
 </body>
 
 </html>

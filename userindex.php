@@ -3,7 +3,7 @@ include('userlayout/header.php');
 
 if (!isset($_SESSION['username'])) {
     $_SESSION['msg'] = "You must log in first";
-    header('location: login.php');
+    header('location: index.php');
 }
 
 if ($_SESSION['status'] == 0) {
@@ -295,10 +295,15 @@ $user_id = $_SESSION['user_id'];
 
     <div class="container-fluid" style="background-color: white;">
         <div class="row" style="padding-top: 25px; padding-bottom: 25px;">
-            <div class="col-md-12 text-center justify-content-center">
-
+            <div class="col-md-5 justify-content-center ">
+                <hr style="width: 90%; margin-left: 10%; margin-top: 3%;">
+            </div>
+            <div class="col-md-2 text-center justify-content-center">
                 <p style="font-family: Kanit medium; font-size: 35px;">เกี่ยวกับเรา</p>
-                <hr style="width: 65%; margin-left: 18%;">
+                <!-- <hr style="width: 65%; margin-left: 18%;"> -->
+            </div>
+            <div class="col-md-5 justify-content-center ">
+                <hr style="width: 90%; margin-right: 5%; margin-top: 3%;">
             </div>
 
             <div class="col-md-6 justify-content-center">
@@ -312,12 +317,35 @@ $user_id = $_SESSION['user_id'];
                 </p>
             </div>
             <div class="col-md-6 justify-content-center">
-                <p style="font-family: Kanit light; margin-left: 10%;">
+                <p style="font-family: Kanit light; margin-left: 15%;">
                     - พาวิ่งเล่น อย่างน้อย 4 เวลา(เช้า-เที่ยง-เย็น-ก่อนนอน) <br>
                     - ทำความสะอาดที่พักทุกวัน​ พ่นไบติคอล-​น้ำยาฆ่าเชื้อ <br>
                     - เจ้าของบ้านดูแลน้องๆ เอง พร้อมพี่เลี้ยง <br>
                     - น้องหมาขนสั้น ฝากเกิน 7 วัน อาบน้ำฟรี <br>
                     - มีบริการรับ-ส่ง เริ่มต้นที่ 80 บาท จ้า</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="background-color: white;">
+        <div class="row" style="padding-top: 25px; padding-bottom: 25px;">
+            <div class="col-md-5 justify-content-center ">
+                <hr style="width: 90%; margin-left: 10%; margin-top: 3%;">
+            </div>
+            <div class="col-md-2 text-center justify-content-center">
+                <p style="font-family: Kanit medium; font-size: 35px;">แกลเลอรี่</p>
+                <!-- <hr style="width: 65%; margin-left: 18%;"> -->
+            </div>
+            <div class="col-md-5 justify-content-center ">
+                <hr style="width: 90%; margin-right: 30%; margin-top: 3%;">
+            </div>
+
+            <div class="col-md-6 justify-content-center">
+
+
+            </div>
+            <div class="col-md-6 justify-content-center">
+
             </div>
         </div>
     </div>

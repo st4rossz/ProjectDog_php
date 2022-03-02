@@ -72,23 +72,44 @@
                 <hr>
             </li>
             <li class="active">
-                <a href="record.php">
+                <a href="us_record.php">
                     <i class="nc-icon nc-tag-content"></i>
-                    <p>บันทึกการติดตามสุนัข</p>
+                    <p>บันทึกสุนัข (สปาร์สุนัข)</p>
                 </a>
                 <hr>
             </li>
             <li class="active">
-                <a href="return.php">
+                <a href="dep_record.php">
+                    <i class="nc-icon nc-tag-content"></i>
+                    <p>บันทึกสุนัข (ฝากเลี้ยง)</p>
+                </a>
+                <hr>
+            </li>
+            <li class="active">
+                <a href="us_return.php">
                     <i class="nc-icon nc-satisfied"></i>
-                    <p>ยืนยันสถานะการคืนสุนัข</p>
+                    <p>ยืนยันการคืนสุนัข (สปาร์สุนัข)</p>
                 </a>
                 <hr>
             </li>
             <li class="active">
-                <a href="pay.php">
+                <a href="dep_return.php">
+                    <i class="nc-icon nc-satisfied"></i>
+                    <p>ยืนยันการคืนสุนัข (ฝากเลี้ยง)</p>
+                </a>
+                <hr>
+            </li>
+            <li class="active">
+                <a href="us_pay.php">
                     <i class="nc-icon nc-credit-card"></i>
-                    <p>ยืนยันการชำระเงิน</p>
+                    <p>ยืนยันการชำระเงิน (สปาร์สุนัข)</p>
+                </a>
+                <hr>
+            </li>
+            <li class="active">
+                <a href="dep_pay.php">
+                    <i class="nc-icon nc-credit-card"></i>
+                    <p>ยืนยันการชำระเงิน (ฝากเลี้ยง)</p>
                 </a>
                 <hr>
             </li>

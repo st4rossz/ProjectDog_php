@@ -106,7 +106,7 @@ if (isset($_POST['bookdeposit'])) {
             echo "window.location=\"../usindex.php\"";
             echo "</script>";
         } else {
-            $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', $day*$roomprice2)";
+            $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id,dep_price) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', $day*$roomprice2)";
             $query = mysqli_query($conn, $sql);
             echo "<script>";
             echo "alert(\"จองสำเร็จ!\");";

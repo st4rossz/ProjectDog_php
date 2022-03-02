@@ -18,7 +18,7 @@ include 'layout/header.php';
       <div class="content" style="font-family: Kanit Thin;">
         <div class="row">
           <div class="col-md-12">
-            <div class="col-12" >
+            <div class="col-12">
               <h4 class="title" style="color: black;">บันทึกการติดตามสุนัข</h4>
             </div>
             <hr>
@@ -38,19 +38,19 @@ include 'layout/header.php';
                   <thead>
                     <tr align="center">
                       <!-- <th>รหัส</th> -->
-                      <th>ชื่อ</th>
-                      <th>พันธ์ุ</th>
-                      <th>น้ำหนัก(กิโลกรัม)</th>
-                      <th>อายุ(ปี)</th>
-                      <th>แพ้ยา/แพ้อาหาร</th>
-                      <th>ชื่อเจ้าของ</th>
+                      <th style="width: 10%;">ชื่อ</th>
+                      <th style="width: 10%;">พันธ์ุ</th>
+                      <th style="width: 10%;">น้ำหนัก(กิโลกรัม)</th>
+                      <th style="width: 10%;">อายุ(ปี)</th>
+                      <th style="width: 20%;">แพ้ยา/แพ้อาหาร</th>
+                      <th style="width: 30%;">อัพเดทการติดตามสุนัข</th>
                       <!-- <th>user_id</th> -->
                     </tr>
                   </thead>
                   <tbody>
                     <?php
                     // $sql = "SELECT * FROM dog ";
-                    $sql = "SELECT * FROM dog INNER JOIN user ON dog.user_id = user.user_id";
+                    $sql = "SELECT * FROM deposit INNER JOIN dog ON deposit.dog_id = dog.dog_id WHERE dep_status = 1";
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
                       ?>
@@ -61,9 +61,9 @@ include 'layout/header.php';
                         <td><?= $row["dog_weight"] ?></td>
                         <td><?= $row["dog_age"] ?></td>
                         <td><?= $row["dog_sickness"] ?></td>
-                        <td><?= $row["username"] ?></td>
-                        <td>
-                          <a class="btn btn-warning" href="editdog.php?dog_id=<?= $row["dog_id"] ?>">แก้ไข</a>
+                        <td><?= $row["deprec_detail"] ?></td>
+                        <td style="width: 10%;"> 
+                          <a class="btn btn-warning" href="add_dep_record.php?dep_id=<?= $row["dep_id"] ?>">แก้ไข</a>
                           <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editstore" data-whatever="@mdo">แก้ไข</button> -->
                           <!-- <a href="../api/dog/deldog.php?dog_id=<?= $row['dog_id'] ?>" onclick="javascript:return confirm('คุณต้องการลบข้อมูลใช่หรือไม่');" class="btn btn-danger">ลบ</a> -->
                         </td>
