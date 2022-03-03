@@ -25,7 +25,7 @@ include 'api/server.php'
 <html lang="en">
 
 <head>
-  <link rel="icon" href="images/favicon.ico" type="image/ico">
+<link rel="icon" href="images/favicon.ico" type="image/ico">
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
@@ -50,6 +50,7 @@ include 'api/server.php'
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="backend/assets/demo/demo.css" rel="stylesheet" />
   <link href="css/bg.css" rel="stylesheet" />
+
 
   <!-- style.css.bg -->
   <style>

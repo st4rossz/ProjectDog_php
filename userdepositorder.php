@@ -47,13 +47,14 @@ $user_id = $_SESSION['user_id'];
                 <table class="table table-striped table-dark" style="margin-left: 15%; margin-right: 15%; margin-bottom: 5%; box-shadow: 0px 0px 4px 4px grey;">
                     <thead>
                         <tr class="thead-dark">
-                            <th>ชื่อสุนัข</th>
-                            <th>วันเข้าใช้บริการ</th>
-                            <th>วันรับสุนัขกลับ</th>
-                            <th>จำนวนวัน</th>
-                            <th>ชื่อประเภทห้อง</th>
-                            <th>ราคา</th>
-                            <th>สถานะ</th>
+                            <th style="width: 10%;">ชื่อสุนัข</th>
+                            <th style="width: 10%;">วันเข้าใช้บริการ</th>
+                            <th style="width: 10%;">วันรับสุนัขกลับ</th>
+                            <th style="width: 5%;">จำนวนวัน</th>
+                            <th style="width: 10%;">ชื่อประเภทห้อง</th>
+                            <th style="width: 10%;">ราคา</th>
+                            <th style="width: 15%;">สถานะ</th>
+                            <th style="width: 20%;">เพิ่มเติม</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,6 +71,33 @@ $user_id = $_SESSION['user_id'];
                                 <td><?= $row["room_type"]; ?></td>
                                 <td><?= $row["dep_price"]; ?></td>
                                 <td><?= $row["status_name"]; ?></td>
+                                <td><?php
+                                        if ($row["dep_status"] == 0) {
+                                            echo '<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#showdep_detail" data-whatever="@mdo"><i class="fa fa-book fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#dep_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-danger " data-toggle="modal" data-target="#depor_del" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+
+                                        } elseif ($row["dep_status"] == 1) {
+                                            echo '<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#showdep_detail" data-whatever="@mdo"><i class="fa fa-book fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#dep_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-danger " data-toggle="modal" data-target="#depor_del" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+
+                                        } elseif ($row["dep_status"] == 2){
+                                            echo '<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#showdep_detail" data-whatever="@mdo"><i class="fa fa-book fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#dep_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-danger " data-toggle="modal" data-target="#depor_del" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+
+                                        }else if ($row["dep_status"] == 3){
+                                            echo '<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#showdep_detail" data-whatever="@mdo"><i class="fa fa-book fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#dep_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-danger " data-toggle="modal" data-target="#depor_del" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+
+                                        }else{
+                                            echo '<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#showdep_detail" data-whatever="@mdo"><i class="fa fa-book fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#dep_basis" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-danger " data-toggle="modal" data-target="#depor_del" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+                                        }
+                                        ?></td>
                                 <?php
                                     ?>
                             </tr>

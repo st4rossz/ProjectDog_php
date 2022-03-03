@@ -86,16 +86,12 @@
             <label for="" class="col-form-label">โรคประจำตัว,อาหารที่แพ้ : </label>
             <input type="text" class="form-control" name="dog_sickness" id="inputdog_sickness" placeholder="โรคประจำตัว,อาหารที่แพ้">
           </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <label for="dogimagelabel" class="form-label">ใส่รูปสุนัขของท่าน :</label>
-                <input type="file" name="image" id="inputdogimage" class="form-control">
-              </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="dogimagelabel" class="form-label">ใส่รูปสุนัขของท่าน :</label>
+              <input type="file" name="image" id="inputdogimage" class="form-control">
             </div>
- 
-
-
+          </div>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-lg">เพิ่มสุนัข</button>
@@ -106,94 +102,6 @@
     </div>
   </div>
 </div>
-
-
-
-<!-- USE DEPOSIT MODAL PROCESS_5 -->
-<!-- <div class="modal fade" id="deposit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">จองห้องพักสุนัข</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="post" action="api/deposit.php">
-          <div class="form-group">
-            <label for="" class="col-form-label">สุนัขของท่าน : </label>
-            <select name="dog_id" class="form-control" id="">
-              <option value="">เลือกสุนัขของท่าน</option>
-              <?php
-              $sql = "SELECT * FROM dog WHERE user_id = '$user_id'";
-              $result = mysqli_query($conn, $sql);
-              while ($row = mysqli_fetch_array($result)) {
-                ?>
-                <option value="<?php echo $row["dog_id"]; ?>"><?php echo $row["dog_name"]; ?> , [<?php echo $row["dog_id"]; ?>]</option>
-              <?php } ?>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="" class="col-form-label">วันที่เริ่มเข้าพัก : </label>
-            <input type="date" class="form-control" name="dep_sdate" id="dep_sdate" placeholder="วันที่เริ่มเข้าพัก" required>
-          </div>
-          <div class="form-group">
-            <label for="" class="col-form-label">วันที่สิ้นสุดการเข้าพัก : </label>
-            <input type="date" class="form-control" name="dep_edate" id="dep_edate" placeholder="วันที่สิ้นสุดการเข้าพัก" required>
-          </div>
-          <form method="post" action="api/deposit.php">
-            <?php include 'api/errors.php' ?>
-            <?php if (isset($_SESSION['error'])) : ?>
-              <div class="error">
-                <h3>
-                  <?php
-                    echo $_SESSION['error'];
-                    unset($_SESSION['error']);
-                    ?>
-                </h3>
-              </div>
-            <?php endif ?>
-            <div class="form-group">
-              <label for="" class="col-form-label">สุนัขของท่าน : </label>
-              <select name="dog_id" class="form-control" id="" required>
-                <option value="">เลือกสุนัขของท่าน</option>
-                <?php
-                $sql = "SELECT * FROM dog WHERE user_id = '$user_id'";
-                $result = mysqli_query($conn, $sql);
-                while ($row = mysqli_fetch_array($result)) {
-                  ?>
-                  <option value="<?php echo $row["dog_id"]; ?>"><?php echo $row["dog_name"]; ?> , [<?php echo $row["dog_id"]; ?>]</option>
-                <?php } ?>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="" class="col-form-label">วันที่เริ่มเข้าพัก : </label>
-              <input type="date" class="form-control" name="dep_sdate" id="dep_sdate" placeholder="วันที่เริ่มเข้าพัก" required>
-            </div>
-            <div class="form-group">
-              <label for="" class="col-form-label">วันที่สิ้นสุดการเข้าพัก : </label>
-              <input type="date" class="form-control" name="dep_edate" id="dep_edate" placeholder="วันที่สิ้นสุดการเข้าพัก" required>
-            </div>
-            <button type="submit" name="bookdeposit" class="btn btn-primary btn-lg">ยืนยันการใช้บริการ</button>
-          </form>
-      </div>
-    </div>
-  </div>
-
-</div>
-<div class="modal-footer"> -->
-<!-- <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">ปิด</button> -->
-<!-- <button type="submit" name="bookdeposit" class="btn btn-primary btn-lg">ยืนยันการใช้บริการ</button>
-  <button type="reset" class="btn btn-dark btn-lg">ล้างค่า</button>
-  <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
-</div>
-</form>
-</div>
-</div>
-</div> -->
-
 
 
 <!-- Deposit -->
@@ -266,16 +174,6 @@
               <?php } ?>
             </select>
           </div>
-
-          <!-- <div class="form-group">
-            <label for="" class="col-form-label" id="">จำนวนห้องว่าง :</label>
-            <label for="" class="col-md-2" id="">เล็ก :</label>
-            <input type="text" class="col-md-2" name="" id="loadroom1" disabled>
-            <label for="" class="col-md-2" id="">ใหญ่ :</label>
-            <input type="text" class="col-md-2" name="" id="loadroom2" disabled>
-            <label for="" class="col-md-2" id="">พิเศษ :</label>
-            <input type="text" class="col-md-2" name="" id="loadroom3" disabled>
-          </div> -->
 
           <div class="form-group">
             <label for="" class="col-form-label">จำนวนห้องว่าง : </label>
@@ -408,6 +306,86 @@
 
 
 
+
+
+<!-- หน้า Order การจองฝากเลี้ยง (Deposit) -->
+<div class="modal fade" id="showdep_detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการจอง</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <?php
+        $id = $_GET['report_id'];
+        $sql = "SELECT * FROM report WHERE id = '$id' ";
+        $query = mysqli_query($con, $sql);
+        while ($row = mysqli_fetch_assoc($query)) {
+          ?>
+          <div class="row">
+            <div class="col-md-12">
+              <p>สถานะสุนัข</p>
+            </div>
+          </div>
+        <?php } ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- ส่งหลักฐาน -->
+<div class="modal fade" id="dep_basis" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ส่งหลักฐานการโอนเงิน</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form method="post" action="api/pay/addbasis.php" enctype="multipart/form-data">
+          <?php
+          $sql = "SELECT * FROM deposit";
+          $query = mysqli_query($conn, $sql);
+          while ($row = mysqli_fetch_array($query)) {
+            ?>
+            <input type="hidden" value="<?php echo $row["dep_id"]; ?>" name="dep_id" id='dep_id'>
+          <?php } ?>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="dep_basisimage" class="form-label">รูปสลิปการโอนเงิน :</label>
+              <input type="file" name="dep_basis" id="dep_basis" class="form-control">
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-lg">บันทึก</button>
+        <button type="reset" class="btn btn-dark btn-lg">ล้างค่า</button>
+        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- หน้า Order การจองสปาร์ (Use_Service) -->
+
+
+
 <!--   Core JS Files   -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="backend/assets/js/core/jquery.min.js"></script>
@@ -426,7 +404,6 @@
 <script src="backend/assets/demo/demo.js"></script>
 <!-- SWITCH ALERT -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 
 <script type="text/javascript">
   $(function() {

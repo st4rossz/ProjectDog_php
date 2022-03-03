@@ -357,7 +357,6 @@ $user_id = $_SESSION['user_id'];
 
 
     <?php include('userlayout/footer.php') ?>
-
 </body>
 
 </html>
