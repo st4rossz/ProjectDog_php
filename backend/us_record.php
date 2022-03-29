@@ -2,7 +2,7 @@
 include 'layout/header.php';
 ?>
 
-<body class="">
+<body class="bodyfont">
   <div class="wrapper ">
     <?php
     include 'layout/navside.php';
@@ -15,11 +15,11 @@ include 'layout/header.php';
       <!-- End Navbar -->
 
       <!-- Content -->
-      <div class="content" style="font-family: Kanit Light; font-size: 18px;">
+      <div class="content">
         <div class="row">
           <div class="col-md-12">
             <div class="col-12">
-              <h4 class="title" style="color: black;">บันทึกการติดตามสุนัข</h4>
+              <h4 class="title" style="color: black;">บันทึกการติดตามสุนัข (สปาร์สุนัข)</h4>
             </div>
             <hr>
             <div class="card">
@@ -41,9 +41,10 @@ include 'layout/header.php';
                       <th style="width: 10%;">ชื่อ</th>
                       <th style="width: 10%;">พันธ์ุ</th>
                       <th style="width: 10%;">น้ำหนัก(กิโลกรัม)</th>
-                      <th style="width: 10%;">อายุ(ปี)</th>
-                      <th style="width: 20%;">แพ้ยา/แพ้อาหาร</th>
-                      <th style="width: 30%;">อัพเดทการติดตามสุนัข</th>
+                      <th style="width: 5%;">อายุ(ปี)</th>
+                      <th style="width: 15%;">แพ้ยา/แพ้อาหาร</th>
+                      <th style="width: 15%;">อัพเดทการติดตามสุนัข</th>
+                      <th style="width: 25%;">หมายเหตุ</th>
                       <!-- <th>user_id</th> -->
                     </tr>
                   </thead>
@@ -63,9 +64,10 @@ include 'layout/header.php';
                         <td><?= $row["dog_weight"] ?></td>
                         <td><?= $row["dog_age"] ?></td>
                         <td><?= $row["dog_sickness"] ?></td>
+                        <td><?= $row["usrec_topic"] ?></td>
                         <td><?= $row["usrec_detail"] ?></td>
                         <td style="width: 10%;">
-                          <a class="btn btn-warning" href="add_us_record.php?us_id=<?= $row["us_id"] ?>">แก้ไข</a>
+                          <a class="btn btn-warning" href="add_us_record.php?us_id=<?= $row["us_id"] ?>">เพิ่มบันทึก</a>
                         </td>
                         <?php
                           ?>

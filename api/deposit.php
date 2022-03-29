@@ -8,8 +8,16 @@ if (isset($_POST['bookdeposit'])) {
     $ndep_edate = mysqli_real_escape_string($conn, $_POST['dep_edate']);
     $dog_id = mysqli_real_escape_string($conn, $_POST['dog_id']);
     $room_id = mysqli_real_escape_string($conn, $_POST['room_id']);
+    $dep_deliver = mysqli_real_escape_string($conn, $_POST['dep_deliver']);
     $dep_sdate = date($ndep_sdate);
     $dep_edate = date($ndep_edate);
+
+    if($dep_deliver == "ต้องการ"){
+        $dep_deliverp = 50;
+    }else{
+        $dep_deliverp = 0;
+    }
+
 
     //คำนวณวัน
     $daycalculate = strtotime($dep_edate) - strtotime($dep_sdate);
@@ -20,10 +28,6 @@ if (isset($_POST['bookdeposit'])) {
     $bookdatecheck = "SELECT * FROM deposit WHERE dog_id = '$dog_id' AND (dep_sdate = '$dep_sdate' AND dep_edate = '$dep_edate') ";
     $query = mysqli_query($conn, $bookdatecheck);
     $result = mysqli_fetch_assoc($query);
-
-    // $bookdatecheck2 = "SELECT COUNT(dep_id) AS depcheck1 FROM deposit WHERE room_id = '$room_id' AND(dep_sdate BETWEEN '$dep_sdate' AND '$dep_edate') OR (dep_edate BETWEEN '$dep_sdate' AND '$dep_edate')";
-    // $query2 = mysqli_query($conn, $bookdatecheck2);
-    // $result2 = mysqli_fetch_assoc($query2);
 
     // echo '<pre>'; print_r($rquery1); echo '</pre>';
 
@@ -64,7 +68,7 @@ if (isset($_POST['bookdeposit'])) {
             echo "window.location=\"../usindex.php\"";
             echo "</script>";
         } else {
-            $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id, dep_price) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', $day*$roomprice1)";
+            $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id, dep_deliver, dep_price) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', '$dep_deliver', ($day*$roomprice1)+$dep_deliverp)";
             $query = mysqli_query($conn, $sql);
             echo "<script>";
             echo "alert(\"จองสำเร็จ!\");";
@@ -106,7 +110,7 @@ if (isset($_POST['bookdeposit'])) {
             echo "window.location=\"../usindex.php\"";
             echo "</script>";
         } else {
-            $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id,dep_price) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', $day*$roomprice2)";
+            $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id, dep_deliver,dep_price) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', '$dep_deliver', ($day*$roomprice2)+$dep_deliverp)";
             $query = mysqli_query($conn, $sql);
             echo "<script>";
             echo "alert(\"จองสำเร็จ!\");";
@@ -149,7 +153,7 @@ if (isset($_POST['bookdeposit'])) {
             echo "window.location=\"../usindex.php\"";
             echo "</script>";
         } else {
-            $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id, dep_price) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', $day*$roomprice3)";
+            $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id, dep_deliver, dep_price) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', '$dep_deliver', ($day*$roomprice3)+$dep_deliverp)";
             $query = mysqli_query($conn, $sql);
             echo "<script>";
             echo "alert(\"จองสำเร็จ!\");";

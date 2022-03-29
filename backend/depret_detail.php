@@ -1,6 +1,6 @@
 <?php include 'layout/header.php'; ?>
 
-<body class="">
+<body class="bodyfont">
     <div class="wrapper">
 
         <?php include 'layout/navside.php'; ?>
@@ -11,7 +11,7 @@
             <!-- End Navbar -->
 
             <!-- Content -->
-            <div class="content" style="font-family: Kanit Thin;">
+            <div class="content">
                 <div class="row">
                     <?php
                     $dep_id = $_GET['dep_id'];

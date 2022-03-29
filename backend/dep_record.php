@@ -2,7 +2,7 @@
 include 'layout/header.php';
 ?>
 
-<body class="">
+<body class="bodyfont">
   <div class="wrapper ">
     <?php
     include 'layout/navside.php';
@@ -15,11 +15,11 @@ include 'layout/header.php';
       <!-- End Navbar -->
 
       <!-- Content -->
-      <div class="content" style="font-family: Kanit Thin;">
+      <div class="content">
         <div class="row">
           <div class="col-md-12">
             <div class="col-12">
-              <h4 class="title" style="color: black;">บันทึกการติดตามสุนัข</h4>
+              <h4 class="title" style="color: black;">บันทึกการติดตามสุนัข (ฝากเลี้ยง)</h4>
             </div>
             <hr>
             <div class="card">
@@ -34,16 +34,17 @@ include 'layout/header.php';
               <!-- <p class="category">Here is a subtitle for this table</p> -->
               <!-- </div> -->
               <div class="content table-full-width">
-                <table class="table table-striped table-bordered ">
+                <table class="table table-striped table-bordered">
                   <thead>
                     <tr align="center">
                       <!-- <th>รหัส</th> -->
                       <th style="width: 10%;">ชื่อ</th>
                       <th style="width: 10%;">พันธ์ุ</th>
                       <th style="width: 10%;">น้ำหนัก(กิโลกรัม)</th>
-                      <th style="width: 10%;">อายุ(ปี)</th>
-                      <th style="width: 20%;">แพ้ยา/แพ้อาหาร</th>
-                      <th style="width: 30%;">อัพเดทการติดตามสุนัข</th>
+                      <th style="width: 5%;">อายุ(ปี)</th>
+                      <th style="width: 15%;">แพ้ยา/แพ้อาหาร</th>
+                      <th style="width: 15%;">อัพเดทการติดตามสุนัข</th>
+                      <th style="width: 25%;">หมายเหตุ</th>
                       <!-- <th>user_id</th> -->
                     </tr>
                   </thead>
@@ -61,9 +62,10 @@ include 'layout/header.php';
                         <td><?= $row["dog_weight"] ?></td>
                         <td><?= $row["dog_age"] ?></td>
                         <td><?= $row["dog_sickness"] ?></td>
+                        <td><?= $row["deprec_topic"] ?></td>
                         <td><?= $row["deprec_detail"] ?></td>
                         <td style="width: 10%;"> 
-                          <a class="btn btn-warning" href="add_dep_record.php?dep_id=<?= $row["dep_id"] ?>">แก้ไข</a>
+                          <a class="btn btn-warning" href="add_dep_record.php?dep_id=<?= $row["dep_id"] ?>">เพิ่มบันทึก</a>
                           <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editstore" data-whatever="@mdo">แก้ไข</button> -->
                           <!-- <a href="../api/dog/deldog.php?dog_id=<?= $row['dog_id'] ?>" onclick="javascript:return confirm('คุณต้องการลบข้อมูลใช่หรือไม่');" class="btn btn-danger">ลบ</a> -->
                         </td>

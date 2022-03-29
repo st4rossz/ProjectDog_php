@@ -48,11 +48,12 @@ $user_id = $_SESSION['user_id'];
                 <table class="table table-striped table-dark" style="margin-left: 15%; margin-right: 15%; margin-bottom: 5%;box-shadow: 0px 0px 4px 4px  grey;">
                     <thead class="thead-dark">
                         <tr>
-                            <th style="width: 20%;">ชื่อสุนัข</th>
+                            <th style="width: 15%;">ชื่อสุนัข</th>
                             <th style="width: 20%;">วันเข้าใช้บริการ</th>
-                            <th style="width: 30%;">ชื่อบริการ</th>
-                            <th style="width: 10%;">ราคา</th>
+                            <th style="width: 20%;">ชื่อบริการ</th>
+                            <th style="width: 5%;">ราคา</th>
                             <th style="width: 20%;">สถานะ</th>
+                            <th style="width: 20%;">เพิ่มเติม</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,9 +68,112 @@ $user_id = $_SESSION['user_id'];
                                 <td><?= $row["service_name"]; ?></td>
                                 <td><?= $row["us_price"]; ?></td>
                                 <td><?= $row["status_name"]; ?></td>
+                                <td><?php
+                                        if ($row["us_status"] == 0) {
+                                            $us_id = $row["us_id"];
+                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
+                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-danger " data-toggle="modal" data-target="#usor_del'. $us_id .'" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+                                        } elseif ($row["us_status"] == 1) {
+                                            $us_id = $row["us_id"];
+                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
+                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-dark " data-toggle="modal" data-target="#usor_del'. $us_id .'" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+                                        } elseif ($row["us_status"] == 2) {
+                                            $us_id = $row["us_id"];
+                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
+                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-dark " data-toggle="modal" data-target="#usor_del'. $us_id .'" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+                                        } elseif ($row["us_status"] == 3) {
+                                            $us_id = $row["us_id"];
+                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
+                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-dark " data-toggle="modal" data-target="#usor_del'. $us_id .'" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+                                        } else {
+                                            $us_id = $row["us_id"];
+                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
+                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                            echo '<button type="button" class="btn btn-dark " data-toggle="modal" data-target="#usor_del'. $us_id .'" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+                                        }
+                                        ?></td>
                                 <?php
                                     ?>
                             </tr>
+                            <!-- หน้า Order สปาร์สุนัข(Use_service) -->
+                            <div class="modal fade" id="showus_detail<?php echo $row["us_id"] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการจอง(สปาร์สุนัข)</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row justify-content-center">
+
+                                                <div class="col-md-12">
+                                                    <p>ชื่อสุนัข : <?php echo $row["dog_name"]; ?></p>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p>ประเภทบริการ : <?php echo $row["service_name"]; ?></p>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <?php
+                                                        if (!empty($row['us_basis'])) {
+                                                            echo '<div class="row"';
+                                                            echo '<div class="col-md-12">';
+                                                            echo '<label for="inputdogsickness" style="color: #16a085;" class="form-label"><i class="fa fa-check-circle-o fa-lg" aria-hidden="true" ></i> หลักฐานการชำระเงิน</label>';
+                                                            echo '<div class="col-md-12">';
+                                                            echo '<img style="width: 100%; height: 100%;" src="api/pay/uploads/' . $row["us_basis"] . '">';
+                                                            echo '</div>';
+                                                            echo '</div>';
+                                                        } else {
+                                                            echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีหลักฐานการชำระเงิน</p>';
+                                                        }
+
+                                                        ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <!-- ยกเลิก (use_service) -->
+                            <div class="modal fade" id="usor_del<?php echo $row["us_id"] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <form method="post" action="api/cancel/us_cancel.php">
+                                            <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">โปรดยืนยัน</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-12">
+                                                        <p style="color: red;">ท่านต้องการยกเลิกการจองครั้งนี้หรือไม่ ?</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-dark btn-lg">ยืนยัน</button>
+                                                <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         <?php } ?>
                     </tbody>
                 </table>

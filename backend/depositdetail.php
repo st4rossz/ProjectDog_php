@@ -1,6 +1,6 @@
 <?php include 'layout/header.php'; ?>
 
-<body class="">
+<body class="bodyfont">
     <div class="wrapper">
 
         <?php include 'layout/navside.php'; ?>
@@ -11,7 +11,7 @@
             <!-- End Navbar -->
 
             <!-- Content -->
-            <div class="content" style="font-family: Kanit Thin;">
+            <div class="content">
                 <div class="row">
                     <?php
                     $dep_id = $_GET['dep_id'];
@@ -41,7 +41,7 @@
 
 
                 <hr>
-                <div class="col-md-12">
+                <div class="col-md-12" style="font-family: Kanit Light;">
                     <div class="card">
                         <?php
                         $dep_id = $_GET['dep_id'];
@@ -53,8 +53,24 @@
                         $query = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($query)) {
                             ?>
+                            <?php
+                                if (!empty($row['image'])) {
+                                    echo '<div class="col-md-12">';
+                                    echo '<div class="text-center">';
+                                    echo '<img style="padding-top: 2%;
+                                    display: block;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                    width: 25%;" src="../api/dog/uploads/' . $row["image"] . '">';
+                                    echo '</div>';
+                                } else {
+                                    echo '<div class="col-md-12">';
+                                    echo '<h3 style="font-family: Kanit light; color: red; padding-left: 40%; padding-top: 2%;">"ผู้ใช้ท่านนี้ยังไม่มีการเพิ่มรูปสุนัข"</h3>';
+                                    echo '</div>';
+                                }
+                                ?>
                             <div class="row">
-                                <div class="col-md-2" style="padding-top: 3%; padding-left: 5%;">
+                                <div class="col-md-2" style="padding-top: 3%; padding-left: 7%;">
                                     <div class="card rounded-0" style="width: 15rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
                                         <div class="card-body">
                                             <h5 class="card-title">รหัสการจอง</h5>
@@ -102,12 +118,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4" style=" padding-left: 13%;">
-                                        <div class="card rounded-0" style="width: 25rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
+                                    <div class="col-md-4" style=" padding-left: 11%;">
+                                        <div class="card rounded-0" style="width: 29rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
                                             <div class="card-body">
                                                 <h5 class="card-title">สถานะการจอง</h5>
                                                 <hr>
-                                                <p align="center" style="font-size: 40px;"><?= $row['dep_status']; ?></p>
+                                                <p align="center" style="font-size: 40px;"><?= $row['status_name']; ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -132,8 +148,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4" style=" padding-left: 13%;">
-                                        <div class="card rounded-0" style="width: 25rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
+                                    <div class="col-md-4" style=" padding-left: 11%;">
+                                        <div class="card rounded-0" style="width: 29rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
                                             <div class="card-body">
                                                 <h5 class="card-title">ชื่อเจ้าของ</h5>
                                                 <hr>
@@ -154,7 +170,7 @@
 
 
                                 <div class="row">
-                                    <div class="col-md-2" style=" padding-left: 5%;">
+                                    <div class="col-md-2" style=" padding-left: 8%;">
                                         <div class="card rounded-0" style="width: 10rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
                                             <div class="card-body">
                                                 <h5 class="card-title">รหัสสุนัข</h5>
@@ -163,7 +179,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2" style=" padding-left: ;">
+                                    <div class="col-md-2" style=" padding-left: 3%;">
                                         <div class="card rounded-0" style="width: 20rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
                                             <div class="card-body">
                                                 <h5 class="card-title">พันธุ์</h5>
@@ -172,7 +188,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2" style=" padding-left: 6rem;">
+                                    <div class="col-md-2" style=" padding-left: 8rem;">
                                         <div class="card rounded-0" style="width: 20rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
                                             <div class="card-body">
                                                 <h5 class="card-title">ชื่อสุนัข</h5>
@@ -181,7 +197,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2" style=" padding-left: 11%;">
+                                    <div class="col-md-2" style=" padding-left: 13rem;">
                                         <div class="card rounded-0" style="width: 15rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
                                             <div class="card-body">
                                                 <h5 class="card-title">น้ำหนักสุนัข(กิโลกรัม)</h5>
@@ -190,8 +206,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-2" style=" padding-left: 11%;">
-                                        <div class="card rounded-0" style="width: 15rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
+                                    <div class="col-md-2" style=" padding-left: 13rem;">
+                                        <div class="card rounded-0" style="width: 12rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
                                             <div class="card-body">
                                                 <h5 class="card-title">อายุ(ปี)</h5>
                                                 <hr>
@@ -199,8 +215,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12" style="padding-left: 5%;">
-                                        <div class="card rounded-0" style="width: 91rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
+                                    <div class="col-md-12" style="padding-left: 8%;">
+                                        <div class="card rounded-0" style="width: 84rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
                                             <div class="card-body">
                                                 <h5 class="card-title">โรคประจำตัว/อาหารที่แพ้</h5>
                                                 <hr>

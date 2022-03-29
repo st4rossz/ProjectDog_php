@@ -2,7 +2,7 @@
 include 'layout/header.php';
 ?>
 
-<body class="">
+<body class="bodyfont">
   <div class="wrapper ">
     <?php
     include 'layout/navside.php';
@@ -15,7 +15,7 @@ include 'layout/header.php';
       <!-- End Navbar -->
 
       <!-- Content -->
-      <div class="content" style="font-family: Kanit Thin;">
+      <div class="content">
         <div class="row">
         <div class="col-md-12">
             <div class="col-12">
@@ -42,7 +42,7 @@ include 'layout/header.php';
                       <th>รหัสห้องพัก</th>
                       <th>ชื่อประเภทห้อง</th>
                       <th>จำนวนห้อง</th>
-                      <th>ราคา/วัน(บาท)</th>
+                      <th>อัตราบริการ/วัน(บาท)</th>
                       <th><button type="button" class="btn btn-primary " data-toggle="modal" data-target="#addroom" data-whatever="@mdo">เพิ่มประเภทห้อง</button></th>
                     </tr>
                   </thead>

@@ -2,7 +2,7 @@
 include 'layout/header.php';
 ?>
 
-<body class="">
+<body class="bodyfont">
   <div class="wrapper">
     <?php
     include 'layout/navside.php';
@@ -15,7 +15,7 @@ include 'layout/header.php';
       <!-- End Navbar -->
 
       <!-- Content -->
-      <div class="content" style="font-family: Kanit Thin;">
+      <div class="content">
         <div class="row">
           <div class="col-md-12">
             <div class="col-12">
@@ -31,12 +31,12 @@ include 'layout/header.php';
                   <table class="table table-striped table-bordered">
                     <thead>
                       <tr align="center">
-                        <th>รหัสการจอง</th>
-                        <th>ชื่อเจ้าของ</th>
-                        <th>ชื่อสุนัข</th>
-                        <th>วันที่ฝาก</th>
-                        <th>วันที่ออก</th>
-                        <th>จำนวนวัน</th>
+                        <th style="width: 10%;">รหัสการจอง</th>
+                        <th style="width: 15%;">ชื่อเจ้าของ</th>
+                        <th style="width: 15%;">ชื่อสุนัข</th>
+                        <th style="width: 20%;">วันที่ฝาก</th>
+                        <th style="width: 20%;">วันที่ออก</th>
+                        <th style="width: 5%;">จำนวนวัน</th>
                         <!-- <th>dog_sickness</th> -->
                       </tr>
                     </thead>

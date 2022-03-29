@@ -86,12 +86,16 @@
             <label for="" class="col-form-label">โรคประจำตัว,อาหารที่แพ้ : </label>
             <input type="text" class="form-control" name="dog_sickness" id="inputdog_sickness" placeholder="โรคประจำตัว,อาหารที่แพ้">
           </div>
+
           <div class="row">
             <div class="col-md-12">
               <label for="dogimagelabel" class="form-label">ใส่รูปสุนัขของท่าน :</label>
               <input type="file" name="image" id="inputdogimage" class="form-control">
             </div>
           </div>
+
+
+
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-lg">เพิ่มสุนัข</button>
@@ -173,6 +177,26 @@
                 <option value="<?php echo $row["dog_id"]; ?>"><?php echo $row["dog_name"]; ?> , [<?php echo $row["dog_id"]; ?>]</option>
               <?php } ?>
             </select>
+          </div>
+
+          <div class="form-group">
+            <label style="color: red;" for="inputdogsickness" class="form-label">บริการส่งคืนสุนัข (ค่าส่ง +50บาท)</label>
+          </div>
+          <div class="col-md-12" style="margin-left: 6%;">
+            <span>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="dep_deliver" id="flexRadioDefault1" value="ไม่ต้องการ" checked>
+                <label style="margin-left: -8%;" class="form-check-label" for="flexRadioDefault1">
+                  ไม่ต้องการ
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="dep_deliver" id="flexRadioDefault2" value="ต้องการ">
+                <label style="margin-left: -8%;" class="form-check-label" for="flexRadioDefault2">
+                  ต้องการ
+                </label>
+              </div>
+            </span>
           </div>
 
           <div class="form-group">
@@ -305,46 +329,7 @@
 </div>
 
 
-
-
-
-<!-- หน้า Order การจองฝากเลี้ยง (Deposit) -->
-<div class="modal fade" id="showdep_detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการจอง</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <?php
-        $id = $_GET['report_id'];
-        $sql = "SELECT * FROM report WHERE id = '$id' ";
-        $query = mysqli_query($con, $sql);
-        while ($row = mysqli_fetch_assoc($query)) {
-          ?>
-          <div class="row">
-            <div class="col-md-12">
-              <p>สถานะสุนัข</p>
-            </div>
-          </div>
-        <?php } ?>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-<!-- ส่งหลักฐาน -->
+<!-- ส่งหลักฐาน DEPOSIT -->
 <div class="modal fade" id="dep_basis" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -381,11 +366,48 @@
   </div>
 </div>
 
+<!-- ส่งหลักฐาน USE_SERVICE -->
+<div class="modal fade" id="us_basis" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ส่งหลักฐานการโอนเงิน</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form method="post" action="api/pay/addbasis2.php" enctype="multipart/form-data">
+          <?php
+          $sql = "SELECT * FROM use_service";
+          $query = mysqli_query($conn, $sql);
+          while ($row = mysqli_fetch_array($query)) {
+            ?>
+            <input type="hidden" value="<?php echo $row["us_id"]; ?>" name="us_id" id='us_id'>
+          <?php } ?>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="us_basisimage" class="form-label">รูปสลิปการโอนเงิน :</label>
+              <input type="file" name="us_basis" id="us_basis" class="form-control">
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-lg">บันทึก</button>
+        <button type="reset" class="btn btn-dark btn-lg">ล้างค่า</button>
+        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
 <!-- หน้า Order การจองสปาร์ (Use_Service) -->
 
 
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!--   Core JS Files   -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="backend/assets/js/core/jquery.min.js"></script>
@@ -404,6 +426,7 @@
 <script src="backend/assets/demo/demo.js"></script>
 <!-- SWITCH ALERT -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <script type="text/javascript">
   $(function() {
@@ -450,7 +473,6 @@
     var dep_sdateid = document.getElementById('dep_sdateid').value
     var dep_edateid = document.getElementById('dep_edateid').value
     var deproom_id = document.getElementById('deproom_id').value
-    console.log(dep_sdateid, dep_edateid, deproom_id)
     $.post('api/roomload.php', {
       dep_sdateid: dep_sdateid,
       dep_edateid: dep_edateid,
@@ -469,11 +491,17 @@
   }
 
   function gologin() {
-    alert("โปรดล็อคอินก่อนเข้าใช้งาน");
+    swal("โปรดล็อคอินก่อนเข้าใช้งาน !","", "warning");
     // window.location.href = 'userindex.php';
   }
 
   function gogo() {
     window.location.href = 'login.php';
   }
+
+  // function showdepdetail() {
+  //   var senddep_id = document.getElementById(id).value
+  //   console.log(senddep_id)
+  //   $("#showdep_detail").modal('show');
+  // }
 </script>

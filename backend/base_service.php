@@ -2,7 +2,7 @@
 include 'layout/header.php';
 ?>
 
-<body class="">
+<body class="bodyfont">
   <div class="wrapper ">
     <?php
     include 'layout/navside.php';
@@ -15,7 +15,7 @@ include 'layout/header.php';
       <!-- End Navbar -->
 
       <!-- Content -->
-      <div class="content" style="font-family: Kanit Thin;">
+      <div class="content">
         <div class="row">
         <div class="col-md-12">
             <div class="col-12" >
@@ -40,7 +40,7 @@ include 'layout/header.php';
                     <tr align="center">
                       <th>รหัส</th>
                       <th>ชื่อประเภทบริการ</th>
-                      <th>ราคา(บาท)</th>
+                      <th>อัตราบริการ(บาท)</th>
                       <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addservice" data-whatever="@mdo">เพิ่มข้อมูลบริการ</button></th>
                     </tr>
                   </thead>

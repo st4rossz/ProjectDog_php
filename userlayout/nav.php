@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg" style="margin-bottom: 0px; font-family: Kanit Light; color: black; background-color: white;">
+<nav class="navbar navbar-expand-lg sticky-top" style="margin-bottom: 0px; font-family: Kanit Light; color: black; background-color: white;">
   <a style="color: black;" class="navbar-brand" href="userindex.php">|Good Dog Home|</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -23,17 +23,17 @@
           </div>
         </div>
       </li>
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+      <li class="nav-item">
+        <div class="dropdown">
+          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: Kanit thin; padding-top: 7%;">
+            ข้อมูลส่วนตัว
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="userdepositorder.php">ข้อมูลผู้ใช้</a>
+            <a class="dropdown-item" href="dog_profile.php">ข้อมูลสุนัข</a></a>
+          </div>
         </div>
-      </li> -->
+      </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#" style="padding-top: 20%;">
           <p style="color: black;">คุณคือ : <strong><?php echo $_SESSION['username']; ?></p>

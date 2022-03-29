@@ -3098,6 +3098,8 @@ License - nucleoapp.com/license/
     .off-canvas-sidebar .nav .collapsing .nav {
       margin-top: 0; }
   .sidebar .sidebar-background,
+
+/* 
   .off-canvas-sidebar .sidebar-background {
     position: absolute;
     z-index: 1;
@@ -3334,7 +3336,7 @@ License - nucleoapp.com/license/
   color: #FFFFFF; }
 
 .off-canvas-sidebar .nav > li > a:focus {
-  background: rgba(200, 200, 200, 0.2); }
+  background: rgba(200, 200, 200, 0.2); } */
 
 .main-panel {
   position: relative;
@@ -3361,7 +3363,6 @@ License - nucleoapp.com/license/
   padding-top: 80px;
   padding-bottom: 45px;
   background: #141E30;
-  /* fallback for old browsers */
   background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
   position: relative;
   overflow: hidden; }

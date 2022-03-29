@@ -1,16 +1,12 @@
-<div class="sidebar" data-color="white" data-active-color="danger">
+<!-- <div class="sidebar" data-color="white" data-active-color="danger">
     <div class="logo">
         <a href="#" class="simple-text logo-mini">
             <div class="logo-image-small">
                 <img src="assets/img/logo-small.png">
             </div>
-            <!-- <p>CT</p> -->
         </a>
         <a href="adminindex.php" class="simple-text logo-normal">
-            <strong><?php echo $_SESSION['username']; ?>
-                <!-- <div class="logo-image-big">
-            <img src="assets/img/logo-big.png">
-          </div> -->
+            <strong><?php echo $_SESSION['username']; ?></strong>
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -86,20 +82,6 @@
                 <hr>
             </li>
             <li class="active">
-                <a href="us_return.php">
-                    <i class="nc-icon nc-satisfied"></i>
-                    <p>ยืนยันการคืนสุนัข (สปาร์สุนัข)</p>
-                </a>
-                <hr>
-            </li>
-            <li class="active">
-                <a href="dep_return.php">
-                    <i class="nc-icon nc-satisfied"></i>
-                    <p>ยืนยันการคืนสุนัข (ฝากเลี้ยง)</p>
-                </a>
-                <hr>
-            </li>
-            <li class="active">
                 <a href="us_pay.php">
                     <i class="nc-icon nc-credit-card"></i>
                     <p>ยืนยันการชำระเงิน (สปาร์สุนัข)</p>
@@ -114,46 +96,201 @@
                 <hr>
             </li>
             <li class="active">
+                <a href="us_return.php">
+                    <i class="nc-icon nc-satisfied"></i>
+                    <p>ยืนยันการคืนสุนัข (สปาร์สุนัข)</p>
+                </a>
+                <hr>
+            </li>
+            <li class="active">
+                <a href="dep_return.php">
+                    <i class="nc-icon nc-satisfied"></i>
+                    <p>ยืนยันการคืนสุนัข (ฝากเลี้ยง)</p>
+                </a>
+                <hr>
+            </li>
+            <li class="active">
                 <a href="report.php">
                     <i class="nc-icon nc-single-copy-04"></i>
                     <p>รายงาน</p>
                 </a>
                 <hr>
             </li>
-
-
-
-            <!-- 
-            <li class="active">
-                <a href="base_store.php">
-                    <i class="nc-icon nc-simple-add"></i>
-                    <p>เพิ่มข้อมูลร้าน</p>
-                </a>
-            </li>
-            <li class="active">
-                <a href="base_room.php">
-                    <i class="nc-icon nc-simple-add"></i>
-                    <p>เพิ่มข้อมูลห้องพัก</p>
-                </a>
-            </li>
-            <li class="active">
-                <a href="base_service.php">
-                    <i class="nc-icon nc-simple-add"></i>
-                    <p>เพิ่มข้อมูลบริการ</p>
-                </a>
-            </li>
-            <li class="active">
-                <a href="base_dog.php">
-                    <i class="nc-icon nc-simple-add"></i>
-                    <p>เพิ่มข้อมูลสุนัข</p>
-                </a>
-            </li>
-  -->
-
-
-
-
         </ul>
     </div>
+</div> -->
 
-</div>
+
+<nav class="sidebar">
+    <div class="text">
+        <img src="../images/gooddoghome.jpg" style="width: 25px; height: 25px;" alt="">
+        <strong><?php echo $_SESSION['username']; ?></strong></div>
+    <hr style="border-bottom: 1px solid grey;">
+
+    <!-- <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="width: 99%; background-color: white; color: orange;">
+            Link with href
+        </a>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <li>
+                <a href="base_store.php">
+                    <p>ข้อมูลร้าน</p>
+                </a>
+            </li>
+        </div>
+    </div> -->
+
+
+
+    <ul>
+        <li>
+            <a href="adminindex.php">
+                <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-single-02"></i>
+                ยืนยันการสมัคร
+            </a>
+        </li>
+
+        <li>
+            <a data-toggle="collapse" href="#colbase" aria-expanded="false" aria-controls="colbase" class="link-danger">
+                <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-simple-add"></i>
+                ข้อมูลพื้นฐาน
+                <span style="font-size: 12px;" class="nc-icon nc-minimal-down first"></span>
+            </a>
+            <div class="collapse" id="colbase">
+
+                <ul class="base-show">
+                    <li>
+                        <a href="base_store.php">
+                            <p>ข้อมูลร้าน</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="base_room.php">
+                            <p>ข้อมูลห้องพัก</p>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="base_service.php">
+                            <p>ข้อมูลบริการ</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="base_dog.php">
+                            <p>ข้อมูลสุนัข</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+
+        <li>
+            <a data-toggle="collapse" href="#colus" aria-expanded="false" aria-controls="colus" class="base-btn">
+                <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-check-2"></i>
+                ยืนยันการเข้าใช้บริการ
+                <span style="font-size: 12px;" class="nc-icon nc-minimal-down"></span>
+            </a>
+            <div class="collapse" id="colus">
+
+                <ul class="serv-show">
+                    <li>
+                        <a href="useservice_confirm.php">
+                            <p>สปาร์สุนัข</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dep_confirm.php">
+                            <p>ฝากเลี้ยง</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- <hr style="border: 0.5px solid #EE5A24; width: 55%; margin: auto;"> -->
+        </li>
+
+
+        <li>
+            <a data-toggle="collapse" href="#colrec" aria-expanded="false" aria-controls="colrec" class="base-btn">
+                <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-tag-content"></i>
+                บันทึกการติดตามสุนัข
+                <span style="font-size: 12px;" class="nc-icon nc-minimal-down"></span>
+            </a>
+            <div class="collapse" id="colrec">
+
+                <ul class="serv-show">
+                    <li>
+                        <a href="us_record.php">
+                            <p>สปาร์สุนัข</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dep_record.php">
+                            <p>ฝากเลี้ยง</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <a data-toggle="collapse" href="#colret" aria-expanded="false" aria-controls="colret" class="base-btn">
+                <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-satisfied"></i>
+                ยืนยันการคืนสุนัข
+                <span style="font-size: 12px;" class="nc-icon nc-minimal-down"></span>
+            </a>
+            <div class="collapse" id="colret">
+
+                <ul class="serv-show">
+                    <li>
+                        <a href="us_return.php">
+                            <p>สปาร์สุนัข</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dep_return.php">
+                            <p>ฝากเลี้ยง</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <a data-toggle="collapse" href="#colpay" aria-expanded="false" aria-controls="colpay" class="base-btn">
+                <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-credit-card"></i>
+                ยืนยันสถานะการชำระเงิน
+                <span style="font-size: 12px;" class="nc-icon nc-minimal-down"></span>
+            </a>
+            <div class="collapse" id="colpay">
+
+                <ul class="serv-show">
+                    <li>
+                        <a href="us_pay.php">
+                            <p>สปาร์สุนัข</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dep_pay.php">
+                            <p>ฝากเลี้ยง</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <a href="report.php">
+                <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-single-copy-04"></i>
+                ออกรายงาน
+            </a>
+        </li>
+
+
+
+    </ul>
+</nav>

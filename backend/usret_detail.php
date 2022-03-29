@@ -1,6 +1,6 @@
 <?php include 'layout/header.php'; ?>
 
-<body class="">
+<body class="bodyfont">
     <div class="wrapper">
 
         <?php include 'layout/navside.php'; ?>
@@ -11,7 +11,7 @@
             <!-- End Navbar -->
 
             <!-- Content -->
-            <div class="content" style="font-family: Kanit Thin;">
+            <div class="content">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
@@ -34,7 +34,7 @@
                         </div>
 
                         <hr>
-                        <div class="col-md-12" style="font-family: Kanit Thin;">
+                        <div class="col-md-12">
                             <div class="card">
                                 <?php
                                 $us_id = $_GET['us_id'];

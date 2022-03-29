@@ -2,7 +2,7 @@
 include 'layout/header.php';
 ?>
 
-<body class="">
+<body class="bodyfont">
   <div class="wrapper">
     <?php
     include 'layout/navside.php';
@@ -15,7 +15,7 @@ include 'layout/header.php';
       <!-- End Navbar -->
 
       <!-- Content -->
-      <div class="content" style="font-family: Kanit Thin;">
+      <div class="content">
         <div class="row">
           <div class="col-md-12">
             <div class="col-12">
@@ -23,42 +23,30 @@ include 'layout/header.php';
             </div>
             <hr>
             <div class="card">
-              <!-- <div class="header"> -->
-              <!-- <p class="category">Here is a subtitle for this table</p> -->
-              <!-- </div> -->
               <div class="content table-full-width">
                 <table class="table table-striped table-bordered">
                   <thead>
                     <tr align="center">
-                      <th>รหัสการจองบริการ</th>
-                      <th>ชื่อสุนัข</th>
-                      <th>วันที่เลือกใช้บริการ</th>
-                      <th>ชื่อบริการ</th>
-                      <th>สถานะบริการ</th>
-
-                      <!-- <th>dog_sickness</th> -->
+                      <th style="width: 10%;">รหัสการจองบริการ</th>
+                      <th style="width: 20%;">เจ้าของ</th>
+                      <th style="width: 15%;">ชื่อสุนัข</th>
+                      <th style="width: 20%;">วันที่เลือกใช้บริการ</th>
+                      <th style="width: 20%;">ชื่อบริการ</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    // $sql = "SELECT * FROM deposit WHERE room_id IS NULL ";
-                    $sql = "SELECT * FROM use_service INNER JOIN service ON (use_service.service_id = service.service_id) INNER JOIN dog ON use_service.dog_id = dog.dog_id WHERE us_status = 0";
+                    $sql = "SELECT * FROM use_service INNER JOIN service ON (use_service.service_id = service.service_id) INNER JOIN dog ON (use_service.dog_id = dog.dog_id) INNER JOIN user ON (dog.user_id = user.user_id) WHERE us_status = 0";
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
                       ?>
                       <tr align="center">
                         <th scope="row"> <?= $row["us_id"] ?> </th>
+                        <td><?= $row["username"] ?></td>
                         <td><?= $row["dog_name"] ?></td>
                         <td><?= $row["us_date"] ?></td>
                         <td><?= $row["service_name"] ?></td>
-                        <td><?= $row["status_name"] ?></td>
                         <td><a class="btn btn-primary btn-lg" href="useserv_detail.php?us_id=<?= $row["us_id"] ?>">รายละเอียด</a>
-                          <!-- <td><a href=""></a></td> -->
-                          <!-- <td>
-                          <a class="btn btn-warning" href="editstore.php?store_id=<?= $row["store_id"] ?>">แก้ไข</a>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editstore" data-whatever="@mdo">แก้ไข</button>
-                        <a href="../api/store/delstore.php?store_id=<?= $row['store_id'] ?>" onclick="javascript:return confirm('คุณต้องการลบข้อมูลใช่หรือไม่');" class="btn btn-danger">ลบ</a>
-                        </td> -->
                           <?php
                             ?>
                       </tr>
