@@ -49,11 +49,10 @@ include 'layout/header.php';
                   </div>
                   <div class="col-md-12">
                     <label for="inputstorelogo" class="form-label">โลโก้ร้าน :</label>
-                    <input type="file" name="store_logo" id="inputstorelogo" class="form-control" required />
+                    <input type="file" name="store_logo" id="inputstorelogo" class="form-control">
                   </div>
                   <div class="col-md-12">
                     <button type="submit" class="btn btn-success" value="upload">บันทึก</button>
-                    <button onclick="window.location.href=\'base_store.php'" type="button" class="btn btn-danger" value="cancel">ยกเลิก</button>
                   </div>
                 </form>
               <?php } ?>
