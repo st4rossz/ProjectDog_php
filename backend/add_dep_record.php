@@ -126,36 +126,72 @@ include 'layout/header.php';
                   <div class="col-md-12">
                     <label for="inputdogsickness" class="form-label">กรอกบันทึกการติดตามสุนัขครั้งนี้ :</label>
                   </div>
-                  <div class="col-md-12" style="margin-left: 2%;">
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="deprec_topic" id="flexRadioDefault1" value="อัพเดทสถานะสุนัข" checked>
+                  <div class="col-md-12" style="margin-left: 1%;">
+                    <!-- <input type="checkbox" name="deprec_topic[]" value="กินน้ำเยอะ">
+                    <label for="deprec_topic1"> กินน้ำเยอะ</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="หายใจเร็วผิดปกติ">
+                    <label for="deprec_topic2"> หายใจเร็วผิดปกติ</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="มีอาการท้องเสีย">
+                    <label for="deprec_topic3"> มีอาการท้องเสีย</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="อาเจียนบ่อย">
+                    <label for="deprec_topic4"> อาเจียนบ่อย</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="มีอาการไอเรื้อรัง">
+                    <label for="deprec_topic5"> มีอาการไอเรื้อรัง</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="มีอาการซึมเศร้า">
+                    <label for="deprec_topic6"> มีอาการซึมเศร้า</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="ไม่ยอมกินข้าว">
+                    <label for="deprec_topic7"> ไม่ยอมกินข้าว</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="น้ำหนักลดลง">
+                    <label for="deprec_topic8"> น้ำหนักลดลง</label><br> -->
+                    <input type="checkbox" name="deprec_topic[]" value="กินน้ำเยอะ">
+                    <label for="deprec_topic1"> กินน้ำเยอะ</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="หายใจเร็วผิดปกติ">
+                    <label for="deprec_topic2"> หายใจเร็วผิดปกติ</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="มีอาการท้องเสีย">
+                    <label for="deprec_topic3"> มีอาการท้องเสีย</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="อาเจียนบ่อย">
+                    <label for="deprec_topic4"> อาเจียนบ่อย</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="มีอาการไอเรื้อรัง">
+                    <label for="deprec_topic5"> มีอาการไอเรื้อรัง</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="มีอาการซึมเศร้า">
+                    <label for="deprec_topic6"> มีอาการซึมเศร้า</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="ไม่ยอมกินข้าว">
+                    <label for="deprec_topic7"> ไม่ยอมกินข้าว</label><br>
+                    <input type="checkbox" name="deprec_topic[]" value="น้ำหนักลดลง">
+                    <label for="deprec_topic8"> น้ำหนักลดลง</label><br>
+                  </div>
+
+
+
+                  <!-- <div class="form-check">
+                      <input class="form-check-input" type="radio" name="deprec_topic1" id="flexRadioDefault1" value="อัพเดทสถานะสุนัข" checked>
                       <label style="margin-left: -2%;" class="form-check-label" for="flexRadioDefault1">
                         อัพเดทสถานะสุนัข
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="deprec_topic" id="flexRadioDefault2" value="สุนัขมีความผิดปกติ">
+                      <input class="form-check-input" type="radio" name="deprec_topic2" id="flexRadioDefault2" value="สุนัขมีความผิดปกติ">
                       <label class="form-check-label" style="margin-left: -2%;" for="flexRadioDefault2">
                         สุนัขมีความผิดปกติ
                       </label>
-                    </div>
-                  </div>
+                    </div> -->
+            </div>
 
 
-                  <div class="col-md-12">
-                    <label for="inputdogsickness" class="form-label">หมายเหตุ</label>
-                  </div>
-                  <div class="col-md-12">
-                    <textarea class="form-control" style="padding-left: 1%;" id="exampleFormControlTextarea1" rows="3" name="deprec_detail"></textarea>
-                  </div>
-                  <div class="col-md-12">
-                    <button type="submit" class="btn btn-success btn-lg" style="font-family: Kanit Light; font-size: 18px;">บันทึก</button>
-                  </div>
-                </form>
-              <?php } ?>
-              <?php
-              include 'layout/footer.php';
-              ?>
+            <div class="col-md-12">
+              <label for="inputdogsickness" class="form-label">หมายเหตุ</label>
+            </div>
+            <div class="col-md-12">
+              <textarea class="form-control" style="padding-left: 1%;" id="exampleFormControlTextarea1" rows="3" name="deprec_detail"></textarea>
+            </div>
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-success btn-lg" style="font-family: Kanit Light; font-size: 18px;">บันทึก</button>
+            </div>
+            </form>
+          <?php } ?>
+          <?php
+          include 'layout/footer.php';
+          ?>
 </body>
 
 </html>

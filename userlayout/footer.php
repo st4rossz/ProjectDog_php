@@ -185,7 +185,7 @@
           <div class="col-md-12" style="margin-left: 6%;">
             <span>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="dep_deliver" id="flexRadioDefault1" value="ไม่ต้องการ" checked>
+                <input class="form-check-input" type="radio" name="dep_deliver" id="flexRadioDefault1" value="ลูกค้ามารับสุนัข" checked>
                 <label style="margin-left: -8%;" class="form-check-label" for="flexRadioDefault1">
                   ไม่ต้องการ
                 </label>

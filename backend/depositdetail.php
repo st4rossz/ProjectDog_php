@@ -45,7 +45,7 @@
                     <div class="card">
                         <?php
                         $dep_id = $_GET['dep_id'];
-                        $sql = "SELECT * FROM deposit 
+                        $sql = "SELECT *, dog.image as img FROM deposit 
                                 INNER JOIN dog ON (deposit.dog_id = dog.dog_id) 
                                 INNER JOIN user ON (dog.user_id = user.user_id)
                                 INNER JOIN room ON (deposit.room_id = room.room_id)
@@ -53,8 +53,13 @@
                         $query = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($query)) {
                             ?>
+    
                             <?php
+                           
                                 if (!empty($row['image'])) {
+                                    // echo '<div class="col-md-12 justify-content-center d-flex" style="padding-top: 3%;">';
+                                    // echo '<img style="width: 40%;" src="../api/dog/uploads/' . $row["image"] . '">';
+                                    // echo '</div>';
                                     echo '<div class="col-md-12">';
                                     echo '<div class="text-center">';
                                     echo '<img style="padding-top: 2%;
@@ -63,11 +68,13 @@
                                     margin-right: auto;
                                     width: 25%;" src="../api/dog/uploads/' . $row["image"] . '">';
                                     echo '</div>';
+                                    echo '</div>';
                                 } else {
-                                    echo '<div class="col-md-12">';
-                                    echo '<h3 style="font-family: Kanit light; color: red; padding-left: 40%; padding-top: 2%;">"ผู้ใช้ท่านนี้ยังไม่มีการเพิ่มรูปสุนัข"</h3>';
+                                    echo '<div class="col-md-12 justify-content-center d-flex" style="padding-top: 3%;">';
+                                    echo '<h3 style="color: red;">*ไม่มีรูปสุนัข*</h3>';
                                     echo '</div>';
                                 }
+                                
                                 ?>
                             <div class="row">
                                 <div class="col-md-2" style="padding-top: 3%; padding-left: 7%;">
@@ -123,7 +130,7 @@
                                             <div class="card-body">
                                                 <h5 class="card-title">สถานะการจอง</h5>
                                                 <hr>
-                                                <p align="center" style="font-size: 40px;"><?= $row['status_name']; ?></p>
+                                                <p align="center" style="font-size: 30px;"><?= $row['status_name']; ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -200,7 +207,7 @@
                                     <div class="col-md-2" style=" padding-left: 13rem;">
                                         <div class="card rounded-0" style="width: 15rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
                                             <div class="card-body">
-                                                <h5 class="card-title">น้ำหนักสุนัข(กิโลกรัม)</h5>
+                                                <h5 class="card-title">น้ำหนัก(กิโลกรัม)</h5>
                                                 <hr>
                                                 <p align="center" style="font-size: 25px;"><?= $row['dog_weight']; ?></p>
                                             </div>

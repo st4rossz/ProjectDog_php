@@ -19,7 +19,7 @@ include 'layout/header.php';
         <div class="row">
           <div class="col-md-12">
             <div class="col-12">
-              <h4 class="title" style="color: black;">ยืนยันการจอง</h4>
+              <h4 class="title" style="color: black;">ยืนยันการเข้าใช้บริการ (ฝากเลี้ยง)</h4>
             </div>
             <hr>
             <div class="col-md-12">
@@ -43,7 +43,7 @@ include 'layout/header.php';
                     <tbody>
                       <?php
                       // $sql = "SELECT * FROM deposit WHERE room_id IS NULL ";
-                      $sql = "SELECT * FROM deposit INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_status = 0";
+                      $sql = "SELECT * FROM deposit INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_status = 1";
                       $query = mysqli_query($conn, $sql);
                       while ($row = mysqli_fetch_assoc($query)) {
                         ?>

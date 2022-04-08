@@ -23,7 +23,7 @@
                             <h4 class="title" style="color: black;">รายละเอียดการจองฝากเลี้ยง (ยืนยันการชำระ)</h4>
                         </div>
                         <div class="col-4" style="padding-top: 1%;">
-                            <form method="POST" action="../api/return/dep_returndb.php">
+                            <form method="POST" action="../api/pay/dep_pay.php">
                                 <input type="hidden" name="dep_id" value="<?= $row['dep_id']; ?>" id="dep_id">
                                 <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยืนยัน?');">อัพเดทสถานะ</button>
                             </form>
@@ -46,11 +46,18 @@
                         $query = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($query)) {
                             ?>
-
                             <div class="row">
-                                <div class="col-md-12 justify-content-center d-flex" style="padding-top: 3%;">
-                                    <img style="width: 40%;" src="../api/pay/uploads/<?= $row['dep_basis']; ?>">
-                                </div>
+                                <?php
+                                    if (!empty($row['dep_basis'])) {
+                                        echo '<div class="col-md-12 justify-content-center d-flex" style="padding-top: 3%;">';
+                                        echo '<img style="width: 40%;" src="../api/pay/uploads/' . $row['dep_basis'] . '">';
+                                        echo '</div>';
+                                    } else {
+                                        echo '<div class="col-md-12 justify-content-center d-flex" style="padding-top: 3%;">';
+                                        echo '<h3 style="color: red;">*ลูกค้าท่านนี้ยังไม่ส่งหลักฐานการชำระเงิน*</h3>';
+                                        echo '</div>';
+                                    }
+                                    ?>
                             </div>
 
                             <div class="row">
@@ -107,7 +114,7 @@
                                             <div class="card-body">
                                                 <h5 class="card-title">สถานะการจอง</h5>
                                                 <hr>
-                                                <p align="center" style="font-size: 40px;"><?= $row['dep_status']; ?></p>
+                                                <p align="center" style="font-size: 30px;"><?= $row['status_name']; ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -184,7 +191,7 @@
                                     <div class="col-md-2" style=" padding-left: 11%;">
                                         <div class="card rounded-0" style="width: 15rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
                                             <div class="card-body">
-                                                <h5 class="card-title">น้ำหนักสุนัข(กิโลกรัม)</h5>
+                                                <h5 class="card-title">น้ำหนัก(กิโลกรัม)</h5>
                                                 <hr>
                                                 <p align="center" style="font-size: 25px;"><?= $row['dog_weight']; ?></p>
                                             </div>

@@ -88,7 +88,7 @@ if (isset($_GET['logout'])) {
       color: #EE5A24;
       text-decoration: none;
       font-size: 16px;
-      padding-left: 20px;
+      padding-left: 15px;
       font-weight: 500;
       display: block;
       width: 100%;
@@ -116,7 +116,7 @@ if (isset($_GET['logout'])) {
     }
 
     nav ul ul li {
-      line-height: 42px;
+      line-height: 50px;
       border-bottom: none;
     }
 
@@ -129,7 +129,7 @@ if (isset($_GET['logout'])) {
     nav ul li a span {
       position: absolute;
       top: 30%;
-      right: 10px;
+      right: 7px;
       font-size: 12px;
       transition: transform 0.4s;
     }

@@ -19,7 +19,7 @@ include 'layout/header.php';
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-12">
-                            <h4 class="title" style="color: black;">บันทึกการติดตามสุนัข</h4>
+                            <h4 class="title" style="color: black;">ยืนยันสถานะการชำระเงิน (ฝากเลี้ยง)</h4>
                         </div>
                         <hr>
                         <div class="card">
@@ -32,6 +32,8 @@ include 'layout/header.php';
                                             <th style="width: 10%;">พันธ์ุ</th>
                                             <th style="width: 10%;">วันที่เข้าใช้บริการ</th>
                                             <th style="width: 10%;">ประเภทบริการ</th>
+                                            <th style="width: 10%;">บริการส่งสุนัข</th>
+                                            <th style="width: 10%;">สถานะ</th>
                                             <th style="width: 10%;">เจ้าของสุนัข</th>
                                             <!-- <th>user_id</th> -->
                                         </tr>
@@ -39,7 +41,7 @@ include 'layout/header.php';
                                     <tbody>
                                         <?php
                                         // $sql = "SELECT * FROM dog ";
-                                        $sql = "SELECT * FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_status = 2";
+                                        $sql = "SELECT * FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_status = 0";
                                         $query = mysqli_query($conn, $sql);
                                         while ($row = mysqli_fetch_assoc($query)) {
                                             ?>
@@ -49,6 +51,8 @@ include 'layout/header.php';
                                                 <td><?= $row["dog_type"] ?></td>
                                                 <td><?= $row["dep_sdate"] ?></td>
                                                 <td><?= $row["dep_edate"] ?></td>
+                                                <td><?= $row["dep_deliver"] ?></td>
+                                                <td><?= $row["status_name"] ?></td>
                                                 <td><?= $row["username"] ?></td>
                                                 <td style="width: 15%;">
                                                     <a class="btn btn-lg btn-primary" href="deppay_detail.php?dep_id=<?= $row["dep_id"] ?>">รายละเอียด</a>

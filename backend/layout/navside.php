@@ -187,11 +187,33 @@
                 </ul>
             </div>
         </li>
+    
+        <li>
+            <a data-toggle="collapse" href="#colpay" aria-expanded="false" aria-controls="colpay" class="base-btn">
+                <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-credit-card"></i>
+                ยืนยันสถานะการชำระเงิน
+                <span style="font-size: 12px;" class="nc-icon nc-minimal-down"></span>
+            </a>
+            <div class="collapse" id="colpay">
 
+                <ul class="serv-show">
+                    <li>
+                        <a href="us_pay.php">
+                            <p>สปาร์สุนัข</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dep_pay.php">
+                            <p>ฝากเลี้ยง</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
 
         <li>
             <a data-toggle="collapse" href="#colus" aria-expanded="false" aria-controls="colus" class="base-btn">
-                <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-check-2"></i>
+                <i style="font-size: 20px; padding-right: 12px;" class="fa fa-handshake-o"></i>
                 ยืนยันการเข้าใช้บริการ
                 <span style="font-size: 12px;" class="nc-icon nc-minimal-down"></span>
             </a>
@@ -211,6 +233,29 @@
                 </ul>
             </div>
             <!-- <hr style="border: 0.5px solid #EE5A24; width: 55%; margin: auto;"> -->
+        </li>
+
+        <li>
+            <a data-toggle="collapse" href="#atstore" aria-expanded="false" aria-controls="atstore" class="base-btn">
+                <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-check-2"></i>
+                ยืนยันสถานะที่กำลังให้บริการ
+                <span style="font-size: 12px;" class="nc-icon nc-minimal-down"></span>
+            </a>
+            <div class="collapse" id="atstore">
+
+                <ul class="serv-show">
+                    <li>
+                        <a href="us_atstore.php">
+                            <p>สปาร์สุนัข</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dep_atstore.php">
+                            <p>ฝากเลี้ยง</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </li>
 
 
@@ -237,6 +282,7 @@
             </div>
         </li>
 
+
         <li>
             <a data-toggle="collapse" href="#colret" aria-expanded="false" aria-controls="colret" class="base-btn">
                 <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-satisfied"></i>
@@ -253,29 +299,6 @@
                     </li>
                     <li>
                         <a href="dep_return.php">
-                            <p>ฝากเลี้ยง</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-
-        <li>
-            <a data-toggle="collapse" href="#colpay" aria-expanded="false" aria-controls="colpay" class="base-btn">
-                <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-credit-card"></i>
-                ยืนยันสถานะการชำระเงิน
-                <span style="font-size: 12px;" class="nc-icon nc-minimal-down"></span>
-            </a>
-            <div class="collapse" id="colpay">
-
-                <ul class="serv-show">
-                    <li>
-                        <a href="us_pay.php">
-                            <p>สปาร์สุนัข</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dep_pay.php">
                             <p>ฝากเลี้ยง</p>
                         </a>
                     </li>

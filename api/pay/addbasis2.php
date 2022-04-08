@@ -31,7 +31,7 @@ $query = mysqli_query($conn, $sql);
 
 if ($query) {
     echo "<script>";
-    echo "alert(\"เพิ่มข้อมูลสุนัขสำเร็จ\");";
+    echo "alert(\"บันทึกข้อมูลการชำระแล้ว!\");";
     echo "window.location=\"../../userserviceorder.php\"";
     echo "</script>";
 } else {

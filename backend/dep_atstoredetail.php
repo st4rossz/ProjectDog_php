@@ -20,10 +20,10 @@
                     while ($row = mysqli_fetch_assoc($query)) {
                         ?>
                         <div class="col-8">
-                            <h4 class="title" style="color: black;">รายละเอียดการส่งคืนสุนัข (ฝากเลี้ยง)</h4>
+                            <h4 class="title" style="color: black;">รายละเอียดการจองฝากเลี้ยง (ยืนยันสถานะที่กำลังให้บริการ)</h4>
                         </div>
                         <div class="col-4" style="padding-top: 1%;">
-                            <form method="POST" action="../api/return/dep_returndb.php">
+                            <form method="POST" action="../api/atstore/dep_atstore.php">
                                 <input type="hidden" name="dep_id" value="<?= $row['dep_id']; ?>" id="dep_id">
                                 <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยืนยัน?');">อัพเดทสถานะ</button>
                             </form>
@@ -48,14 +48,18 @@
                             ?>
                             <div class="row">
                                 <?php
+
                                     if (!empty($row['image'])) {
+                                        // echo '<div class="col-md-12 justify-content-center d-flex" style="padding-top: 3%;">';
+                                        // echo '<img style="width: 40%;" src="../api/dog/uploads/' . $row["image"] . '">';
+                                        // echo '</div>';
                                         echo '<div class="col-md-12">';
                                         echo '<div class="text-center">';
                                         echo '<img style="padding-top: 2%;
-                                        display: block;
-                                        margin-left: auto;
-                                        margin-right: auto;
-                                        width: 25%;" src="../api/dog/uploads/' . $row["image"] . '">';
+                               display: block;
+                               margin-left: auto;
+                               margin-right: auto;
+                               width: 25%;" src="../api/dog/uploads/' . $row["image"] . '">';
                                         echo '</div>';
                                         echo '</div>';
                                     } else {
@@ -64,17 +68,10 @@
                                         echo '</div>';
                                     }
 
-
-                                    if ($row["dep_deliver"] == "ต้องการ") {
-                                        echo '<div class="col-md-12" style="padding-top: 3%; padding-left: 5%;">';
-                                        echo '<h3>*ลูกค้าท่านนี้เลือกใช้บริการส่งสุนัขกลับบ้าน*</h3>';
-                                        echo '</div>';
-                                    } else {
-                                        echo '<div class="col-md-12" style="padding-top: 3%; padding-left: 5%;">';
-                                        echo '<h3>*ลูกค้ามารับสุนัขเองที่ร้าน*</h3>';
-                                        echo '</div>';
-                                    }
                                     ?>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-2" style="padding-top: 3%; padding-left: 5%;">
                                     <div class="card rounded-0" style="width: 15rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
                                         <div class="card-body">

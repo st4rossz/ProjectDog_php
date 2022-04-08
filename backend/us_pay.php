@@ -19,7 +19,7 @@ include 'layout/header.php';
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-12">
-                            <h4 class="title" style="color: black;">บันทึกการติดตามสุนัข</h4>
+                            <h4 class="title" style="color: black;">ยืนยันสถานะการชำระเงิน (สปาร์สุนัข)</h4>
                         </div>
                         <hr>
                         <div class="card">

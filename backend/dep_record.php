@@ -43,7 +43,7 @@ include 'layout/header.php';
                       <th style="width: 10%;">น้ำหนัก(กิโลกรัม)</th>
                       <th style="width: 5%;">อายุ(ปี)</th>
                       <th style="width: 15%;">แพ้ยา/แพ้อาหาร</th>
-                      <th style="width: 15%;">อัพเดทการติดตามสุนัข</th>
+                      <!-- <th style="width: 15%;">อัพเดทการติดตามสุนัข</th> -->
                       <th style="width: 25%;">หมายเหตุ</th>
                       <!-- <th>user_id</th> -->
                     </tr>
@@ -62,7 +62,7 @@ include 'layout/header.php';
                         <td><?= $row["dog_weight"] ?></td>
                         <td><?= $row["dog_age"] ?></td>
                         <td><?= $row["dog_sickness"] ?></td>
-                        <td><?= $row["deprec_topic"] ?></td>
+                        <!-- <td><?= $row["deprec_topic1"] ?></td> -->
                         <td><?= $row["deprec_detail"] ?></td>
                         <td style="width: 10%;"> 
                           <a class="btn btn-warning" href="add_dep_record.php?dep_id=<?= $row["dep_id"] ?>">เพิ่มบันทึก</a>
