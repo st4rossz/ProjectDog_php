@@ -44,7 +44,6 @@ include 'layout/header.php';
                                         while ($row = mysqli_fetch_assoc($query)) {
                                             ?>
                                             <tr align="center">
-                                                <!-- <th scope="row"> <?= $row["dog_id"] ?> </th> -->
                                                 <td><?= $row["dog_name"] ?></td>
                                                 <td><?= $row["dog_type"] ?></td>
                                                 <td><?= $row["us_date"] ?></td>

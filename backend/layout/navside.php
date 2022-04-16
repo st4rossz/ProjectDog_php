@@ -187,7 +187,7 @@
                 </ul>
             </div>
         </li>
-    
+
         <li>
             <a data-toggle="collapse" href="#colpay" aria-expanded="false" aria-controls="colpay" class="base-btn">
                 <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-credit-card"></i>
@@ -236,30 +236,6 @@
         </li>
 
         <li>
-            <a data-toggle="collapse" href="#atstore" aria-expanded="false" aria-controls="atstore" class="base-btn">
-                <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-check-2"></i>
-                ยืนยันสถานะที่กำลังให้บริการ
-                <span style="font-size: 12px;" class="nc-icon nc-minimal-down"></span>
-            </a>
-            <div class="collapse" id="atstore">
-
-                <ul class="serv-show">
-                    <li>
-                        <a href="us_atstore.php">
-                            <p>สปาร์สุนัข</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dep_atstore.php">
-                            <p>ฝากเลี้ยง</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-
-
-        <li>
             <a data-toggle="collapse" href="#colrec" aria-expanded="false" aria-controls="colrec" class="base-btn">
                 <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-tag-content"></i>
                 บันทึกการติดตามสุนัข
@@ -275,6 +251,29 @@
                     </li>
                     <li>
                         <a href="dep_record.php">
+                            <p>ฝากเลี้ยง</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <a data-toggle="collapse" href="#atstore" aria-expanded="false" aria-controls="atstore" class="base-btn">
+                <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-check-2"></i>
+                บันทึกข้อมูลการรับสุนัขกลับ
+                <span style="font-size: 12px;" class="nc-icon nc-minimal-down"></span>
+            </a>
+            <div class="collapse" id="atstore">
+
+                <ul class="serv-show">
+                    <li>
+                        <a href="us_atstore.php">
+                            <p>สปาร์สุนัข</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dep_atstore.php">
                             <p>ฝากเลี้ยง</p>
                         </a>
                     </li>

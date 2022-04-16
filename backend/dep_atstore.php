@@ -19,7 +19,7 @@ include 'layout/header.php';
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-12">
-                            <h4 class="title" style="color: black;">ยืนยันสถานะที่กำลังให้บริการ (ฝากเลี้ยง)</h4>
+                            <h4 class="title" style="color: black;">บันทึกข้อมูลการรับสุนัขกลับ (ฝากเลี้ยง)</h4>
                         </div>
                         <hr>
                         <div class="card">
@@ -27,37 +27,40 @@ include 'layout/header.php';
                                 <table class="table table-striped table-bordered ">
                                     <thead>
                                         <tr align="center">
-                                            <!-- <th>รหัส</th> -->
-                                            <th style="width: 10%;">ชื่อสุนัข</th>
+                                            <th style="width: 5%;">ชื่อสุนัข</th>
                                             <th style="width: 10%;">พันธ์ุ</th>
                                             <th style="width: 10%;">วันที่เข้าใช้บริการ</th>
-                                            <th style="width: 10%;">ประเภทบริการ</th>
-                                            <th style="width: 10%;">บริการส่งสุนัข</th>
-                                            <th style="width: 10%;">สถานะ</th>
+                                            <th style="width: 10%;">วันที่สิ้นสุด</th>
+                                            <th style="width: 5%;">ประเภทห้อง</th>
                                             <th style="width: 10%;">เจ้าของสุนัข</th>
-                                            <!-- <th>user_id</th> -->
+                                            <th style="width: 20%;">รูปสุนัข</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         // $sql = "SELECT * FROM dog ";
-                                        $sql = "SELECT * FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_status = 2";
+                                        $sql = "SELECT * FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_status = 2 AND dep_deliver = 'ลูกค้ามารับสุนัข'";
                                         $query = mysqli_query($conn, $sql);
                                         while ($row = mysqli_fetch_assoc($query)) {
                                             ?>
                                             <tr align="center">
-                                                <!-- <th scope="row"> <?= $row["dog_id"] ?> </th> -->
                                                 <td><?= $row["dog_name"] ?></td>
                                                 <td><?= $row["dog_type"] ?></td>
                                                 <td><?= $row["dep_sdate"] ?></td>
                                                 <td><?= $row["dep_edate"] ?></td>
-                                                <td><?= $row["dep_deliver"] ?></td>
-                                                <td><?= $row["status_name"] ?></td>
+                                                <td><?= $row["room_type"] ?></td>
                                                 <td><?= $row["username"] ?></td>
+                                                <td>
+                                                    <?php
+                                                        if (!empty($row["image"])) {
+                                                            echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 250px;" alt="">';
+                                                        } else {
+                                                            echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
+                                                        }
+                                                        ?>
+                                                </td>
                                                 <td style="width: 15%;">
                                                     <a class="btn btn-lg btn-primary" href="dep_atstoredetail.php?dep_id=<?= $row["dep_id"] ?>">รายละเอียด</a>
-                                                    <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editstore" data-whatever="@mdo">แก้ไข</button> -->
-                                                    <!-- <a href="../api/dog/deldog.php?dog_id=<?= $row['dog_id'] ?>" onclick="javascript:return confirm('คุณต้องการลบข้อมูลใช่หรือไม่');" class="btn btn-danger">ลบ</a> -->
                                                 </td>
                                                 <?php
                                                     ?>

@@ -24,44 +24,44 @@ include 'layout/header.php';
             <hr>
             <div class="col-md-12">
               <div class="card">
-                <!-- <div class="header"> -->
-                <!-- <p class="category">Here is a subtitle for this table</p> -->
-                <!-- </div> -->
                 <div class="content table-full-width">
                   <table class="table table-striped table-bordered">
                     <thead>
                       <tr align="center">
-                        <th style="width: 10%;">รหัสการจอง</th>
-                        <th style="width: 15%;">ชื่อเจ้าของ</th>
-                        <th style="width: 15%;">ชื่อสุนัข</th>
-                        <th style="width: 20%;">วันที่ฝาก</th>
-                        <th style="width: 20%;">วันที่ออก</th>
-                        <th style="width: 5%;">จำนวนวัน</th>
-                        <!-- <th>dog_sickness</th> -->
+                        <th style="width: 5%;">ชื่อสุนัข</th>
+                        <th style="width: 10%;">พันธ์ุ</th>
+                        <th style="width: 10%;">วันที่เข้าใช้บริการ</th>
+                        <th style="width: 10%;">วันที่สิ้นสุด</th>
+                        <th style="width: 5%;">ประเภทห้อง</th>
+                        <th style="width: 10%;">เจ้าของสุนัข</th>
+                        <th style="width: 20%;">รูปสุนัข</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      // $sql = "SELECT * FROM deposit WHERE room_id IS NULL ";
-                      $sql = "SELECT * FROM deposit INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_status = 1";
+                      $sql = "SELECT *, dog.image FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_status = 1";
                       $query = mysqli_query($conn, $sql);
                       while ($row = mysqli_fetch_assoc($query)) {
                         ?>
                         <tr align="center">
-                          <th scope="row"> <?= $row["dep_id"] ?> </th>
-                          <td><?= $row["username"] ?></td>
                           <td><?= $row["dog_name"] ?></td>
+                          <td><?= $row["dog_type"] ?></td>
                           <td><?= $row["dep_sdate"] ?></td>
                           <td><?= $row["dep_edate"] ?></td>
-                          <td><?= $row["dep_day"]; ?></td>
-                          <!-- <td><a class="btn btn-primary btn-lg" href="../api/depositstatus/_updatedepstatus.php?user_id=<?= $row["user_id"] ?>">ยืนยัน</a></td> -->
-                          <td><a class="btn btn-primary btn-lg" href="depositdetail.php?dep_id=<?= $row["dep_id"] ?>">รายละเอียด</a></td>
-                          <!-- <td><a href=""></a></td> -->
-                          <!-- <td>
-                          <a class="btn btn-warning" href="editstore.php?store_id=<?= $row["store_id"] ?>">แก้ไข</a>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editstore" data-whatever="@mdo">แก้ไข</button>
-                        <a href="../api/store/delstore.php?store_id=<?= $row['store_id'] ?>" onclick="javascript:return confirm('คุณต้องการลบข้อมูลใช่หรือไม่');" class="btn btn-danger">ลบ</a>
-                        </td> -->
+                          <td><?= $row["room_type"] ?></td>
+                          <td><?= $row["username"] ?></td>
+                          <td>
+                            <?php
+                              if (!empty($row["image"])) {
+                                echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 250px;" alt="">';
+                              } else {
+                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
+                              }
+                              ?>
+                          </td>
+                          <td style="width: 15%;">
+                            <a class="btn btn-lg btn-primary" href="depositdetail.php?dep_id=<?= $row["dep_id"] ?>">รายละเอียด</a>
+                          </td>
                           <?php
                             ?>
                         </tr>

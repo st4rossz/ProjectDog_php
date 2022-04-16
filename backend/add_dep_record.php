@@ -110,6 +110,7 @@ include 'layout/header.php';
                     <input name="dog_sickness" value="<?= $row['dog_sickness']; ?>" type="text" class="form-control" id="inputdogsickness" disabled>
                     <hr>
                   </div>
+             
                   <div class="col-md-12">
                     <label for="inputdogsickness" class="form-label">บันทึกการติดตามสุนัขครั้งก่อน :</label>
                   </div>
@@ -122,44 +123,39 @@ include 'layout/header.php';
                     <hr>
                   </div>
 
+
                   <!-- ส่งข้อมูลอัพเดทการติดตาม -->
                   <div class="col-md-12">
                     <label for="inputdogsickness" class="form-label">กรอกบันทึกการติดตามสุนัขครั้งนี้ :</label>
                   </div>
-                  <div class="col-md-12" style="margin-left: 1%;">
-                    <!-- <input type="checkbox" name="deprec_topic[]" value="กินน้ำเยอะ">
-                    <label for="deprec_topic1"> กินน้ำเยอะ</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="หายใจเร็วผิดปกติ">
-                    <label for="deprec_topic2"> หายใจเร็วผิดปกติ</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="มีอาการท้องเสีย">
-                    <label for="deprec_topic3"> มีอาการท้องเสีย</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="อาเจียนบ่อย">
-                    <label for="deprec_topic4"> อาเจียนบ่อย</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="มีอาการไอเรื้อรัง">
-                    <label for="deprec_topic5"> มีอาการไอเรื้อรัง</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="มีอาการซึมเศร้า">
-                    <label for="deprec_topic6"> มีอาการซึมเศร้า</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="ไม่ยอมกินข้าว">
-                    <label for="deprec_topic7"> ไม่ยอมกินข้าว</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="น้ำหนักลดลง">
-                    <label for="deprec_topic8"> น้ำหนักลดลง</label><br> -->
-                    <input type="checkbox" name="deprec_topic[]" value="กินน้ำเยอะ">
-                    <label for="deprec_topic1"> กินน้ำเยอะ</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="หายใจเร็วผิดปกติ">
-                    <label for="deprec_topic2"> หายใจเร็วผิดปกติ</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="มีอาการท้องเสีย">
-                    <label for="deprec_topic3"> มีอาการท้องเสีย</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="อาเจียนบ่อย">
-                    <label for="deprec_topic4"> อาเจียนบ่อย</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="มีอาการไอเรื้อรัง">
-                    <label for="deprec_topic5"> มีอาการไอเรื้อรัง</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="มีอาการซึมเศร้า">
-                    <label for="deprec_topic6"> มีอาการซึมเศร้า</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="ไม่ยอมกินข้าว">
-                    <label for="deprec_topic7"> ไม่ยอมกินข้าว</label><br>
-                    <input type="checkbox" name="deprec_topic[]" value="น้ำหนักลดลง">
-                    <label for="deprec_topic8"> น้ำหนักลดลง</label><br>
+                  <div class="col-md-12">
+                    <div class="radio">
+                      <label class="radio-inline ml-3"><input type="radio" value="deprec_strange" name="pref" checked> สุนัขมีอาการผิดปกติ </label>
+                      <label class="radio-inline ml-5"><input type="radio" value="deprec_normal" name="pref"> สุนัขปกติดี </label>
+                    </div>
+
+                    <div class="col-md-4 ml-4">
+                      <input type="checkbox" name="deprec_topic[]" value="กินน้ำเยอะ">
+                      <label for="deprec_topic1"> กินน้ำเยอะ</label><br>
+                      <input type="checkbox" name="deprec_topic[]" value="หายใจเร็วผิดปกติ">
+                      <label for="deprec_topic2"> หายใจเร็วผิดปกติ</label><br>
+                      <input type="checkbox" name="deprec_topic[]" value="มีอาการท้องเสีย">
+                      <label for="deprec_topic3"> มีอาการท้องเสีย</label><br>
+                      <input type="checkbox" name="deprec_topic[]" value="อาเจียนบ่อย">
+                      <label for="deprec_topic4"> อาเจียนบ่อย</label><br>
+                      <input type="checkbox" name="deprec_topic[]" value="มีอาการไอเรื้อรัง">
+                      <label for="deprec_topic5"> มีอาการไอเรื้อรัง</label><br>
+                      <input type="checkbox" name="deprec_topic[]" value="มีอาการซึมเศร้า">
+                      <label for="deprec_topic6"> มีอาการซึมเศร้า</label><br>
+                      <input type="checkbox" name="deprec_topic[]" value="ไม่ยอมกินข้าว">
+                      <label for="deprec_topic7"> ไม่ยอมกินข้าว</label><br>
+                      <input type="checkbox" name="deprec_topic[]" value="น้ำหนักลดลง">
+                      <label for="deprec_topic8"> น้ำหนักลดลง</label><br>
+                    </div>
                   </div>
+
+
+
 
 
 

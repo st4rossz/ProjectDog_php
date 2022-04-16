@@ -9,6 +9,8 @@ if (isset($_POST['reg_user'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password_1 = mysqli_real_escape_string($conn, $_POST['password_1']);
     $password_2 = mysqli_real_escape_string($conn, $_POST['password_2']);
+    $address = mysqli_real_escape_string($conn, $_POST['address']);
+    $fullname = mysqli_real_escape_string($conn, $_POST['fullname']);
 
     if (empty($username)) {
         array_push($errors, "Username is required");
@@ -39,7 +41,7 @@ if (isset($_POST['reg_user'])) {
 
     if (count($errors) == 0) {
         $password = md5($password_1);
-        $sql = "INSERT INTO user (username, email, password) VALUES('$username','$email','$password')";
+        $sql = "INSERT INTO user (username, email, password, address, fullname) VALUES('$username','$email','$password', '$address', '$fullname')";
         mysqli_query($conn, $sql);
 
         $_SESSION['username'] = $username;

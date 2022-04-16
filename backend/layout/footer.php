@@ -304,4 +304,14 @@
     // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
     demo.initChartsPages();
   });
+
+  $("input[name=pref]").on("change", function() {
+    if (this.value === "Phone") {
+      $("input[type=checkbox]").removeAttr("disabled");
+
+    } else if (this.value === "deprec_normal") {
+      $("input[type=checkbox]").attr("disabled", true);
+
+    }
+  })
 </script>

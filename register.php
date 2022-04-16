@@ -53,6 +53,14 @@ include('api/server.php');
         <div>
             <label for="password_2" class="col-form-label">ยืนยันรหัสผ่าน : </label>
             <input type="password" class="form-control" name="password_2" placeholder="กรอกรหัสผ่านอีกครั้ง" required>
+        </div>
+        <div>
+            <label for="password_2" class="col-form-label">ที่อยู่ : </label>
+            <input type="text" class="form-control" name="address" placeholder="ที่อยู่สำหรับบริการส่งสุนัข" required>
+        </div>
+        <div>
+            <label for="password_2" class="col-form-label">ชื่อและนามสกุลจริง : </label>
+            <input type="text" class="form-control" name="fullname" placeholder="โปรดกรอกชื่อจริงและนามสกุลจริงๆของท่าน" required>
 
         </div>
         <div>

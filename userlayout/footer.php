@@ -424,8 +424,6 @@
 <script src="backend/assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 <script src="backend/assets/demo/demo.js"></script>
-<!-- SWITCH ALERT -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <script type="text/javascript">
@@ -504,4 +502,6 @@
   //   console.log(senddep_id)
   //   $("#showdep_detail").modal('show');
   // }
+
+  
 </script>
