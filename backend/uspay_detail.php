@@ -12,211 +12,201 @@
 
             <!-- Content -->
             <div class="content">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <?php
-                            $us_id = $_GET['us_id'];
-                            $sql = "SELECT * FROM use_service WHERE us_id = '$us_id'";
-                            $query = mysqli_query($conn, $sql);
-                            while ($row = mysqli_fetch_assoc($query)) {
-                                ?>
-                                <div class="col-8">
-                                    <h4 class="title" style="color: black;">รายละเอียดการใช้บริการ</h4>
-                                </div>
-                                <div class="col-4" style="padding-top: 1%;">
-                                    <form method="POST" action="../api/return/us_returndb.php">
-                                        <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>" id="us_id">
-                                        <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยืนยัน?');">อัพเดทสถานะ</button>
-                                    </form>
-                                </div>
-                            <?php } ?>
-                        </div>
-
-                        <hr>
-                        <div class="col-md-12" style="font-family: Kanit Thin;">
+                <form method="POST" action="../api/pay/us_pay.php">
+                    <div class="row">
+                        <?php
+                        $us_id = $_GET['us_id'];
+                        $sql = "SELECT * FROM use_service WHERE us_id = '$us_id'";
+                        $query = mysqli_query($conn, $sql);
+                        while ($row = mysqli_fetch_assoc($query)) {
+                        ?>
+                            <div class="col-md-6">
+                                <h4 class="title" style="color: black;">รายละเอียดการจองสปาร์ (ยืนยันการชำระ)</h4>
+                            </div>
+                            <div class="col-md-2" style="padding-top: 28px; padding-right: 20px;">
+                                <input type="hidden" name="pay_type" value="โอนจ่าย">
+                                <input type="checkbox" name="pay_type" value="เงินสด">
+                                <label style="font-size: 24px;" for="pay_type"> ลูกค้าชำระด้วยเงินสด</label><br>
+                            </div>
+                            <div class="col-md-4" style="padding-top: 1%;">
+                                <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>" id="us_id">
+                                <button type="submit" name="pay" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยืนยัน?');">อัพเดทสถานะ</button>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </form>
+                <hr>
+                <div class="container"></div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div id="accordion">
                             <div class="card">
-                                <?php
-                                $us_id = $_GET['us_id'];
-                                $sql = "SELECT * FROM use_service 
-                                INNER JOIN dog ON (use_service.dog_id = dog.dog_id) 
-                                INNER JOIN user ON (dog.user_id = user.user_id)
-                                INNER JOIN service ON (use_service.service_id = service.service_id)
-                                WHERE us_id = '$us_id'";
-                                $query = mysqli_query($conn, $sql);
-                                while ($row = mysqli_fetch_assoc($query)) {
-                                    ?>
 
-                                    <div class="row">
-                                        <div class="col-md-12 justify-content-center d-flex" style="padding-top: 3%;">
-                                            <img style="width: 40%;" src="../api/pay/uploads/<?= $row['us_basis']; ?>">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-2" style="padding-top: 3%; padding-left: 7%;">
-                                            <div class="card rounded-0" style="width: 15rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">รหัสการจองบริการ</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 40px;"><?= $row['us_id']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3" style="padding-top: 3%; padding-left: 7%;">
-                                            <div class="card rounded-0" style="width: 25rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">วันที่เข้าใช้บริการ</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 30px;;"><?= $row['us_date']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4" style="padding-top: 3%; padding-left: 9%;">
-                                            <div class="card rounded-0" style="width: 25rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">สถานะการใช้บริการ</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 40px;"><?= $row['us_status']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-md-12 ml-5 pt-3">
+                                        <h4 style="font-family: Kanit;">รายละเอียดการจอง</h4>
+
                                     </div>
 
+                                </div>
+                                <div class="card-body">
+                                    <div class="content table-full-width">
+                                        <table class="table table-striped table-bordered ">
+                                            <thead>
+                                                <tr align="center">
+                                                    <th style="width: 5%;">รหัสการจอง</th>
+                                                    <th style="width: 10%;">วันที่เข้าใช้บริการ</th>
+                                                    <th style="width: 10%;">สถานะ</th>
+                                                    <th style="width: 5%;">ราคา</th>
+                                                    <th style="width: 20%;">หลักฐานการโอนเงิน</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sql = "SELECT * FROM use_service INNER JOIN service ON use_service.service_id = service.service_id INNER JOIN dog ON use_service.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE us_status = 0 AND us_id ='$us_id'";
+                                                $query = mysqli_query($conn, $sql);
+                                                while ($row = mysqli_fetch_assoc($query)) {
+                                                ?>
+                                                    <tr align="center">
+                                                        <td><?= $row["us_id"] ?></td>
+                                                        <td><?= $row["us_date"] ?></td>
+                                                        <td><?= $row["status_name"] ?></td>
+                                                        <td><?= $row["us_price"] ?></td>
+                                                        <td>
+                                                            <?php
+                                                            if (!empty($row["us_basis"])) {
+                                                                echo '<img src="../api/pay/uploads/' . $row['us_basis'] . '" style="width: 300px; height: 350px;" alt="">';
+                                                            } else {
+                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการโอน</p>';
+                                                            }
+                                                            ?>
+                                                        </td>
 
-                                    <div class="row">
-                                        <div class="col-md-4" style=" padding-left: 10%;">
-                                            <div class="card rounded-0" style="width: 30rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">ชื่อบริการ</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 30px;"><?= $row['service_name']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                        <?php
+                                                        ?>
+                                                    </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
 
-                                        <div class="col-md-4" style=" padding-left: 10%;">
-                                            <div class="card rounded-0" style="width: 25rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">ราคา(บาท)</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 40px;"><?= $row['us_price']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-md-12 ml-5 pt-3">
+                                        <h4 style="font-family: Kanit;">รายละเอียดสุนัข</h4>
+
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-4" style=" padding-left: 10%; padding-top: 3%;">
-                                            <div class="card rounded-0" style="width: 25rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">รหัสเจ้าของ</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 40px;"><?= $row['user_id']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4" style=" padding-left: 5%;  padding-top: 3%;">
-                                            <div class="card rounded-0" style="width: 25rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">ชื่อเจ้าของ</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 40px;"><?= $row['username']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4" style="padding-top: 3%;">
-                                            <div class="card rounded-0" style="width: 25rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">อีเมล์เจ้าของ</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 25px;"><?= $row['email']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="content table-full-width">
+                                        <table class="table table-striped table-bordered ">
+                                            <thead>
+                                                <tr align="center">
+                                                    <th style="width: 5%;">รหัสสุนัข</th>
+                                                    <th style="width: 10%;">ชื่อ</th>
+                                                    <th style="width: 10%;">พันธุ์</th>
+                                                    <th style="width: 10%;">น้ำหนัก (กก.)</th>
+                                                    <th style="width: 5%;">อายุ (ปี)</th>
+                                                    <th style="width: 10%;">โรคประจำตัว/แพ้อาหาร</th>
+                                                    <th style="width: 20%;">รูปสุนัข</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sql = "SELECT * FROM use_service INNER JOIN service ON use_service.service_id = service.service_id INNER JOIN dog ON use_service.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE us_status = 0 AND us_id ='$us_id'";
+                                                $query = mysqli_query($conn, $sql);
+                                                while ($row = mysqli_fetch_assoc($query)) {
+                                                ?>
+                                                    <tr align="center">
+                                                        <td><?= $row["dog_id"] ?></td>
+                                                        <td><?= $row["dog_name"] ?></td>
+                                                        <td><?= $row["dog_type"] ?></td>
+                                                        <td><?= $row["dog_weight"] ?></td>
+                                                        <td><?= $row["dog_age"] ?></td>
+                                                        <td><?= $row["dog_sickness"] ?></td>
+                                                        <td>
+                                                            <?php
+                                                            if (!empty($row["image"])) {
+                                                                echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
+                                                            } else {
+                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
+                                                            }
+                                                            ?>
+                                                        </td>
+
+                                                        <?php
+                                                        ?>
+                                                    </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-12 ml-5 pt-3">
+                                        <h4 style="font-family: Kanit;">รายละเอียดเจ้าของ</h4>
+
                                     </div>
 
+                                </div>
+                                <div class="card-body">
+                                    <div class="content table-full-width">
+                                        <table class="table table-striped table-bordered ">
+                                            <thead>
+                                                <tr align="center">
+                                                    <th style="width: 10%;">รหัสเจ้าของ</th>
+                                                    <th style="width: 10%;">ชื่อผู้ใช้งาน</th>
+                                                    <th style="width: 15%;">อีเมล์</th>
+                                                    <th style="width: 25%;">ชื่อ-นามสกุลจริง</th>
+                                                    <th style="width: 40%;">ที่อยู่</th>
 
-                                    <div class="row">
-                                        <div class="col-md-2" style="padding-top: 3%; padding-left: 5%;">
-                                            <div class="card rounded-0" style="width: 10rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">รหัสสุนัข</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 30px;"><?= $row['dog_id']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2" style="padding-top: 3%; padding-left: 5%;">
-                                            <div class="card rounded-0" style="width: 15rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">พันธุ์</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 25px;"><?= $row['dog_type']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2" style="padding-top: 3%; padding-left: 8%;">
-                                            <div class="card rounded-0" style="width: 15rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">ชื่อสุนัข</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 25px;"><?= $row['dog_name']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2" style="padding-top: 3%; padding-left: 11%;">
-                                            <div class="card rounded-0" style="width: 15rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">น้ำหนักสุนัข(กิโลกรัม)</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 25px;"><?= $row['dog_weight']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2" style="padding-top: 3%; padding-left: 14%;">
-                                            <div class="card rounded-0" style="width: 15rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">อายุ(ปี)</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 25px;"><?= $row['dog_age']; ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12" style="padding-left: 5%;">
-                                            <div class="card rounded-0" style="width: 91rem; height: 10rem; box-shadow: 0px 0px 5px grey;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">โรคประจำตัว/อาหารที่แพ้</h5>
-                                                    <hr>
-                                                    <p align="center" style="font-size: 25px;"><?= $row['dog_sickness']; ?></p>
-                                                </div>
-                                            </div>
+                                                    <!-- <th style="width: 20%;">รูปสุนัข</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sql = "SELECT * FROM use_service INNER JOIN service ON use_service.service_id = service.service_id INNER JOIN dog ON use_service.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE us_status = 0 AND us_id ='$us_id'";
+                                                $query = mysqli_query($conn, $sql);
+                                                while ($row = mysqli_fetch_assoc($query)) {
+                                                ?>
+                                                    <tr align="center">
+                                                        <td><?= $row["user_id"] ?></td>
+                                                        <td><?= $row["username"] ?></td>
+                                                        <td><?= $row["email"] ?></td>
+                                                        <td><?= $row["fullname"] ?></td>
+                                                        <td><?= $row["address"] ?></td>
 
-                                            <!-- <div class="col-md-12" style=" padding-right: 5%; padding-top: 3%;">
-                                                <form method="POST" action="../api/use_servicestatus/_updateus_status.php">
-                                                    <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>" id="us_id">
-                                                    <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยันยันการจองหรือไม่?');">ยืนยันการจอง</button>
-                                                </form>
-                                            </div> -->
+                                                        <!-- <td><?= $row["dep_price"] ?></td> -->
+                                                        <!-- <td>
+                                                            <?php
+                                                            if (!empty($row["us_basis"])) {
+                                                                echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 250px;" alt="">';
+                                                            } else {
+                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการจอง</p>';
+                                                            }
+                                                            ?>
+                                                        </td> -->
 
-                                        </div>
+                                                        <?php
+                                                        ?>
+                                                    </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
                                     </div>
+                                </div>
                             </div>
 
-                            <!-- <div class="row">
-                                        <div class="col-md-12" style="padding-top: 3%; padding-left: 5%;">
-                                            <form method="POST" action="../api/depositstatus/_updatedepstatus.php">
-                                                <input type="hidden" name="dep_id" value="<?= $row['dep_id']; ?>" id="dep_id">
-                                                <button type="button" class="btn btn-success">เพิ่มข้อมูลบริการ</button>
-                                            </form> -->
 
                         </div>
                     </div>
-
-
-
-                    <!-- <p><?= $row['dog_type']; ?></p>
-                                        <p><?= $row['username']; ?></p> -->
-                <?php } ?>
                 </div>
             </div>
         </div>

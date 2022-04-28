@@ -13,7 +13,8 @@ if ($_SESSION['status'] == 0) {
     echo "</script>";
 } elseif ($_SESSION['status'] == 2) {
     header('location: backend/adminindex.php');
-} else { }
+} else {
+}
 
 // if (isset($_SESSION['user_id'])){
 //     echo "<script>";
@@ -61,67 +62,149 @@ $user_id = $_SESSION['user_id'];
                         $sql = "SELECT * FROM use_service INNER JOIN dog on (use_service.dog_id = dog.dog_id) INNER JOIN service on (use_service.service_id = service.service_id) WHERE user_id = '$user_id'";
                         $query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
                         while ($row = mysqli_fetch_assoc($query)) {
-                            ?>
+                        ?>
                             <tr class="table-light ">
                                 <th scope="row"> <?= $row["dog_name"]; ?> </th>
                                 <td><?= $row["us_date"]; ?></td>
                                 <td><?= $row["service_name"]; ?></td>
                                 <td><?= $row["us_price"]; ?></td>
                                 <td><?= $row["status_name"]; ?></td>
-                                <td><?php
-                                        if ($row["us_status"] == 0) {
-                                            $us_id = $row["us_id"];
-                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
-                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
-                                            echo '<button type="button" class="btn btn-danger " data-toggle="modal" data-target="#usor_del'. $us_id .'" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
-                                        } elseif ($row["us_status"] == 1) {
-                                            $us_id = $row["us_id"];
-                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
-                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
-                                            echo '<button type="button" class="btn btn-dark " data-toggle="modal" data-target="#usor_del'. $us_id .'" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
-                                        } elseif ($row["us_status"] == 2) {
-                                            $us_id = $row["us_id"];
-                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
-                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
-                                            echo '<button type="button" class="btn btn-dark " data-toggle="modal" data-target="#usor_del'. $us_id .'" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
-                                        } elseif ($row["us_status"] == 3) {
-                                            $us_id = $row["us_id"];
-                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
-                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
-                                            echo '<button type="button" class="btn btn-dark " data-toggle="modal" data-target="#usor_del'. $us_id .'" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
-                                        } else {
-                                            $us_id = $row["us_id"];
-                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
-                                            echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
-                                            echo '<button type="button" class="btn btn-dark " data-toggle="modal" data-target="#usor_del'. $us_id .'" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
-                                        }
-                                        ?></td>
+                                <td style="width: 15%;"><?php
+                                                        if ($row["us_status"] == 0) {
+                                                            $us_id = $row["us_id"];
+                                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
+                                                            // echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                                            echo '<button type="button" class="btn btn-danger " data-toggle="modal" data-target="#usor_del' . $us_id . '" style="margin-left: 3%;"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+                                                        } elseif ($row["us_status"] == 1) {
+                                                            $us_id = $row["us_id"];
+                                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail_2' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
+                                                            // echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                                            echo '<button type="button" class="btn btn-dark " data-toggle="modal" data-target="#usor_del' . $us_id . '" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+                                                        } elseif ($row["us_status"] == 2) {
+                                                            $us_id = $row["us_id"];
+                                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail_2' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
+                                                            // echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                                            echo '<button type="button" class="btn btn-dark " data-toggle="modal" data-target="#usor_del' . $us_id . '" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+                                                        } elseif ($row["us_status"] == 3) {
+                                                            $us_id = $row["us_id"];
+                                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail_2' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
+                                                            // echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                                            echo '<button type="button" class="btn btn-dark " data-toggle="modal" data-target="#usor_del' . $us_id . '" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+                                                            // } elseif ($row["us_status"] == 4) {
+                                                            //     $us_id = $row["us_id"];
+                                                            //     echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail_2' . $us_id . '"><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
+                                                            //     echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                                            //     echo '<button type="button" class="btn btn-dark " data-toggle="modal" data-target="#usor_del' . $us_id . '" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+                                                        } else {
+                                                            $us_id = $row["us_id"];
+                                                            echo '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showus_detail' . $us_id . '" disabled><i class="fa fa-book fa-lg" aria-hidden="true" ></i></button>';
+                                                            // echo '<button type="button" class="btn btn-success " data-toggle="modal" data-target="#us_basis" data-whatever="@mdo" style="margin-left: 3%;" disabled><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>';
+                                                            echo '<button type="button" class="btn btn-dark " data-toggle="modal" data-target="#usor_del' . $us_id . '" style="margin-left: 3%;" disabled><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>';
+                                                        }
+                                                        ?></td>
                                 <?php
-                                    ?>
+                                ?>
                             </tr>
                             <!-- หน้า Order สปาร์สุนัข(Use_service) -->
-                            <div class="modal fade" id="showus_detail<?php echo $row["us_id"] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="showus_detail_2<?php echo $row["us_id"] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการจอง(สปาร์สุนัข)</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการจอง(ฝากเลี้ยง)</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="row justify-content-center">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>ชื่อสุนัข : <?php echo $row["dog_name"]; ?> </p>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>บริการ : <?php echo $row["service_name"]; ?> </p>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>วันที่จอง : <?php echo $row["us_date"]; ?></p>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>ราคา : <?php echo $row["us_price"]; ?> บาท</p>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p>สถานะ : <?php echo $row["status_name"]; ?> </p>
+                                                    <hr>
+                                                </div>
 
                                                 <div class="col-md-12">
-                                                    <p>ชื่อสุนัข : <?php echo $row["dog_name"]; ?></p>
-                                                    <hr>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <p>ประเภทบริการ : <?php echo $row["service_name"]; ?></p>
-                                                    <hr>
-                                                </div>
-                                                <div class="col-md-12">
                                                     <?php
+                                                    if (!empty($row['us_basis'])) {
+                                                        echo '<div class="row"';
+                                                        echo '<div class="col-md-12">';
+                                                        echo '<label for="inputdogsickness" style="color: #16a085;" class="form-label"><i class="fa fa-check-circle-o fa-lg" aria-hidden="true" ></i> หลักฐานการชำระเงิน</label>';
+                                                        echo '<div class="col-md-12">';
+                                                        echo '<img style="width: 100%; height: 100%;" src="api/pay/uploads/' . $row["us_basis"] . '">';
+                                                        echo '</div>';
+                                                        echo '</div>';
+                                                    } else {
+                                                        echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีหลักฐานการชำระเงิน</p>';
+                                                    }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="showus_detail<?php echo $row["us_id"] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">รายละเอียดการจอง(ฝากเลี้ยง)</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="post" action="api/pay/addbasis2.php" enctype="multipart/form-data">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <hr>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p>ชื่อสุนัข : <?php echo $row["dog_name"]; ?> </p>
+                                                        <hr>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p>บริการ : <?php echo $row["service_name"]; ?> </p>
+                                                        <hr>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p>วันที่จอง : <?php echo $row["us_date"]; ?></p>
+                                                        <hr>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p>ราคา : <?php echo $row["us_price"]; ?> บาท</p>
+                                                        <hr>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <p>สถานะ : <?php echo $row["status_name"]; ?> </p>
+                                                        <hr>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <?php
                                                         if (!empty($row['us_basis'])) {
                                                             echo '<div class="row"';
                                                             echo '<div class="col-md-12">';
@@ -133,19 +216,27 @@ $user_id = $_SESSION['user_id'];
                                                         } else {
                                                             echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีหลักฐานการชำระเงิน</p>';
                                                         }
-
                                                         ?>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="hidden" value="<?php echo $row["us_id"]; ?>" name="us_id" id='us_id'>
+                                                        <label for="us_basisimage" class="form-label">ส่งหลักฐานการโอนเงิน :</label>
+                                                        <input type="file" name="us_basis" id="us_basis" class="form-control" required />
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </div>
+
                                         <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary btn-lg">บันทึก</button>
+                                            <button type="reset" class="btn btn-dark btn-lg">ล้างค่า</button>
                                             <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
 
-                            
+
                             <!-- ยกเลิก (use_service) -->
                             <div class="modal fade" id="usor_del<?php echo $row["us_id"] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">

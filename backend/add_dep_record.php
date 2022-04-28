@@ -130,7 +130,7 @@ include 'layout/header.php';
                   </div>
                   <div class="col-md-12">
                     <div class="radio">
-                      <label class="radio-inline ml-3"><input type="radio" value="deprec_strange" name="pref" checked> สุนัขมีอาการผิดปกติ </label>
+                      <label class="radio-inline ml-3"><input type="radio" value="deprec_weird" name="pref" checked> สุนัขมีอาการผิดปกติ </label>
                       <label class="radio-inline ml-5"><input type="radio" value="deprec_normal" name="pref"> สุนัขปกติดี </label>
                     </div>
 

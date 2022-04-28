@@ -1,0 +1,13 @@
+{
+    "name": "sora/project-dog_php",
+    "description": "Project dog",
+    "autoload": {
+        "psr-4": {
+            "Sora\\ProjectDogPhp\\": "src/"
+        }
+    },
+    "require": {
+        "dompdf/dompdf": "^1.2",
+        "mpdf/mpdf": "^8.1"
+    }
+}

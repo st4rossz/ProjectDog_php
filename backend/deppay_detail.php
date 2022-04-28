@@ -12,25 +12,31 @@
 
             <!-- Content -->
             <div class="content">
-                <form method="POST" action="../api/pay/dep_pay.php">
+                <form id="updateForm">
                     <div class="row">
                         <?php
                         $dep_id = $_GET['dep_id'];
                         $sql = "SELECT * FROM deposit WHERE dep_id = '$dep_id'";
                         $query = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($query)) {
-                            ?>
+                        ?>
                             <div class="col-md-6">
                                 <h4 class="title" style="color: black;">รายละเอียดการจองฝากเลี้ยง (ยืนยันการชำระ)</h4>
                             </div>
-                            <div class="col-md-2" style="padding-top: 28px; padding-right: 20px;">
-                                <input type="hidden" name="pay_type" value="โอนจ่าย">
-                                <input type="checkbox" name="pay_type" value="เงินสด">
-                                <label style="font-size: 24px;" for="pay_type"> ลูกค้าชำระด้วยเงินสด</label><br>
+                            <div class="col-md-2 form-inline" style="padding-top: 28px; padding-right: 20px;">
+                                <div class="form-group form-check ml-auto">
+                                    <input type="radio" name="pay_type" id="pay_online" value="โอนจ่าย" checked>
+                                    <label style="font-size: 24px;" for="pay_online"> โอนจ่าย</label>
+                                </div>
+                                <div class="form-group form-check ml-3">
+                                    <input type="radio" name="pay_type" id="pay_cash" value="เงินสด">
+                                    <label style="font-size: 24px;" for="pay_cash"> เงินสด</label>
+                                </div>
+
                             </div>
                             <div class="col-md-4" style="padding-top: 1%;">
                                 <input type="hidden" name="dep_id" value="<?= $row['dep_id']; ?>" id="dep_id">
-                                <button type="submit" name="pay" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยืนยัน?');">อัพเดทสถานะ</button>
+                                <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยืนยัน?');">อัพเดทสถานะ</button>
                             </div>
                         <?php } ?>
                     </div>
@@ -68,7 +74,7 @@
                                                 $sql = "SELECT *, dog.image FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_id = '$dep_id'";
                                                 $query = mysqli_query($conn, $sql);
                                                 while ($row = mysqli_fetch_assoc($query)) {
-                                                    ?>
+                                                ?>
                                                     <tr align="center">
                                                         <td><?= $row["dep_id"] ?></td>
                                                         <td><?= $row["dep_sdate"] ?></td>
@@ -78,16 +84,16 @@
                                                         <td><?= $row["dep_price"] ?></td>
                                                         <td>
                                                             <?php
-                                                                if (!empty($row["dep_basis"])) {
-                                                                    echo '<img src="../api/pay/uploads/' . $row['dep_basis'] . '" style="width: 300px; height: 250px;" alt="">';
-                                                                } else {
-                                                                    echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการโอน</p>';
-                                                                }
-                                                                ?>
+                                                            if (!empty($row["dep_basis"])) {
+                                                                echo '<img src="../api/pay/uploads/' . $row['dep_basis'] . '" style="width: 300px; height: 350px;" alt="">';
+                                                            } else {
+                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการโอน</p>';
+                                                            }
+                                                            ?>
                                                         </td>
 
                                                         <?php
-                                                            ?>
+                                                        ?>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -125,7 +131,7 @@
                                                 $sql = "SELECT *, dog.image FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_id = '$dep_id'";
                                                 $query = mysqli_query($conn, $sql);
                                                 while ($row = mysqli_fetch_assoc($query)) {
-                                                    ?>
+                                                ?>
                                                     <tr align="center">
                                                         <td><?= $row["dog_id"] ?></td>
                                                         <td><?= $row["dog_name"] ?></td>
@@ -135,16 +141,16 @@
                                                         <td><?= $row["dog_sickness"] ?></td>
                                                         <td>
                                                             <?php
-                                                                if (!empty($row["image"])) {
-                                                                    echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 250px;" alt="">';
-                                                                } else {
-                                                                    echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
-                                                                }
-                                                                ?>
+                                                            if (!empty($row["image"])) {
+                                                                echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
+                                                            } else {
+                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
+                                                            }
+                                                            ?>
                                                         </td>
 
                                                         <?php
-                                                            ?>
+                                                        ?>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -179,7 +185,7 @@
                                                 $sql = "SELECT *, dog.image FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_id = '$dep_id'";
                                                 $query = mysqli_query($conn, $sql);
                                                 while ($row = mysqli_fetch_assoc($query)) {
-                                                    ?>
+                                                ?>
                                                     <tr align="center">
                                                         <td><?= $row["user_id"] ?></td>
                                                         <td><?= $row["username"] ?></td>
@@ -190,16 +196,16 @@
                                                         <!-- <td><?= $row["dep_price"] ?></td> -->
                                                         <!-- <td>
                                                             <?php
-                                                                if (!empty($row["dep_basis"])) {
-                                                                    echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 250px;" alt="">';
-                                                                } else {
-                                                                    echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการจอง</p>';
-                                                                }
-                                                                ?>
+                                                            if (!empty($row["dep_basis"])) {
+                                                                echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 250px;" alt="">';
+                                                            } else {
+                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการจอง</p>';
+                                                            }
+                                                            ?>
                                                         </td> -->
 
                                                         <?php
-                                                            ?>
+                                                        ?>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -216,7 +222,22 @@
         </div>
 
         <?php include 'layout/footer.php'; ?>
-
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            $("#updateForm").submit(function(e) {
+                e.preventDefault()
+                var formData = $(this).serialize()
+                $.post('../api/pay/dep_pay.php', formData, function(data) {
+                    if (data.success) {
+                        swal("แจ้งเตือน", "อัปเดตสถานะการชำระสำเร็จ", "success").then(function() {
+                            window.location = "dep_pay.php";
+                        })
+                    } else {
+                        swal("แจ้งเตือน", "ไม่สำเร็จ!", "error")
+                    }
+                }, 'json')
+            })
+        </script>
 </body>
 
 </html>

@@ -111,7 +111,7 @@
                                                     <td>
                                                         <?php
                                                             if (!empty($row["dep_basis"])) {
-                                                                echo '<img src="../api/pay/uploads/' . $row['dep_basis'] . '" style="width: 300px; height: 250px;" alt="">';
+                                                                echo '<img src="../api/pay/uploads/' . $row['dep_basis'] . '" style="width: 300px; height: 350px;" alt="">';
                                                             } else {
                                                                 echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการโอน</p>';
                                                             }
@@ -168,7 +168,7 @@
                                                     <td>
                                                         <?php
                                                             if (!empty($row["image"])) {
-                                                                echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 250px;" alt="">';
+                                                                echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
                                                             } else {
                                                                 echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
                                                             }

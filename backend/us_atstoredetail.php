@@ -14,17 +14,17 @@
             <div class="content">
                 <div class="row">
                     <?php
-                    $dep_id = $_GET['dep_id'];
-                    $sql = "SELECT * FROM deposit WHERE dep_id = '$dep_id'";
+                    $us_id = $_GET['us_id'];
+                    $sql = "SELECT * FROM use_service WHERE us_id = '$us_id'";
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
-                        ?>
+                    ?>
                         <div class="col-8">
                             <h4 class="title" style="color: black;">บันทึกข้อมูลการรับสุนัขกลับ (ลูกค้ามารับสุนัข)</h4>
                         </div>
                         <div class="col-4" style="padding-top: 1%;">
-                            <form method="POST" action="../api/atstore/dep_atstore.php">
-                                <input type="hidden" name="dep_id" value="<?= $row['dep_id']; ?>" id="dep_id">
+                            <form method="POST" action="../api/atstore/us_atstore.php">
+                                <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>" id="us_id">
                                 <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยืนยัน?');">อัพเดทสถานะ</button>
                             </form>
                         </div>
@@ -51,8 +51,7 @@
                                                 <tr align="center">
                                                     <th style="width: 5%;">รหัสการจอง</th>
                                                     <th style="width: 10%;">วันที่เข้าใช้บริการ</th>
-                                                    <th style="width: 10%;">วันที่สิ้นสุด</th>
-                                                    <th style="width: 10%;">บริการส่งสุนัขคืน</th>
+                                                    <th style="width: 10%;">บริการ</th>
                                                     <th style="width: 10%;">สถานะ</th>
                                                     <th style="width: 5%;">ราคา</th>
                                                     <th style="width: 20%;">หลักฐานการโอน</th>
@@ -60,29 +59,28 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT *, dog.image FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_id = '$dep_id'";
+                                                $sql = "SELECT * FROM use_service INNER JOIN service ON use_service.service_id = service.service_id INNER JOIN dog ON use_service.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE us_status = 2 AND us_id ='$us_id'";
                                                 $query = mysqli_query($conn, $sql);
                                                 while ($row = mysqli_fetch_assoc($query)) {
-                                                    ?>
+                                                ?>
                                                     <tr align="center">
-                                                        <td><?= $row["dep_id"] ?></td>
-                                                        <td><?= $row["dep_sdate"] ?></td>
-                                                        <td><?= $row["dep_edate"] ?></td>
-                                                        <td><?= $row["dep_deliver"] ?></td>
+                                                        <td><?= $row["us_id"] ?></td>
+                                                        <td><?= $row["us_date"] ?></td>
+                                                        <td><?= $row["service_name"] ?></td>
                                                         <td><?= $row["status_name"] ?></td>
-                                                        <td><?= $row["dep_price"] ?></td>
+                                                        <td><?= $row["us_price"] ?></td>
                                                         <td>
                                                             <?php
-                                                                if (!empty($row["dep_basis"])) {
-                                                                    echo '<img src="../api/pay/uploads/' . $row['dep_basis'] . '" style="width: 300px; height: 350px;" alt="">';
-                                                                } else {
-                                                                    echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการโอน</p>';
-                                                                }
-                                                                ?>
+                                                            if (!empty($row["dep_basis"])) {
+                                                                echo '<img src="../api/pay/uploads/' . $row['dep_basis'] . '" style="width: 300px; height: 350px;" alt="">';
+                                                            } else {
+                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการโอน</p>';
+                                                            }
+                                                            ?>
                                                         </td>
 
                                                         <?php
-                                                            ?>
+                                                        ?>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -117,10 +115,10 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT *, dog.image FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_id ='$dep_id'";
+                                                $sql = "SELECT * FROM use_service INNER JOIN service ON use_service.service_id = service.service_id INNER JOIN dog ON use_service.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE us_status = 2 AND us_id ='$us_id'";
                                                 $query = mysqli_query($conn, $sql);
                                                 while ($row = mysqli_fetch_assoc($query)) {
-                                                    ?>
+                                                ?>
                                                     <tr align="center">
                                                         <td><?= $row["dog_id"] ?></td>
                                                         <td><?= $row["dog_name"] ?></td>
@@ -130,16 +128,16 @@
                                                         <td><?= $row["dog_sickness"] ?></td>
                                                         <td>
                                                             <?php
-                                                                if (!empty($row["image"])) {
-                                                                    echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
-                                                                } else {
-                                                                    echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
-                                                                }
-                                                                ?>
+                                                            if (!empty($row["image"])) {
+                                                                echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
+                                                            } else {
+                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
+                                                            }
+                                                            ?>
                                                         </td>
 
                                                         <?php
-                                                            ?>
+                                                        ?>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -171,10 +169,10 @@
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = "SELECT *, dog.image FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_id = '$dep_id'";
+                                                $sql = "SELECT * FROM use_service INNER JOIN service ON use_service.service_id = service.service_id INNER JOIN dog ON use_service.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE us_status = 2 AND us_id ='$us_id'";
                                                 $query = mysqli_query($conn, $sql);
                                                 while ($row = mysqli_fetch_assoc($query)) {
-                                                    ?>
+                                                ?>
                                                     <tr align="center">
                                                         <td><?= $row["user_id"] ?></td>
                                                         <td><?= $row["username"] ?></td>
@@ -185,16 +183,16 @@
                                                         <!-- <td><?= $row["dep_price"] ?></td> -->
                                                         <!-- <td>
                                                             <?php
-                                                                if (!empty($row["dep_basis"])) {
-                                                                    echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
-                                                                } else {
-                                                                    echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการจอง</p>';
-                                                                }
-                                                                ?>
+                                                            if (!empty($row["dep_basis"])) {
+                                                                echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
+                                                            } else {
+                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการจอง</p>';
+                                                            }
+                                                            ?>
                                                         </td> -->
 
                                                         <?php
-                                                            ?>
+                                                        ?>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
