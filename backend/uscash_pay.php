@@ -19,7 +19,7 @@ include 'layout/header.php';
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-12">
-                            <h4 class="title" style="color: black;">ยืนยันการรับชำระด้วยเงินสด (สปาร์สุนัข)</h4>
+                            <h4 class="title" style="color: black;">ยืนยันการรับชำระด้วยเงินสด (สปาสุนัข)</h4>
                         </div>
                         <hr>
                         <div class="card">

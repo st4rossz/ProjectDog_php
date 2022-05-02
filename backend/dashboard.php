@@ -76,7 +76,7 @@ include 'layout/header.php';
                                 <div class="col-md-6">
                                     <div class="card">
                                         <div class="card-body">
-                                            <div class="text-center h5">รายได้จากสปาร์สุนัข</div>
+                                            <div class="text-center h5">รายได้จากสปาสุนัข</div>
                                             <?php
                                             $price = 0;
                                             $sql = "SELECT sum(us_price) as income2 FROM use_service  $where2";

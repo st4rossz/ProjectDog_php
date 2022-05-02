@@ -19,7 +19,7 @@ include 'layout/header.php';
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-12">
-                            <h4 class="title" style="color: black;">ยืนยันการคืนสุนัข (สปาร์สุนัข)</h4>
+                            <h4 class="title" style="color: black;">ยืนยันการคืนสุนัข (สปาสุนัข)</h4>
                         </div>
                         <hr>
                         <div class="card">
@@ -42,7 +42,7 @@ include 'layout/header.php';
                                         $sql = "SELECT * FROM use_service INNER JOIN service ON use_service.service_id = service.service_id INNER JOIN dog ON use_service.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE us_status = 1";
                                         $query = mysqli_query($conn, $sql);
                                         while ($row = mysqli_fetch_assoc($query)) {
-                                            ?>
+                                        ?>
                                             <tr align="center">
                                                 <!-- <th scope="row"> <?= $row["dog_id"] ?> </th> -->
                                                 <td><?= $row["dog_name"] ?></td>
@@ -56,7 +56,7 @@ include 'layout/header.php';
                                                     <!-- <a href="../api/dog/deldog.php?dog_id=<?= $row['dog_id'] ?>" onclick="javascript:return confirm('คุณต้องการลบข้อมูลใช่หรือไม่');" class="btn btn-danger">ลบ</a> -->
                                                 </td>
                                                 <?php
-                                                    ?>
+                                                ?>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

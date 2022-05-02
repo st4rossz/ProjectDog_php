@@ -21,7 +21,7 @@
                         while ($row = mysqli_fetch_assoc($query)) {
                         ?>
                             <div class="col-md-4">
-                                <h4 class="title" style="color: black;">รายละเอียดการจองสปา (เงินสด)</h4>
+                                <h4 class="title" style="color: black;">รายละเอียดการจองสปาสุนัข (เงินสด)</h4>
                             </div>
 
                             <div class="col-md-2 ">

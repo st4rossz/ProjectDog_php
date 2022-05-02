@@ -20,7 +20,7 @@
                     while ($row = mysqli_fetch_assoc($query)) {
                     ?>
                         <div class="col-8">
-                            <h4 class="title" style="color: black;">บันทึกข้อมูลการรับสุนัขกลับ (สปาร์สุนัข)</h4>
+                            <h4 class="title" style="color: black;">บันทึกข้อมูลการรับสุนัขกลับ (สปาสุนัข)</h4>
                         </div>
                         <div class="col-4" style="padding-top: 1%;">
                             <form method="POST" action="../api/atstore/us_atstore.php">

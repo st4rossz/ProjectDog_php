@@ -20,7 +20,7 @@
                             $sql = "SELECT * FROM use_service WHERE us_id = '$us_id'";
                             $query = mysqli_query($conn, $sql);
                             while ($row = mysqli_fetch_assoc($query)) {
-                                ?>
+                            ?>
                                 <div class="col-8">
                                     <h4 class="title" style="color: black;">รายละเอียดการใช้บริการ</h4>
                                 </div>
@@ -45,7 +45,7 @@
                                 WHERE us_id = '$us_id'";
                                 $query = mysqli_query($conn, $sql);
                                 while ($row = mysqli_fetch_assoc($query)) {
-                                    ?>
+                                ?>
                                     <div class="row">
                                         <div class="col-md-2" style="padding-top: 3%; padding-left: 7%;">
                                             <div class="card rounded-0" style="width: 15rem; height: 10rem; box-shadow: 0px 0px 5px grey;">

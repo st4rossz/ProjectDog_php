@@ -21,7 +21,7 @@
                         while ($row = mysqli_fetch_assoc($query)) {
                         ?>
                             <div class="col-md-6">
-                                <h4 class="title" style="color: black;">รายละเอียดการจองสปาร์ (ยืนยันการชำระ)</h4>
+                                <h4 class="title" style="color: black;">รายละเอียดการจองสปาสุนัข (ยืนยันการชำระ)</h4>
                             </div>
                             <div class="col-md-3 form-inline" style="padding-top: 28px; padding-right: 20px;">
                                 <div class="form-group form-check ml-auto">
