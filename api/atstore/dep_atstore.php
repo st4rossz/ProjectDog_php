@@ -14,7 +14,7 @@ $chkdeliverresult = mysqli_fetch_assoc($chkdeliverquery);
 // $query = mysqli_query($conn,$sql) ;
 
 if ($chkdeliverresult['deliver'] != "ต้องการ") {
-    $sql = "UPDATE deposit SET dep_status= 4, status_name = 'สิ้นสุดการให้บริการ' WHERE dep_id='$dep_id' AND dep_status = 2 AND dep_deliver != 'ต้องการ' ";
+    $sql = "UPDATE deposit SET dep_status= 3, status_name = 'สิ้นสุดการให้บริการ' WHERE dep_id='$dep_id' AND dep_status = 2 AND dep_deliver != 'ต้องการ' ";
     $query = mysqli_query($conn, $sql);
     // $result = mysqli_fetch_assoc($query);
     echo "<script>";

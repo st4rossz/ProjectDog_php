@@ -51,7 +51,7 @@ include 'layout/header.php';
                   <tbody>
                     <?php
                     // $sql = "SELECT * FROM dog ";
-                    $sql = "SELECT *, dog.image FROM deposit INNER JOIN dog ON deposit.dog_id = dog.dog_id WHERE dep_status = 1";
+                    $sql = "SELECT *, dog.image FROM deposit INNER JOIN dog ON deposit.dog_id = dog.dog_id WHERE dep_status = 2";
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
                       ?>
@@ -64,7 +64,7 @@ include 'layout/header.php';
                         <td>
                           <?php
                             if (!empty($row["image"])) {
-                              echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 250px;" alt="">';
+                              echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
                             } else {
                               echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
                             }

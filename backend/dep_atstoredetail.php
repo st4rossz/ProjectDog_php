@@ -18,12 +18,12 @@
                     $sql = "SELECT * FROM deposit WHERE dep_id = '$dep_id'";
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
-                        ?>
+                    ?>
                         <div class="col-8">
-                            <h4 class="title" style="color: black;">รายละเอียดการจองฝากเลี้ยง (ยืนยันการชำระ)</h4>
+                            <h4 class="title" style="color: black;">บันทึกข้อมูลการรับสุนัขกลับ (ฝากเลี้ยง)</h4>
                         </div>
                         <div class="col-4" style="padding-top: 1%;">
-                            <form method="POST" action="../api/pay/dep_pay.php">
+                            <form method="POST" action="../api/atstore/dep_atstore.php">
                                 <input type="hidden" name="dep_id" value="<?= $row['dep_id']; ?>" id="dep_id">
                                 <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยืนยัน?');">อัพเดทสถานะ</button>
                             </form>
@@ -63,7 +63,7 @@
                                                 $sql = "SELECT *, dog.image FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_id = '$dep_id'";
                                                 $query = mysqli_query($conn, $sql);
                                                 while ($row = mysqli_fetch_assoc($query)) {
-                                                    ?>
+                                                ?>
                                                     <tr align="center">
                                                         <td><?= $row["dep_id"] ?></td>
                                                         <td><?= $row["dep_sdate"] ?></td>
@@ -73,16 +73,16 @@
                                                         <td><?= $row["dep_price"] ?></td>
                                                         <td>
                                                             <?php
-                                                                if (!empty($row["dep_basis"])) {
-                                                                    echo '<img src="../api/pay/uploads/' . $row['dep_basis'] . '" style="width: 300px; height: 250px;" alt="">';
-                                                                } else {
-                                                                    echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการโอน</p>';
-                                                                }
-                                                                ?>
+                                                            if (!empty($row["dep_basis"])) {
+                                                                echo '<img src="../api/pay/uploads/' . $row['dep_basis'] . '" style="width: 300px; height: 350px;" alt="">';
+                                                            } else {
+                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการโอน</p>';
+                                                            }
+                                                            ?>
                                                         </td>
 
                                                         <?php
-                                                            ?>
+                                                        ?>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -120,7 +120,7 @@
                                                 $sql = "SELECT *, dog.image FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_id ='$dep_id'";
                                                 $query = mysqli_query($conn, $sql);
                                                 while ($row = mysqli_fetch_assoc($query)) {
-                                                    ?>
+                                                ?>
                                                     <tr align="center">
                                                         <td><?= $row["dog_id"] ?></td>
                                                         <td><?= $row["dog_name"] ?></td>
@@ -130,16 +130,16 @@
                                                         <td><?= $row["dog_sickness"] ?></td>
                                                         <td>
                                                             <?php
-                                                                if (!empty($row["image"])) {
-                                                                    echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 250px;" alt="">';
-                                                                } else {
-                                                                    echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
-                                                                }
-                                                                ?>
+                                                            if (!empty($row["image"])) {
+                                                                echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
+                                                            } else {
+                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
+                                                            }
+                                                            ?>
                                                         </td>
 
                                                         <?php
-                                                            ?>
+                                                        ?>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -174,7 +174,7 @@
                                                 $sql = "SELECT *, dog.image FROM deposit INNER JOIN room ON deposit.room_id = room.room_id INNER JOIN dog ON deposit.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE dep_id = '$dep_id'";
                                                 $query = mysqli_query($conn, $sql);
                                                 while ($row = mysqli_fetch_assoc($query)) {
-                                                    ?>
+                                                ?>
                                                     <tr align="center">
                                                         <td><?= $row["user_id"] ?></td>
                                                         <td><?= $row["username"] ?></td>
@@ -185,16 +185,16 @@
                                                         <!-- <td><?= $row["dep_price"] ?></td> -->
                                                         <!-- <td>
                                                             <?php
-                                                                if (!empty($row["dep_basis"])) {
-                                                                    echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 250px;" alt="">';
-                                                                } else {
-                                                                    echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการจอง</p>';
-                                                                }
-                                                                ?>
+                                                            if (!empty($row["dep_basis"])) {
+                                                                echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
+                                                            } else {
+                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการจอง</p>';
+                                                            }
+                                                            ?>
                                                         </td> -->
 
                                                         <?php
-                                                            ?>
+                                                        ?>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>

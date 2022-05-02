@@ -18,6 +18,8 @@ $room_id = $_POST["deproom_id"];
 //  $sql = "SELECT * FROM room WHERE room_id = '$room_id' ";
 //  $query = mysqli_query($conn, $sql);
 
+$emptyroom1 = "SELECT COUNT(dep_id) AS emp1 FROM deposit WHERE room_id = 1 AND dep_sdate = CURRENT_DATE OR dep_edate = CURRDENT_DATE";
+
 if ($room_id && $dep_sdate && $dep_edate) {
    $bookdatecheck1 = "SELECT COUNT(dep_id) AS depcheck1 FROM deposit WHERE room_id = 1 AND(dep_sdate BETWEEN '$dep_sdate' AND '$dep_edate' OR dep_edate BETWEEN '$dep_sdate' AND '$dep_edate')";
    $query1 = mysqli_query($conn, $bookdatecheck1);
@@ -47,28 +49,11 @@ if ($room_id && $dep_sdate && $dep_edate) {
    $cal2 = $rs2['rq2'] - $result2['depcheck2'];
    $cal3 = $rs3['rq3'] - $result3['depcheck3'];
 
-      $export['success'] = true;
-      $export['cal1'] = $cal1;
-      $export['cal2'] = $cal2;
-      $export['cal3'] = $cal3;
-   // echo $result1['depcheck1'];
-   // echo "<br>";
-   // echo $rs1['rq1'];
-   // echo "<br>";
-   // echo $cal1;
-   // echo "<br>";
-   // echo $result2['depcheck2'];
-   // echo "<br>";
-   // echo $rs2['rq2'];
-   // echo "<br>";
-   // echo $cal2;
-   // echo "<br>";
-   // echo $result3['depcheck3'];
-   // echo "<br>";
-   // echo $rs3['rq3'];
-   // echo "<br>";
-   // echo $cal3;
-}else {
+   $export['success'] = true;
+   $export['cal1'] = $cal1;
+   $export['cal2'] = $cal2;
+   $export['cal3'] = $cal3;
+} else {
    $export['success'] = false;
 }
 echo json_encode($export);

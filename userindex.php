@@ -12,8 +12,9 @@ if ($_SESSION['status'] == 0) {
     echo "window.location=\"login.php\"";
     echo "</script>";
 } elseif ($_SESSION['status'] == 2) {
-    header('location: backend/adminindex.php');
-} else { }
+    header('location: backend/dashboard.php');
+} else {
+}
 
 // if (isset($_SESSION['user_id'])){
 //     echo "<script>";
@@ -30,7 +31,7 @@ $user_id = $_SESSION['user_id'];
 ?>
 
 <body class="" style="font-family: Kanit Thin;min-height: 100%;">
-<?php include('userlayout/nav.php') ?>
+    <?php include('userlayout/nav.php') ?>
     <div class="bg">
         <div class="" style="padding-top: 20%; padding-left: 15%; ">
             <h2 class="" style=" font-family: Kanit thin; color: black; font-size: 80px; text-shadow: 2px 1px 0px black;">Good Dog Home</h2>
@@ -145,14 +146,14 @@ $user_id = $_SESSION['user_id'];
                         $sql = "SELECT * FROM dog WHERE user_id = '$user_id' ";
                         $query = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($query)) {
-                            ?>
+                        ?>
                             <tr>
                                 <th scope="row"> <?= $row["dog_name"] ?> </th>
                                 <td><?= $row["dog_type"] ?></td>
                                 <td><?= $row["dog_weight"] ?></td>
                                 <td><?= $row["dog_age"] ?></td>
                                 <?php
-                                    ?>
+                                ?>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -206,14 +207,14 @@ $user_id = $_SESSION['user_id'];
                     $sql = "SELECT * FROM dog WHERE user_id = '$user_id' ";
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
-                        ?>
+                    ?>
                         <tr>
                             <th scope="row"> <?= $row["dog_id"] ?> </th>
                             <td><?= $row["dog_name"] ?></td>
                             <td><?= $row["dog_type"] ?></td>
                             <td><?= $row["dog_weight"] ?></td>
                             <?php
-                                ?>
+                            ?>
                         </tr>
                     <?php } ?>
                 </tbody>

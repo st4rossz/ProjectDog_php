@@ -51,12 +51,12 @@ include 'layout/header.php';
                   <tbody>
                     <?php
                     // $sql = "SELECT * FROM dog ";
-                    $sql = "SELECT * FROM use_service INNER JOIN dog ON use_service.dog_id = dog.dog_id WHERE us_status = 1";
+                    $sql = "SELECT * FROM use_service INNER JOIN dog ON use_service.dog_id = dog.dog_id WHERE us_status = 2";
 
 
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
-                      ?>
+                    ?>
                       <tr align="center">
                         <!-- <th scope="row"> <?= $row["dog_id"] ?> </th> -->
                         <td><?= $row["dog_name"] ?></td>
@@ -70,7 +70,7 @@ include 'layout/header.php';
                           <a class="btn btn-warning" href="add_us_record.php?us_id=<?= $row["us_id"] ?>">เพิ่มบันทึก</a>
                         </td>
                         <?php
-                          ?>
+                        ?>
                       </tr>
                     <?php } ?>
                   </tbody>

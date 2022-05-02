@@ -97,7 +97,7 @@
               <?php
 
               for ($i = 1; $i <= 20; $i++) {
-                ?>
+              ?>
 
                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
               <?php
@@ -146,7 +146,7 @@
               $sql = "SELECT * FROM dog_breed";
               $query = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_array($query)) {
-                ?>
+              ?>
                 <option value="<?php echo $row["dogbreed_name"]; ?>"><?php echo $row["dogbreed_name"]; ?></option>
               <?php
               }
@@ -161,7 +161,7 @@
               <?php
 
               for ($i = 1; $i <= 100; $i++) {
-                ?>
+              ?>
 
                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
               <?php
@@ -177,7 +177,7 @@
               <?php
 
               for ($i = 1; $i <= 50; $i++) {
-                ?>
+              ?>
 
                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
               <?php
@@ -207,7 +207,7 @@
       $sql = "SELECT * FROM store ";
       $query = mysqli_query($conn, $sql);
       while ($row = mysqli_fetch_assoc($query)) {
-        ?>
+      ?>
                       <div class="modal fade" id="editstore" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
@@ -253,7 +253,7 @@
       $sql = "SELECT * FROM user WHERE user_id ='$user_id'";
       $query = mysqli_query($conn, $sql);
       while ($row = mysqli_fetch_assoc($query)) {
-        ?>
+      ?>
         <div class="modal-body">
           <form method="POST" action="../api/dog/editdogdb.php">
             <label for="userid_detail" class="form-label">รหัสผู้ใช้ :</label>
@@ -306,10 +306,20 @@
   });
 
   $("input[name=pref]").on("change", function() {
-    if (this.value === "Phone") {
+    if (this.value === "deprec_weird") {
       $("input[type=checkbox]").removeAttr("disabled");
 
     } else if (this.value === "deprec_normal") {
+      $("input[type=checkbox]").attr("disabled", true);
+
+    }
+  })
+
+  $("input[name=pref2]").on("change", function() {
+    if (this.value === "usrec_weird") {
+      $("input[type=checkbox]").removeAttr("disabled");
+
+    } else if (this.value === "usrec_normal") {
       $("input[type=checkbox]").attr("disabled", true);
 
     }
