@@ -198,7 +198,6 @@
         </li>
 
 
-
         <li>
             <a data-toggle="collapse" href="#report" aria-expanded="false" aria-controls="colret" class="base-btn">
                 <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-single-copy-04"></i>

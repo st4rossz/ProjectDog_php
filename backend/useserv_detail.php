@@ -20,7 +20,7 @@
                     while ($row = mysqli_fetch_assoc($query)) {
                     ?>
                         <div class="col-8">
-                            <h4 class="title" style="color: black;">รายละเอียดการจองสปาร์ (ยืนยันการเข้าใช้บริการ)</h4>
+                            <h4 class="title" style="color: black;">ยืนยันการเข้าใช้บริการ (สปาสุนัข)</h4>
                         </div>
                         <div class="col-2" style="padding-top: 1%;">
                             <form method="POST" action="../api/use_servicestatus/_updateus_status.php">
