@@ -30,7 +30,7 @@ include 'layout/header.php';
                             while ($row = mysqli_fetch_assoc($query)) {
 
                             ?>
-                                <form method="POST" action="../api/record/us_record.php">
+                                <form id="updateForm">
                                     <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>" id="inputdepid">
                                     <input type="hidden" name="dog_id" value="<?= $row['dog_id']; ?>" id="inputdogid">
                                     <?php
@@ -38,7 +38,7 @@ include 'layout/header.php';
                                         echo '<div class="col-md-12">';
                                         echo '<label for="inputdogsickness" class="form-label">รูปภาพสุนัข</label>';
                                         echo '<div class="col-md-6">';
-                                        echo '<img class="w-50" src="../api/dog/uploads/' . $row["image"] . '">';
+                                        echo '<img style="width: 350px; height: 400px;" src="../api/dog/uploads/' . $row["image"] . '">';
                                         echo '</div>';
                                     } else {
                                         echo '<div class="col-md-12">';
@@ -188,6 +188,23 @@ include 'layout/header.php';
                     <?php
                     include 'layout/footer.php';
                     ?>
+
+                    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                    <script>
+                        $("#updateForm").submit(function(e) {
+                            e.preventDefault()
+                            var formData = $(this).serialize()
+                            $.post('../api/record/us_record.php', formData, function(data) {
+                                if (data.success) {
+                                    swal("แจ้งเตือน", "อัปเดตบันทึกการติดตามสุนัขครั้งล่าสุดสำเร็จ", "success").then(function() {
+                                        window.location = "us_record.php";
+                                    })
+                                } else {
+                                    swal("แจ้งเตือน", "ไม่สำเร็จ!", "error")
+                                }
+                            }, 'json')
+                        })
+                    </script>
 </body>
 
 </html>

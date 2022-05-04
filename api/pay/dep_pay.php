@@ -19,11 +19,6 @@ if ($query and $query2) {
 } else {
     $data['success'] = false;
 }
-
-
-
-
-
 echo json_encode($data);
 
 ?>

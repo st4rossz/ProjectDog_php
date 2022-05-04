@@ -17,23 +17,21 @@ if ($chkdeliverresult['deliver'] != "ต้องการ") {
     $sql = "UPDATE deposit SET dep_status= 3, status_name = 'สิ้นสุดการให้บริการ' WHERE dep_id='$dep_id' AND dep_status = 2 AND dep_deliver != 'ต้องการ' ";
     $query = mysqli_query($conn, $sql);
     // $result = mysqli_fetch_assoc($query);
-    echo "<script>";
-    echo "alert(\"อัพเดทสถานะสุนัขแล้ว!\");";
-    echo "window.location=\"../../backend/dep_atstore.php\"";
-    echo "</script>";
+    if ($query) {
+        $data['success'] = true;
+    } else {
+        $data['success'] = false;
+    }
+    echo json_encode($data);
 } elseif ($chkdeliverresult['deliver'] == "ต้องการ") {
     $sql2 = "UPDATE deposit SET dep_status= 3, status_name = 'กำลังนำสุนัขไปส่ง' WHERE dep_id='$dep_id' AND dep_status = 2";
     $query2 = mysqli_query($conn, $sql2);
     // $result = mysqli_fetch_assoc($query);
-    echo "<script>";
-    echo "alert(\"อัพเดทสถานะสุนัขแล้ว!\");";
-    echo "window.location=\"../../backend/dep_atstore.php\"";
-    echo "</script>";
-} else {
-    echo "<script>";
-    echo "alert(\"เกิดข้อผิดพลาด!\");";
-    echo "window.location=\"../../backend/dep_atstore.php\"";
-    echo "</script>";
+    if ($query2) {
+        $data['success'] = true;
+    } else {
+        $data['success'] = false;
+    }
+    echo json_encode($data);
 }
-
-?> 
+?>

@@ -23,14 +23,13 @@
                             <h4 class="title" style="color: black;">ยืนยันการเข้าใช้บริการ (สปาสุนัข)</h4>
                         </div>
                         <div class="col-2" style="padding-top: 1%;">
-                            <form method="POST" action="../api/use_servicestatus/_updateus_status.php">
+                            <form id="updateForm">
                                 <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>" id="us_id">
                                 <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยันยันการจองหรือไม่?');">ยืนยันการจอง</button>
                             </form>
                         </div>
                         <div class="col-2" style="padding-top: 1%;">
-                            <?php $us_id = $_GET['us_id']; ?>
-                            <form method="POST" action="../api/use_servicestatus/delete.php">
+                            <form id="deleteForm">
                                 <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>" id="us_id">
                                 <button type="submit" class="btn btn-danger btn-lg btn-block" onclick="javascript:return confirm('แน่ใจว่าจะยกเลิกการจองนี้?');">ยกเลิกการจอง</button>
                             </form>
@@ -44,7 +43,20 @@
                     <div class="card">
                         <div id="accordion">
                             <div class="card">
+                                <div class="col-md-12 text-center pt-5">
+                                    <?php
+                                    $sql = "SELECT * FROM use_service INNER JOIN service ON use_service.service_id = service.service_id INNER JOIN dog ON use_service.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE us_status = 1 AND us_id ='$us_id'";
+                                    $query = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($query)) {
 
+                                        if (!empty($row["image"])) {
+                                            echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 350px; height: 400px;" alt="">';
+                                        } else {
+                                            echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
+                                        }
+                                    }
+                                    ?>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-12 ml-5 pt-3">
                                         <h4 style="font-family: Kanit;">รายละเอียดการจอง</h4>
@@ -61,7 +73,7 @@
                                                     <th style="width: 10%;">วันที่เข้าใช้บริการ</th>
                                                     <th style="width: 10%;">สถานะ</th>
                                                     <th style="width: 5%;">ราคา</th>
-                                                    <th style="width: 20%;">หลักฐานการโอนเงิน</th>
+                                                    <!-- <th style="width: 20%;">หลักฐานการโอนเงิน</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -75,7 +87,7 @@
                                                         <td><?= $row["us_date"] ?></td>
                                                         <td><?= $row["status_name"] ?></td>
                                                         <td><?= $row["us_price"] ?></td>
-                                                        <td>
+                                                        <!-- <td>
                                                             <?php
                                                             if (!empty($row["us_basis"])) {
                                                                 echo '<img src="../api/pay/uploads/' . $row['us_basis'] . '" style="width: 300px; height: 350px;" alt="">';
@@ -83,7 +95,7 @@
                                                                 echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการโอน</p>';
                                                             }
                                                             ?>
-                                                        </td>
+                                                        </td> -->
 
                                                         <?php
                                                         ?>
@@ -116,7 +128,7 @@
                                                     <th style="width: 10%;">น้ำหนัก (กก.)</th>
                                                     <th style="width: 5%;">อายุ (ปี)</th>
                                                     <th style="width: 10%;">โรคประจำตัว/แพ้อาหาร</th>
-                                                    <th style="width: 20%;">รูปสุนัข</th>
+                                                    <!-- <th style="width: 20%;">รูปสุนัข</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -132,7 +144,7 @@
                                                         <td><?= $row["dog_weight"] ?></td>
                                                         <td><?= $row["dog_age"] ?></td>
                                                         <td><?= $row["dog_sickness"] ?></td>
-                                                        <td>
+                                                        <!-- <td>
                                                             <?php
                                                             if (!empty($row["image"])) {
                                                                 echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
@@ -140,7 +152,7 @@
                                                                 echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
                                                             }
                                                             ?>
-                                                        </td>
+                                                        </td> -->
 
                                                         <?php
                                                         ?>
@@ -215,6 +227,36 @@
         </div>
 
         <?php include 'layout/footer.php'; ?>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            $("#updateForm").submit(function(e) {
+                e.preventDefault()
+                var formData = $(this).serialize()
+                $.post('../api/use_servicestatus/_updateus_status.php', formData, function(data) {
+                    if (data.success) {
+                        swal("แจ้งเตือน", "อัปเดตสถานะการเข้าใช้บริการสำเร็จ", "success").then(function() {
+                            window.location = "useservice_confirm.php";
+                        })
+                    } else {
+                        swal("แจ้งเตือน", "ไม่สำเร็จ!", "error")
+                    }
+                }, 'json')
+            })
+
+            $("#deleteForm").submit(function(e) {
+                e.preventDefault()
+                var formData = $(this).serialize()
+                $.post('../api/use_servicestatus/delete.php', formData, function(data) {
+                    if (data.success) {
+                        swal("แจ้งเตือน", "สถานะการเข้าใช้บริการครั้งนี้ถูกยกเลิกแล้ว", "success").then(function() {
+                            window.location = "useservice_confirm.php";
+                        })
+                    } else {
+                        swal("แจ้งเตือน", "ไม่สำเร็จ!", "error")
+                    }
+                }, 'json')
+            })
+        </script>
 
 </body>
 

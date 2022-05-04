@@ -47,7 +47,7 @@
               $sql = "SELECT * FROM dog_breed";
               $query = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_array($query)) {
-                ?>
+              ?>
                 <option value="<?php echo $row["dogbreed_name"]; ?>"><?php echo $row["dogbreed_name"]; ?></option>
               <?php
               }
@@ -61,7 +61,7 @@
               <option value="0">0</option>
               <?php
               for ($i = 1; $i <= 100; $i++) {
-                ?>
+              ?>
                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
               <?php
               }
@@ -74,8 +74,9 @@
             <select name="dog_age" class="form-control" id="" required>
               <option value="0">0</option>
               <?php
-              for ($i = 1; $i <= 50; $i++) {
-                ?>
+
+              for ($i = $abc; $i <= 50; $i++) {
+              ?>
                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
               <?php
               }
@@ -125,9 +126,9 @@
             <div class="error">
               <h3>
                 <?php
-                  echo $_SESSION['error'];
-                  unset($_SESSION['error']);
-                  ?>
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+                ?>
               </h3>
             </div>
           <?php endif ?>
@@ -136,7 +137,7 @@
           $sql = "SELECT * FROM deposit";
           $query = mysqli_query($conn, $sql);
           while ($row = mysqli_fetch_array($query)) {
-            ?>
+          ?>
             <input type="hidden" value="<?php echo $row["dep_id"]; ?>" name="dep_id" id='dep_id'>
           <?php } ?>
           <div class="form-group">
@@ -157,7 +158,7 @@
               $sql = "SELECT * FROM room";
               $result = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_array($result)) {
-                ?>
+              ?>
                 <option value="<?php echo $row["room_id"]; ?>"><?php echo $row["room_type"]; ?> ( <?php echo $row["room_price"]; ?> บาท/คืน )</option>
               <?php } ?>
             </select>
@@ -167,16 +168,28 @@
             <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>" id="">
             <label for="" class="col-form-label">สุนัขของท่าน : </label>
 
-            <select name="dog_id" class="form-control" id="" required>
+            <select onchange="dogUpdate(this.value)" name="dog_id" class="form-control" id="" required>
               <option value="">เลือกสุนัขของท่าน</option>
               <?php
               $sql = "SELECT * FROM dog WHERE user_id = '$user_id'";
               $result = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_array($result)) {
-                ?>
+              ?>
                 <option value="<?php echo $row["dog_id"]; ?>"><?php echo $row["dog_name"]; ?> , [<?php echo $row["dog_id"]; ?>]</option>
               <?php } ?>
             </select>
+
+
+            <div class="form-group">
+              <label for="" class="col-form-label">อายุปัจจุบันสุนัข (ปี) : </label>
+              <select name="dog_age" class="form-control" id="dog_age" required>
+                <option value="0">น้อยกว่า 1 ปี</option>
+                <?php for ($i = 1; $i <= 50; $i++) {  ?>
+                  <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                <?php } ?>
+
+              </select>
+            </div>
           </div>
 
           <div class="form-group">
@@ -258,7 +271,7 @@
               $sql = "SELECT * FROM dog WHERE user_id = '$user_id'";
               $result = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_array($result)) {
-                ?>
+              ?>
                 <option value="<?php echo $row["dog_id"]; ?>"> <?php echo $row["dog_name"]; ?> , [<?php echo $row["dog_id"]; ?>] </option>
               <?php } ?>
             </select>
@@ -273,7 +286,7 @@
               $sql = "SELECT * FROM service";
               $result = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_array($result)) {
-                ?>
+              ?>
                 <option value="<?php echo $row["service_id"]; ?>"><?php echo $row["service_name"]; ?></option>
               <?php } ?>
             </select>
@@ -346,7 +359,7 @@
           $sql = "SELECT * FROM deposit";
           $query = mysqli_query($conn, $sql);
           while ($row = mysqli_fetch_array($query)) {
-            ?>
+          ?>
             <input type="hidden" value="<?php echo $row["dep_id"]; ?>" name="dep_id" id='dep_id'>
           <?php } ?>
           <div class="row">
@@ -383,7 +396,7 @@
           $sql = "SELECT * FROM use_service";
           $query = mysqli_query($conn, $sql);
           while ($row = mysqli_fetch_array($query)) {
-            ?>
+          ?>
             <input type="hidden" value="<?php echo $row["us_id"]; ?>" name="us_id" id='us_id'>
           <?php } ?>
           <div class="row">
@@ -406,7 +419,7 @@
 
 <!-- หน้า Order การจองสปาร์ (Use_Service) -->
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!--   Core JS Files   -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -455,7 +468,7 @@
   });
 
   function sendService(id_service) {
-    // console.log(id_service)
+    console.log(id_service)
     $.post('api/service/priceload.php', {
       id_service: id_service
     }, function(data) {
@@ -465,6 +478,32 @@
       }
     }, 'json');
   }
+
+  function dogUpdate(dog_id) {
+    console.log(dog_id)
+    $.post('api/dogage.php', {
+      dog_id: dog_id
+    }, function(data) {
+      if (data.success) {
+        var test = document.getElementById("dog_age").value = data.age
+        document.getElementById("dog_age").onchange = function() {
+          var ch = document.getElementById("dog_age").value
+          console.log(ch)
+          console.log(data.age)
+          if (ch < data.age) {
+            swal("โปรดกรอกอายุปัจจุบันของสุนัข", " ", "warning")
+            var test = document.getElementById("dog_age").value = data.age
+          }
+        };
+
+
+
+      }
+
+    }, 'json');
+  }
+
+
 
 
   function getData() {
@@ -489,7 +528,7 @@
   }
 
   function gologin() {
-    swal("โปรดล็อคอินก่อนเข้าใช้งาน !","", "warning");
+    swal("โปรดล็อคอินก่อนเข้าใช้งาน !", "", "warning");
     // window.location.href = 'userindex.php';
   }
 
@@ -497,11 +536,22 @@
     window.location.href = 'login.php';
   }
 
+  $("#updateForm1").submit(function(e) {
+    e.preventDefault()
+    var formData = $(this).serialize()
+    $.post('api/deposit.php', formData, function(data) {
+      if (data.success) {
+        swal("จองฝากเลี้ยงสำเร็จ", " ", "success").then(function() {
+          window.location = "usindex.php";
+        })
+      } else {
+        swal("แจ้งเตือน", "ไม่สำเร็จ!", "error")
+      }
+    }, 'json')
+  })
   // function showdepdetail() {
   //   var senddep_id = document.getElementById(id).value
   //   console.log(senddep_id)
   //   $("#showdep_detail").modal('show');
   // }
-
-  
 </script>

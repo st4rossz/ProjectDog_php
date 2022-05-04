@@ -38,12 +38,12 @@ include 'layout/header.php';
                   <thead>
                     <tr align="center">
                       <!-- <th>รหัส</th> -->
+                      <th style="width: 20%;">รูปภาพสุนัข</th>
                       <th style="width: 10%;">ชื่อ</th>
                       <th style="width: 10%;">พันธ์ุ</th>
                       <th style="width: 10%;">น้ำหนัก(กิโลกรัม)</th>
                       <th style="width: 5%;">อายุ(ปี)</th>
-                      <th style="width: 25%;">หมายเหตุ</th>
-                      <th style="width: 30%;">รูปภาพสุนัข</th>
+                      <th style="width: 25%;">อัพเดทการติดตามสุนัข</th>
                       <th style="width: 10%;">เพิ่มเติม</th>
                       <!-- <th>user_id</th> -->
                     </tr>
@@ -54,27 +54,28 @@ include 'layout/header.php';
                     $sql = "SELECT *, dog.image FROM deposit INNER JOIN dog ON deposit.dog_id = dog.dog_id WHERE dep_status = 2";
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
-                      ?>
+                    ?>
                       <tr align="center">
+                        <td>
+                          <?php
+                          if (!empty($row["image"])) {
+                            echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 200px; height: 250px;" alt="">';
+                          } else {
+                            echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
+                          }
+                          ?>
+                        </td>
                         <td><?= $row["dog_name"] ?></td>
                         <td><?= $row["dog_type"] ?></td>
                         <td><?= $row["dog_weight"] ?></td>
                         <td><?= $row["dog_age"] ?></td>
-                        <td><?= $row["deprec_detail"] ?></td>
-                        <td>
-                          <?php
-                            if (!empty($row["image"])) {
-                              echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
-                            } else {
-                              echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
-                            }
-                            ?>
-                        </td>
+                        <td><?= $row["deprec_topic"] ?></td>
+
                         <td>
                           <a class="btn btn-warning" href="add_dep_record.php?dep_id=<?= $row["dep_id"] ?>">เพิ่มบันทึก</a>
                         </td>
                         <?php
-                          ?>
+                        ?>
                       </tr>
                     <?php } ?>
                   </tbody>

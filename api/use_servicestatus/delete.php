@@ -6,13 +6,8 @@ $sql = "UPDATE use_service SET us_status= 10, status_name = 'ถูกยกเ�
 $query = mysqli_query($conn, $sql);
 
 if ($query) {
-    echo "<script>";
-    echo "alert(\"การจองถูกยกเลิกแล้ว !\");";
-    echo "window.location=\"../../backend/useservice_confirm.php\"";
-    echo "</script>";
+    $data['success'] = true;
 } else {
-    echo "<script>";
-    echo "alert(\"ผิดพลาด!\");";
-    echo "window.location=\"../../backend/useservice_confirm.php\"";
-    echo "</script>";
+    $data['success'] = false;
 }
+echo json_encode($data);

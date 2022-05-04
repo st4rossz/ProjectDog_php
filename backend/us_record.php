@@ -38,13 +38,13 @@ include 'layout/header.php';
                   <thead>
                     <tr align="center">
                       <!-- <th>รหัส</th> -->
+                      <th style="width: 20%;">รูปภาพสุนัข</th>
                       <th style="width: 10%;">ชื่อ</th>
                       <th style="width: 10%;">พันธ์ุ</th>
                       <th style="width: 10%;">น้ำหนัก(กิโลกรัม)</th>
                       <th style="width: 5%;">อายุ(ปี)</th>
-                      <th style="width: 15%;">แพ้ยา/แพ้อาหาร</th>
-                      <th style="width: 15%;">อัพเดทการติดตามสุนัข</th>
-                      <th style="width: 25%;">หมายเหตุ</th>
+                      <th style="width: 25%;">อัพเดทการติดตามสุนัข</th>
+                      <th style="width: 10%;">เพิ่มเติม</th>
                       <!-- <th>user_id</th> -->
                     </tr>
                   </thead>
@@ -59,13 +59,20 @@ include 'layout/header.php';
                     ?>
                       <tr align="center">
                         <!-- <th scope="row"> <?= $row["dog_id"] ?> </th> -->
+                        <td>
+                          <?php
+                          if (!empty($row["image"])) {
+                            echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 200px; height: 250px;" alt="">';
+                          } else {
+                            echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
+                          }
+                          ?>
+                        </td>
                         <td><?= $row["dog_name"] ?></td>
                         <td><?= $row["dog_type"] ?></td>
                         <td><?= $row["dog_weight"] ?></td>
                         <td><?= $row["dog_age"] ?></td>
-                        <td><?= $row["dog_sickness"] ?></td>
                         <td><?= $row["usrec_topic"] ?></td>
-                        <td><?= $row["usrec_detail"] ?></td>
                         <td style="width: 10%;">
                           <a class="btn btn-warning" href="add_us_record.php?us_id=<?= $row["us_id"] ?>">เพิ่มบันทึก</a>
                         </td>

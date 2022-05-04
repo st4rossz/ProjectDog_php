@@ -13,7 +13,8 @@ if ($_SESSION['status'] == 0) {
     echo "</script>";
 } elseif ($_SESSION['status'] == 2) {
     header('location: backend/adminindex.php');
-} else { }
+} else {
+}
 
 // if (isset($_SESSION['user_id'])){
 //     echo "<script>";
@@ -105,14 +106,14 @@ $user_id = $_SESSION['user_id'];
                         $sql = "SELECT * FROM dog WHERE user_id = '$user_id' ";
                         $query = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($query)) {
-                            ?>
+                        ?>
                             <tr>
                                 <th scope="row"> <?= $row["dog_name"] ?> </th>
                                 <td><?= $row["dog_type"] ?></td>
                                 <td><?= $row["dog_weight"] ?></td>
                                 <td><?= $row["dog_age"] ?></td>
                                 <?php
-                                    ?>
+                                ?>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -166,14 +167,14 @@ $user_id = $_SESSION['user_id'];
                     $sql = "SELECT * FROM dog WHERE user_id = '$user_id' ";
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
-                        ?>
+                    ?>
                         <tr>
                             <th scope="row"> <?= $row["dog_id"] ?> </th>
                             <td><?= $row["dog_name"] ?></td>
                             <td><?= $row["dog_type"] ?></td>
                             <td><?= $row["dog_weight"] ?></td>
                             <?php
-                                ?>
+                            ?>
                         </tr>
                     <?php } ?>
                 </tbody>

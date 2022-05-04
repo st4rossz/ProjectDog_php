@@ -29,24 +29,24 @@ include 'layout/header.php';
               $query = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_assoc($query)) {
 
-                ?>
-                <form method="POST" action="../api/record/dep_record.php">
+              ?>
+                <form id="updateForm">
                   <input type="hidden" name="dep_id" value="<?= $row['dep_id']; ?>" id="inputdepid">
                   <input type="hidden" name="dog_id" value="<?= $row['dog_id']; ?>" id="inputdogid">
                   <?php
-                    if (!empty($row['image'])) {
-                      echo '<div class="col-md-12">';
-                      echo '<label for="inputdogsickness" class="form-label">รูปภาพสุนัข</label>';
-                      echo '<div class="col-md-6">';
-                      echo '<img class="w-50" src="../api/dog/uploads/' . $row["image"] . '">';
-                      echo '</div>';
-                    } else {
-                      echo '<div class="col-md-12">';
-                      echo '<h3 style="color: red; margin-top: 3%; margin-left: 2%;">"ผู้ใช้ท่านนี้ยังไม่มีการเพิ่มรูปสุนัข"</h3>';
-                      echo '<div class="col-md-6">';
-                      echo '</div>';
-                    }
-                    ?>
+                  if (!empty($row['image'])) {
+                    echo '<div class="col-md-12">';
+                    echo '<label for="inputdogsickness" class="form-label">รูปภาพสุนัข</label>';
+                    echo '<div class="col-md-6">';
+                    echo '<img style="width: 350px; height: 400px;" src="../api/dog/uploads/' . $row["image"] . '">';
+                    echo '</div>';
+                  } else {
+                    echo '<div class="col-md-12">';
+                    echo '<h3 style="color: red; margin-top: 3%; margin-left: 2%;">"ผู้ใช้ท่านนี้ยังไม่มีการเพิ่มรูปสุนัข"</h3>';
+                    echo '<div class="col-md-6">';
+                    echo '</div>';
+                  }
+                  ?>
                   <!-- <div class="col-md-12">
                     <label for="inputdogsickness" class="form-label">รูปภาพสุนัข</label>
                     <div class="col-md-6">
@@ -62,14 +62,14 @@ include 'layout/header.php';
                     <select name="dog_type" id="" class="form-control" disabled>
                       <option value="<?= $row['dog_type']; ?>"><?= $row['dog_type']; ?></option>
                       <?php
-                        $sql2 = "SELECT * FROM dog_breed";
-                        $query2 = mysqli_query($conn, $sql2);
-                        while ($row2 = mysqli_fetch_array($query2)) {
-                          ?>
+                      $sql2 = "SELECT * FROM dog_breed";
+                      $query2 = mysqli_query($conn, $sql2);
+                      while ($row2 = mysqli_fetch_array($query2)) {
+                      ?>
                         <option value="<?php echo $row2["dogbreed_name"]; ?>"><?php echo $row2["dogbreed_name"]; ?></option>
                       <?php
-                        }
-                        ?>
+                      }
+                      ?>
                     </select>
                     <!-- <input name="dog_type" value="<?= $row['dog_type']; ?>" type="text" class="form-control" id="inputdogtype" placeholder="พันธุ์สุนัข" required> -->
                   </div>
@@ -79,13 +79,13 @@ include 'layout/header.php';
                       <option value="<?= $row['dog_weight']; ?>"><?= $row['dog_weight']; ?></option>
                       <?php
 
-                        for ($i = 1; $i <= 100; $i++) {
-                          ?>
+                      for ($i = 1; $i <= 100; $i++) {
+                      ?>
 
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                       <?php
-                        }
-                        ?>
+                      }
+                      ?>
                     </select>
                     <!-- <input name="dog_weight" value="<?= $row['dog_weight']; ?>" type="text" class="form-control" id="inputdogweight" placeholder="น้ำหนักสุนัข" required> -->
                   </div>
@@ -95,13 +95,13 @@ include 'layout/header.php';
                       <option value="<?= $row['dog_age']; ?>"><?= $row['dog_age']; ?></option>
                       <?php
 
-                        for ($i = 1; $i <= 50; $i++) {
-                          ?>
+                      for ($i = 1; $i <= 50; $i++) {
+                      ?>
 
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                       <?php
-                        }
-                        ?>
+                      }
+                      ?>
                     </select>
 
                   </div>
@@ -110,7 +110,7 @@ include 'layout/header.php';
                     <input name="dog_sickness" value="<?= $row['dog_sickness']; ?>" type="text" class="form-control" id="inputdogsickness" disabled>
                     <hr>
                   </div>
-             
+
                   <div class="col-md-12">
                     <label for="inputdogsickness" class="form-label">บันทึกการติดตามสุนัขครั้งก่อน :</label>
                   </div>
@@ -185,9 +185,23 @@ include 'layout/header.php';
             </div>
             </form>
           <?php } ?>
-          <?php
-          include 'layout/footer.php';
-          ?>
+          <?php include 'layout/footer.php'; ?>
+          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+          <script>
+            $("#updateForm").submit(function(e) {
+              e.preventDefault()
+              var formData = $(this).serialize()
+              $.post('../api/record/dep_record.php', formData, function(data) {
+                if (data.success) {
+                  swal("แจ้งเตือน", "อัปเดตบันทึกการติดตามสุนัขครั้งล่าสุดสำเร็จ", "success").then(function() {
+                    window.location = "dep_record.php";
+                  })
+                } else {
+                  swal("แจ้งเตือน", "ไม่สำเร็จ!", "error")
+                }
+              }, 'json')
+            })
+          </script>
 </body>
 
 </html>

@@ -23,7 +23,7 @@
                             <h4 class="title" style="color: black;">บันทึกข้อมูลการรับสุนัขกลับ (สปาสุนัข)</h4>
                         </div>
                         <div class="col-4" style="padding-top: 1%;">
-                            <form method="POST" action="../api/atstore/us_atstore.php">
+                            <form id="updateForm">
                                 <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>" id="us_id">
                                 <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยืนยัน?');">อัพเดทสถานะ</button>
                             </form>
@@ -34,6 +34,20 @@
                 <div class="container"></div>
                 <div class="col-md-12">
                     <div class="card">
+                        <div class="col-md-12 text-center pt-5">
+                            <?php
+                            $sql = "SELECT * FROM use_service INNER JOIN service ON use_service.service_id = service.service_id INNER JOIN dog ON use_service.dog_id = dog.dog_id INNER JOIN user ON dog.user_id = user.user_id WHERE us_status = 2 AND us_id ='$us_id'";
+                            $query = mysqli_query($conn, $sql);
+                            while ($row = mysqli_fetch_assoc($query)) {
+
+                                if (!empty($row["image"])) {
+                                    echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 350px; height: 400px;" alt="">';
+                                } else {
+                                    echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
+                                }
+                            }
+                            ?>
+                        </div>
                         <div id="accordion">
                             <div class="card">
 
@@ -54,7 +68,7 @@
                                                     <th style="width: 10%;">บริการ</th>
                                                     <th style="width: 10%;">สถานะ</th>
                                                     <th style="width: 5%;">ราคา</th>
-                                                    <th style="width: 20%;">หลักฐานการโอน</th>
+                                                    <!-- <th style="width: 20%;">หลักฐานการโอน</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -69,15 +83,15 @@
                                                         <td><?= $row["service_name"] ?></td>
                                                         <td><?= $row["status_name"] ?></td>
                                                         <td><?= $row["us_price"] ?></td>
-                                                        <td>
-                                                            <?php
-                                                            if (!empty($row["dep_basis"])) {
-                                                                echo '<img src="../api/pay/uploads/' . $row['dep_basis'] . '" style="width: 300px; height: 350px;" alt="">';
-                                                            } else {
-                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการโอน</p>';
-                                                            }
-                                                            ?>
-                                                        </td>
+                                                        <!-- <td>
+                                                                <?php
+                                                                if (!empty($row["dep_basis"])) {
+                                                                    echo '<img src="../api/pay/uploads/' . $row['dep_basis'] . '" style="width: 300px; height: 350px;" alt="">';
+                                                                } else {
+                                                                    echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ไม่มีหลักฐานการโอน</p>';
+                                                                }
+                                                                ?>
+                                                            </td> -->
 
                                                         <?php
                                                         ?>
@@ -110,7 +124,7 @@
                                                     <th style="width: 10%;">น้ำหนัก (กก.)</th>
                                                     <th style="width: 5%;">อายุ (ปี)</th>
                                                     <th style="width: 10%;">โรคประจำตัว/แพ้อาหาร</th>
-                                                    <th style="width: 20%;">รูปสุนัข</th>
+                                                    <!-- <th style="width: 20%;">รูปสุนัข</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -126,15 +140,15 @@
                                                         <td><?= $row["dog_weight"] ?></td>
                                                         <td><?= $row["dog_age"] ?></td>
                                                         <td><?= $row["dog_sickness"] ?></td>
-                                                        <td>
-                                                            <?php
-                                                            if (!empty($row["image"])) {
-                                                                echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
-                                                            } else {
-                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
-                                                            }
-                                                            ?>
-                                                        </td>
+                                                        <!-- <td>
+                                                                <?php
+                                                                if (!empty($row["image"])) {
+                                                                    echo '<img src="../api/dog/uploads/' . $row['image'] . '" style="width: 300px; height: 350px;" alt="">';
+                                                                } else {
+                                                                    echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
+                                                                }
+                                                                ?>
+                                                            </td> -->
 
                                                         <?php
                                                         ?>
@@ -209,6 +223,22 @@
         </div>
 
         <?php include 'layout/footer.php'; ?>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            $("#updateForm").submit(function(e) {
+                e.preventDefault()
+                var formData = $(this).serialize()
+                $.post('../api/atstore/us_atstore.php', formData, function(data) {
+                    if (data.success) {
+                        swal("สิ้นสุดการให้บริการ", "เจ้าของสุนัขมารับสุนัขกลับแล้ว", "success").then(function() {
+                            window.location = "us_atstore.php";
+                        })
+                    } else {
+                        swal("แจ้งเตือน", "ไม่สำเร็จ!", "error")
+                    }
+                }, 'json')
+            })
+        </script>
 
 </body>
 

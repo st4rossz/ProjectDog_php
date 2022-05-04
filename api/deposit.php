@@ -12,9 +12,9 @@ if (isset($_POST['bookdeposit'])) {
     $dep_sdate = date($ndep_sdate);
     $dep_edate = date($ndep_edate);
 
-    if($dep_deliver == "ต้องการ"){
+    if ($dep_deliver == "ต้องการ") {
         $dep_deliverp = 50;
-    }else{
+    } else {
         $dep_deliverp = 0;
     }
 
@@ -31,6 +31,11 @@ if (isset($_POST['bookdeposit'])) {
 
     // echo '<pre>'; print_r($rquery1); echo '</pre>';
 
+    if (isset($_POST['dog_age'])) {
+        $dog_age = $_POST['dog_age'];
+        $sql = "UPDATE dog SET dog_age = '$dog_age' WHERE dog_id = '$dog_id'";
+        $query = mysqli_query($conn, $sql);
+    }
 
     if ($dep_sdate >= $dep_edate) {
         echo "<script>";
@@ -71,8 +76,8 @@ if (isset($_POST['bookdeposit'])) {
             $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id, dep_deliver, dep_price) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', '$dep_deliver', ($day*$roomprice1)+$dep_deliverp)";
             $query = mysqli_query($conn, $sql);
             echo "<script>";
-            echo "alert(\"จองสำเร็จ!\");";
-            echo "window.location=\"../userdepositorder.php\"";
+            echo "alert(\"จองห้องพักสำเร็จ !\");";
+            echo "window.location=\"../usindex.php\"";
             echo "</script>";
         }
     }
@@ -113,8 +118,8 @@ if (isset($_POST['bookdeposit'])) {
             $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id, dep_deliver,dep_price) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', '$dep_deliver', ($day*$roomprice2)+$dep_deliverp)";
             $query = mysqli_query($conn, $sql);
             echo "<script>";
-            echo "alert(\"จองสำเร็จ!\");";
-            echo "window.location=\"../userdepositorder.php\"";
+            echo "alert(\"จองห้องพักสำเร็จ !\");";
+            echo "window.location=\"../usindex.php\"";
             echo "</script>";
         }
     }
@@ -156,8 +161,8 @@ if (isset($_POST['bookdeposit'])) {
             $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id, dep_deliver, dep_price) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', '$dep_deliver', ($day*$roomprice3)+$dep_deliverp)";
             $query = mysqli_query($conn, $sql);
             echo "<script>";
-            echo "alert(\"จองสำเร็จ!\");";
-            echo "window.location=\"../userdepositorder.php\"";
+            echo "alert(\"จองห้องพักสำเร็จ !\");";
+            echo "window.location=\"../usindex.php\"";
             echo "</script>";
         }
     }

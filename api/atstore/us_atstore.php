@@ -7,15 +7,10 @@ $sql = "UPDATE use_service SET us_status= 3, status_name = 'สิ้นสุ�
 $query = mysqli_query($conn, $sql);
 
 if ($query) {
-    echo "<script>";
-    echo "alert(\"สถานะการให้บริการถูกอัปเดทแล้ว!\");";
-    echo "window.location=\"../../backend/us_atstore.php\"";
-    echo "</script>";
+    $data['success'] = true;
 } else {
-    echo "<script>";
-    echo "alert(\"ผิดพลาด!\");";
-    echo "window.location=\"../../backend/us_atstore.php\"";
-    echo "</script>";
+    $data['success'] = false;
 }
+echo json_encode($data);
 
 ?> 

@@ -9,16 +9,11 @@ if (isset($_POST['deprec_topic']) == '') {
     $query2 = mysqli_query($conn, $sql2);
 
     if ($query1 and $query2) {
-        echo "<script>";
-        echo "alert(\"อัพเดทข้อมูลการติดตามสุนัขเรียบร้อย!\");";
-        echo "window.location=\"../../backend/dep_record.php\"";
-        echo "</script>";
+        $data['success'] = true;
     } else {
-        echo "<script>";
-        echo "alert(\"เกิดข้อผิดพลาด!\");";
-        echo "window.location=\"../../backend/dep_record.php\"";
-        echo "</script>";
+        $data['success'] = false;
     }
+    echo json_encode($data);
 } else {
     isset($_POST['deprec_topic']) ? $deprec_topic = $_POST['deprec_topic'] : $deprec_topic = array();
     if (count($deprec_topic) > 0) {
@@ -39,14 +34,9 @@ if (isset($_POST['deprec_topic']) == '') {
     $query2 = mysqli_query($conn, $sql2);
 
     if ($query1 and $query2) {
-        echo "<script>";
-        echo "alert(\"อัพเดทข้อมูลการติดตามสุนัขเรียบร้อย!\");";
-        echo "window.location=\"../../backend/dep_record.php\"";
-        echo "</script>";
+        $data['success'] = true;
     } else {
-        echo "<script>";
-        echo "alert(\"เกิดข้อผิดพลาด!\");";
-        echo "window.location=\"../../backend/dep_record.php\"";
-        echo "</script>";
+        $data['success'] = false;
     }
+    echo json_encode($data);
 }
