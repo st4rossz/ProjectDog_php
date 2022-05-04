@@ -120,27 +120,16 @@ include 'layout/header.php';
                                         <table class="table table-hover align-items-center">
                                             <thead class="thead-Secondary">
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>ชื่อสุนัข</th>
-                                                    <th>พันธ์ุ</th>
-                                                    <th style="width:20%;">รูปสุนัข</th>
-                                                    <th>เจ้าของสุนัข</th>
-                                                    <th>วันที่เริ่มเข้าพัก</th>
-                                                    <th>วันที่สิ้นสุดการเข้าพัก</th>
-                                                    <th>จำนวนเงิน</th>
-                                                    <?php if (isset($_GET['status'])) { ?>
-                                                        <?php if ($_GET['status'] == "all") { ?>
-                                                            <th>สถานะ</th>
-                                                        <?php } elseif ($_GET['status'] == 0) { ?>
-                                                            
-                                                        <?php } elseif ($_GET['status'] == 1) { ?>
-                                                            <th>ประเภทห้อง</th>
-                                                        <?php } elseif ($_GET['status'] == 2) { ?>
-                                                            <th>บันทึกการติดตามสุนัข</th>
-                                                        <?php } else { ?>
-
-                                                        <?php }  ?>
-                                                    <?php } ?>
+                                                    <th>ลำดับ</th>
+                                                    <th>รหัสการเข้าใช้บริการ</th>
+                                                    <th>ชื่อลูกค้า</th>
+                                                    <!-- <th style="width:20%;">รูปสุนัข</th> -->
+                                                    <th>วันที่เข้าพัก</th>
+                                                    <th>วันที่มารับกลับ</th>
+                                                    <th>จำนวนวันที่ฝากเลี้ยง</th>
+                                                    <th>ราคา/วัน</th>
+                                                    <th>ราคารวม</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -148,34 +137,14 @@ include 'layout/header.php';
                                                 while ($result = mysqli_fetch_array($query)) { ?>
                                                     <tr>
                                                         <td><?= $i++ ?></td>
-                                                        <td><?= $result['dog_name'] ?></td>
-                                                        <td><?= $result['dog_type'] ?></td>
-                                                        <td>
-                                                            <?php
-                                                            if (!empty($result["image"])) {
-                                                                echo '<img src="../api/dog/uploads/' . $result['image'] . '" style="width: 150px; height: 150px;" alt="">';
-                                                            } else {
-                                                                echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีรูปสุนัข</p>';
-                                                            }
-                                                            ?>
-                                                        </td>
-                                                        <td><?= $result["username"] ?></td>
+                                                        <td><?= $result['dep_id'] ?></td>
+                                                        <td><?= $result['username'] ?></td>
                                                         <td><?= $result['dep_sdate'] ?></td>
-                                                        <td><?= $result['dep_edate'] ?></td>
+                                                        <td><?= $result['dep_sdate'] ?></td>
+                                                        <td><?= $result['dep_day'] ?></td>
+                                                        <td><?= $result['room_price'] ?> บาท</td>
                                                         <td><?= $result['dep_price'] ?> บาท</td>
-                                                        <?php if (isset($_GET['status'])) { ?>
-                                                            <?php if ($_GET['status'] == "all") { ?>
-                                                                <td><?= $result['status_name'] ?></td>
-                                                            <?php } elseif ($_GET['status'] == 0) { ?>
-                                                                
-                                                            <?php } elseif ($_GET['status'] == 1) { ?>
-                                                                <td><?= $result['room_type'] ?></td>
-                                                            <?php } elseif ($_GET['status'] == 2) { ?>
-                                                                <td><?= $result['deprec_topic'] ?></td>
-                                                            <?php } else { ?>
 
-                                                            <?php }  ?>
-                                                        <?php } ?>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -185,6 +154,12 @@ include 'layout/header.php';
                                         $sql_report = "SELECT *, sum(dep_price) as total FROM deposit $where";
                                         $query_report = mysqli_query($conn, $sql_report);
                                         $report = mysqli_fetch_assoc($query_report);
+
+                                        $sql_report = "SELECT * FROM deposit WHERE dep_status = '3' AND dep_deliver = 'ต้องการ'";
+                                        $query_deposit = mysqli_query($conn, $sql_report);
+
+                                        $sql_report = "SELECT * FROM deposit WHERE dep_status = '3' AND dep_deliver = 'ลูกค้ามารับสุนัข'";
+                                        $query_get = mysqli_query($conn, $sql_report);
                                         ?>
                                         <div class="col-md-12">
                                             <div class="row justify-content-start">
@@ -194,6 +169,19 @@ include 'layout/header.php';
                                                 <div class="col-md-2 bg-danger py-3">
                                                     <span class="text-center text-white">ยอดเงิน : <?=number_format($report['total'] , 2)?></span>
                                                 </div>
+                                                <?php if(isset($_GET['status'])){ ?>
+                                                    <?php if($_GET['status'] == "3"){ ?> 
+                                                        <div class="col-md-2 bg-info py-3">
+                                                            <span class="text-center text-white">ต้องการให้ร้านส่งคืนสุนัข : <?=mysqli_num_rows($query_deposit)?></span>
+                                                        </div>
+                                                        <div class="col-md-2 bg-info py-3">
+                                                            <span class="text-center text-white">ลูกค้ามารับสุนัข : <?=mysqli_num_rows($query_get)?></span>
+                                                        </div>
+                                                        <?php } else{ ?>
+                                                            
+                                                        <?php } ?>
+                                                           
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </div>
