@@ -120,7 +120,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="api/deposit.php">
+        <form id="updateForm1">
           <?php include 'api/errors.php' ?>
           <?php if (isset($_SESSION['error'])) : ?>
             <div class="error">
@@ -240,7 +240,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="submit" name="bookdeposit" class="btn btn-primary btn-lg">ยืนยัน</button>
+        <button type="submit" class="btn btn-primary btn-lg">ยืนยัน</button>
         <button type="reset" class="btn btn-dark btn-lg">ล้างค่า</button>
         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
       </div>
@@ -260,7 +260,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="api/useservice.php">
+        <form id="updateForm2">
           <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>" id="">
 
           <div class="form-group">
@@ -542,10 +542,24 @@
     $.post('api/deposit.php', formData, function(data) {
       if (data.success) {
         swal("จองฝากเลี้ยงสำเร็จ", " ", "success").then(function() {
-          window.location = "usindex.php";
+          window.location = "userdepositorder.php";
         })
       } else {
-        swal("แจ้งเตือน", "ไม่สำเร็จ!", "error")
+        swal(" " + data.msg, " ", "error")
+      }
+    }, 'json')
+  })
+
+  $("#updateForm2").submit(function(s) {
+    s.preventDefault()
+    var form = $(this).serialize()
+    $.post('api/useservice.php', form, function(data) {
+      if (data.success) {
+        swal("จองบริการสำเร็จ", " ", "success").then(function() {
+          window.location = "userserviceorder.php";
+        })
+      } else {
+        swal(" " + data.msg, " ", "error")
       }
     }, 'json')
   })

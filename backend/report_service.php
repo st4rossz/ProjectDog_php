@@ -178,7 +178,7 @@ include 'layout/header.php';
                                                         < </a>
                                                 </li>
                                                 <?php for ($i = 1; $i <= $total_page; $i++) { ?>
-                                                    <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link " href="report_service.php?page=<?php echo $i; ?><?= $page_parameter ?>"><?php echo $i; ?></a></li>
+                                                    <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link d-flex" href="report_service.php?page=<?php echo $i; ?><?= $page_parameter ?>"><?php echo $i; ?></a></li>
                                                 <?php } ?>
                                                 <li class="page-item <?= $page == $total_page ? 'disabled' : '' ?>"><a class="page-link" href="report_service.php?page=<?= $page + 1 ?><?= $page_parameter ?>">></a></li>
                                             </ul>

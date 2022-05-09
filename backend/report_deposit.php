@@ -129,7 +129,7 @@ include 'layout/header.php';
                                                     <th>จำนวนวันที่ฝากเลี้ยง</th>
                                                     <th>ราคา/วัน</th>
                                                     <th>ราคารวม</th>
-                                                    
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -150,7 +150,7 @@ include 'layout/header.php';
                                             </tbody>
 
                                         </table>
-                                        <?php 
+                                        <?php
                                         $sql_report = "SELECT *, sum(dep_price) as total FROM deposit $where";
                                         $query_report = mysqli_query($conn, $sql_report);
                                         $report = mysqli_fetch_assoc($query_report);
@@ -164,23 +164,23 @@ include 'layout/header.php';
                                         <div class="col-md-12">
                                             <div class="row justify-content-start">
                                                 <div class="col-md-2 bg-success py-3">
-                                                    <span class="text-center text-white">ทั้งหมด : <?=mysqli_num_rows($query2)?></span>
+                                                    <span class="text-center text-white">ทั้งหมด : <?= mysqli_num_rows($query2) ?></span>
                                                 </div>
                                                 <div class="col-md-2 bg-danger py-3">
-                                                    <span class="text-center text-white">ยอดเงิน : <?=number_format($report['total'] , 2)?></span>
+                                                    <span class="text-center text-white">ยอดเงิน : <?= number_format($report['total'], 2) ?></span>
                                                 </div>
-                                                <?php if(isset($_GET['status'])){ ?>
-                                                    <?php if($_GET['status'] == "3"){ ?> 
+                                                <?php if (isset($_GET['status'])) { ?>
+                                                    <?php if ($_GET['status'] == "3") { ?>
                                                         <div class="col-md-2 bg-info py-3">
-                                                            <span class="text-center text-white">ต้องการให้ร้านส่งคืนสุนัข : <?=mysqli_num_rows($query_deposit)?></span>
+                                                            <span class="text-center text-white">ต้องการให้ร้านส่งคืนสุนัข : <?= mysqli_num_rows($query_deposit) ?></span>
                                                         </div>
                                                         <div class="col-md-2 bg-info py-3">
-                                                            <span class="text-center text-white">ลูกค้ามารับสุนัข : <?=mysqli_num_rows($query_get)?></span>
+                                                            <span class="text-center text-white">ลูกค้ามารับสุนัข : <?= mysqli_num_rows($query_get) ?></span>
                                                         </div>
-                                                        <?php } else{ ?>
-                                                            
-                                                        <?php } ?>
-                                                           
+                                                    <?php } else { ?>
+
+                                                    <?php } ?>
+
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -201,7 +201,7 @@ include 'layout/header.php';
                                                         < </a>
                                                 </li>
                                                 <?php for ($i = 1; $i <= $total_page; $i++) { ?>
-                                                    <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link " href="report_deposit.php?page=<?php echo $i; ?><?= $page_parameter ?>"><?php echo $i; ?></a></li>
+                                                    <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link d-flex" href="report_deposit.php?page=<?php echo $i; ?><?= $page_parameter ?>"><?php echo $i; ?></a></li>
                                                 <?php } ?>
                                                 <li class="page-item <?= $page == $total_page ? 'disabled' : '' ?>"><a class="page-link" href="report_deposit.php?page=<?= $page + 1 ?><?= $page_parameter ?>">></a></li>
                                             </ul>

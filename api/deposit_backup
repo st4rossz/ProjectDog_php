@@ -1,8 +1,9 @@
 <?php
 include 'server.php';
+$errors = array();
 
+if (isset($_POST['bookdeposit'])) {
 
-try {
     $ndep_sdate = mysqli_real_escape_string($conn, $_POST['dep_sdate']);
     $ndep_edate = mysqli_real_escape_string($conn, $_POST['dep_edate']);
     $dog_id = mysqli_real_escape_string($conn, $_POST['dog_id']);
@@ -28,6 +29,7 @@ try {
     $query = mysqli_query($conn, $bookdatecheck);
     $result = mysqli_fetch_assoc($query);
 
+    // echo '<pre>'; print_r($rquery1); echo '</pre>';
 
     if (isset($_POST['dog_age'])) {
         $dog_age = $_POST['dog_age'];
@@ -35,22 +37,20 @@ try {
         $query = mysqli_query($conn, $sql);
     }
 
-    //เริ่มต้นเงื่อนไขการจองห้องพัก
     if ($dep_sdate >= $dep_edate) {
-        throw new Exception("โปรดกรอกวันจองให้ถูกต้อง");
-        // echo "<script>";
-        // array_push($errors, "กรุณากรอกวันจองให้ถูกต้อง!");
-        // $_SESSION['error'] = "กรุณากรอกวันจองให้ถูกต้อง!";
-        // echo "alert(\"วันเริ่มเข้าพักต้องน้อยกว่าวันสิ้นสุด !\");";
-        // echo "window.location=\"../usindex.php\"";
-        // echo "</script>";
+        echo "<script>";
+        array_push($errors, "กรุณากรอกวันจองให้ถูกต้อง!");
+        $_SESSION['error'] = "กรุณากรอกวันจองให้ถูกต้อง!";
+        echo "alert(\"วันเริ่มเข้าพักต้องน้อยกว่าวันสิ้นสุด !\");";
+        echo "window.location=\"../usindex.php\"";
+        echo "</script>";
     } elseif ($room_id == 1 and $result) {
-        throw new Exception("สุนัขตัวนี้มีการจองแล้วในช่วงเวลานี้");
-        // echo "<script>";
-        // echo "alert(\"วันซ้ำ!\");";
-        // echo "window.location=\"../usindex.php\"";
-        // echo "</script>";
+        echo "<script>";
+        echo "alert(\"วันซ้ำ!\");";
+        echo "window.location=\"../usindex.php\"";
+        echo "</script>";
     } elseif ($room_id == 1) {
+
         $bookdatecheck2 = "SELECT COUNT(dep_id) AS depcheck1 FROM deposit WHERE room_id = '$room_id' AND(dep_sdate BETWEEN '$dep_sdate' AND '$dep_edate') AND (dep_edate BETWEEN '$dep_sdate' AND '$dep_edate')";
         $query2 = mysqli_query($conn, $bookdatecheck2);
         $result2 = mysqli_fetch_assoc($query2);
@@ -65,37 +65,35 @@ try {
 
         $roomprice1 = $rp1['rp1'];
 
+
+
         if ($result2['depcheck1'] >= $resultroom1['rq1']) {
-            throw new Exception("ห้องพักขนาดเล็กเต็มแล้ว");
-            // echo "<script>";
-            // echo "alert(\"ห้องขนาดเล็กเต็มแล้ว !\");";
-            // echo "window.location=\"../usindex.php\"";
-            // echo "</script>";
+            echo "<script>";
+            echo "alert(\"ห้องขนาดเล็กเต็มแล้ว !\");";
+            echo "window.location=\"../usindex.php\"";
+            echo "</script>";
         } else {
             $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id, dep_deliver, dep_price) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', '$dep_deliver', ($day*$roomprice1)+$dep_deliverp)";
             $query = mysqli_query($conn, $sql);
-
-            // echo "<script>";
-            // echo "alert(\"จองห้องพักสำเร็จ !\");";
-            // echo "window.location=\"../usindex.php\"";
-            // echo "</script>";
+            echo "<script>";
+            echo "alert(\"จองห้องพักสำเร็จ !\");";
+            echo "window.location=\"../usindex.php\"";
+            echo "</script>";
         }
     }
 
     if ($dep_sdate >= $dep_edate) {
-        throw new Exception("โปรดกรอกวันจองให้ถูกต้อง");
-        // echo "<script>";
-        // array_push($errors, "กรุณากรอกวันจองให้ถูกต้อง!");
-        // $_SESSION['error'] = "กรุณากรอกวันจองให้ถูกต้อง!";
-        // echo "alert(\"วันเริ่มเข้าพักต้องน้อยกว่าวันสิ้นสุด !\");";
-        // echo "window.location=\"../usindex.php\"";
-        // echo "</script>";
+        echo "<script>";
+        array_push($errors, "กรุณากรอกวันจองให้ถูกต้อง!");
+        $_SESSION['error'] = "กรุณากรอกวันจองให้ถูกต้อง!";
+        echo "alert(\"วันเริ่มเข้าพักต้องน้อยกว่าวันสิ้นสุด !\");";
+        echo "window.location=\"../usindex.php\"";
+        echo "</script>";
     } elseif ($room_id == 2 and $result) {
-        throw new Exception("สุนัขตัวนี้มีการจองแล้วในช่วงเวลานี้");
-        // echo "<script>";
-        // echo "alert(\"วันซ้ำ!\");";
-        // echo "window.location=\"../usindex.php\"";
-        // echo "</script>";
+        echo "<script>";
+        echo "alert(\"วันซ้ำ!\");";
+        echo "window.location=\"../usindex.php\"";
+        echo "</script>";
     } elseif ($room_id == 2) {
         $bookdatecheck3 = "SELECT COUNT(dep_id) AS depcheck2 FROM deposit WHERE room_id = '$room_id' AND(dep_sdate BETWEEN '$dep_sdate' AND '$dep_edate') AND (dep_edate BETWEEN '$dep_sdate' AND '$dep_edate')";
         $query3 = mysqli_query($conn, $bookdatecheck3);
@@ -112,35 +110,32 @@ try {
         $roomprice2 = $rp2['rp2'];
 
         if ($result3['depcheck2'] >= $resultroom2['rq2']) {
-            throw new Exception("ห้องพักขนาดใหญ่เต็มแล้ว");
-            // echo "<script>";
-            // echo "alert(\"ห้องขนาดใหญ่เต็มแล้ว !\");";
-            // echo "window.location=\"../usindex.php\"";
-            // echo "</script>";
+            echo "<script>";
+            echo "alert(\"ห้องขนาดใหญ่เต็มแล้ว !\");";
+            echo "window.location=\"../usindex.php\"";
+            echo "</script>";
         } else {
             $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id, dep_deliver,dep_price) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', '$dep_deliver', ($day*$roomprice2)+$dep_deliverp)";
             $query = mysqli_query($conn, $sql);
-            // echo "<script>";
-            // echo "alert(\"จองห้องพักสำเร็จ !\");";
-            // echo "window.location=\"../usindex.php\"";
-            // echo "</script>";
+            echo "<script>";
+            echo "alert(\"จองห้องพักสำเร็จ !\");";
+            echo "window.location=\"../usindex.php\"";
+            echo "</script>";
         }
     }
 
     if ($dep_sdate >= $dep_edate) {
-        throw new Exception("โปรดกรอกวันจองให้ถูกต้อง");
-        // echo "<script>";
-        // array_push($errors, "กรุณากรอกวันจองให้ถูกต้อง!");
-        // $_SESSION['error'] = "กรุณากรอกวันจองให้ถูกต้อง!";
-        // echo "alert(\"วันเริ่มเข้าพักต้องน้อยกว่าวันสิ้นสุด !\");";
-        // echo "window.location=\"../usindex.php\"";
-        // echo "</script>";
+        echo "<script>";
+        array_push($errors, "กรุณากรอกวันจองให้ถูกต้อง!");
+        $_SESSION['error'] = "กรุณากรอกวันจองให้ถูกต้อง!";
+        echo "alert(\"วันเริ่มเข้าพักต้องน้อยกว่าวันสิ้นสุด !\");";
+        echo "window.location=\"../usindex.php\"";
+        echo "</script>";
     } elseif ($room_id == 3 and $result) {
-        throw new Exception("สุนัขตัวนี้มีการจองแล้วในช่วงเวลานี้");
-        // echo "<script>";
-        // echo "alert(\"วันซ้ำ!\");";
-        // echo "window.location=\"../usindex.php\"";
-        // echo "</script>";
+        echo "<script>";
+        echo "alert(\"วันซ้ำ!\");";
+        echo "window.location=\"../usindex.php\"";
+        echo "</script>";
     } elseif ($room_id == 3) {
         $bookdatecheck4 = "SELECT COUNT(dep_id) AS depcheck3 FROM deposit WHERE room_id = '$room_id' AND(dep_sdate BETWEEN '$dep_sdate' AND '$dep_edate') AND (dep_edate BETWEEN '$dep_sdate' AND '$dep_edate')";
         $query4 = mysqli_query($conn, $bookdatecheck4);
@@ -158,24 +153,17 @@ try {
 
 
         if ($result4['depcheck3'] >= $resultroom3['rq3']) {
-            throw new Exception("ห้องพักพิเศษเต็มแล้ว");
-            // echo "<script>";
-            // echo "alert(\"ห้องพิเศษเต็มแล้ว !\");";
-            // echo "window.location=\"../usindex.php\"";
-            // echo "</script>";
+            echo "<script>";
+            echo "alert(\"ห้องพิเศษเต็มแล้ว !\");";
+            echo "window.location=\"../usindex.php\"";
+            echo "</script>";
         } else {
             $sql = "INSERT INTO deposit (dep_sdate, dep_edate, dog_id, room_id, dep_deliver, dep_price) VALUES ('$dep_sdate', '$dep_edate', '$dog_id', '$room_id', '$dep_deliver', ($day*$roomprice3)+$dep_deliverp)";
             $query = mysqli_query($conn, $sql);
-            // echo "<script>";
-            // echo "alert(\"จองห้องพักสำเร็จ !\");";
-            // echo "window.location=\"../usindex.php\"";
-            // echo "</script>";
+            echo "<script>";
+            echo "alert(\"จองห้องพักสำเร็จ !\");";
+            echo "window.location=\"../usindex.php\"";
+            echo "</script>";
         }
     }
-
-    $data['success'] = true;
-} catch (Exception $th) {
-    $data['success'] = false;
-    $data['msg'] = $th->getMessage();
 }
-echo json_encode($data);
