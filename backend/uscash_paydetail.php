@@ -23,17 +23,16 @@
                             <div class="col-md-4">
                                 <h4 class="title" style="color: black;">รายละเอียดการจองสปาสุนัข (เงินสด)</h4>
                             </div>
-
-                            <div class="col-md-2 ">
-                                <div class="form-group">
-                                    <label for="">จำนวนเงินที่ได้รับ / บาท</label>
-                                    <input type="text" class="form-control" name="recieved_price" required>
-                                </div>
-                            </div>
                             <div class="col-md-2 ">
                                 <div class="form-group">
                                     <label for="">จำนวนเงินที่ต้องชำระ / บาท</label>
                                     <input type="text" class="form-control" value="<?= $row['us_price'] ?>" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-2 ">
+                                <div class="form-group">
+                                    <label for="">จำนวนเงินที่ได้รับ / บาท</label>
+                                    <input type="text" class="form-control" name="recieved_price" required>
                                 </div>
                             </div>
                             <div class="col-md-2 form-inline" style="padding-top: 28px; padding-right: 20px;">

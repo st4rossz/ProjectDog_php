@@ -62,9 +62,9 @@ include 'layout/header.php';
                                         <div class="card-header form-inline">
                                             <h4>ประวัติการใช้บริการสปาร์</h4>
                                             <?php if (isset($_GET['start'])) { ?>
-                                                <a href="generate_pdf.php?start=<?= $_GET['start'] ?>&end=<?= $_GET['end'] ?>" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
+                                                <a href="generate_pdf.php?action=report_service&start=<?= $_GET['start'] ?>&end=<?= $_GET['end'] ?>>&status=<?= $_GET['status']?>" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
                                             <?php } else { ?>
-                                                <a href="generate_pdf.php" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
+                                                <a href="generate_pdf.php?action=report_service&status=all" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
                                             <?php } ?>
 
                                             <div class="form-group ml-auto">
@@ -84,7 +84,7 @@ include 'layout/header.php';
                                                     <option value="all" <?= $get_status == 'all' ? 'selected' : '' ?>>ทั้งหมด</option>
                                                     <option value="0" <?= $get_status == '0' ? 'selected' : '' ?>>รอชำระเงิน</option>
                                                     <option value="1" <?= $get_status == '1' ? 'selected' : '' ?>>ชำระเงินแล้ว/รอเข้าใช้บริการ</option>
-                                                    <option value="2" <?= $get_status == '2' ? 'selected' : '' ?>>กำลังใช้บริการ</option>
+                                                    <!-- <option value="2" <?= $get_status == '2' ? 'selected' : '' ?>>กำลังใช้บริการ</option> -->
                                                     <option value="3" <?= $get_status == '3' ? 'selected' : '' ?>>สิ้นสุดการให้บริการ</option>
                                                     <!-- <option value="4" <?= $get_status == '4' ? 'selected' : '' ?>>ใช้บริการเสร็จสิ้น</option> -->
                                                 </select>
@@ -127,7 +127,14 @@ include 'layout/header.php';
                                                     <th>วันที่ให้บริการ</th>
                                                     <th>ชื่อบริการ</th>
                                                     <th>ราคารวม</th>
-
+                                                    <?php if (isset($_GET['status'])) { ?>
+                                                        <?php if ($_GET['status'] == "all") { ?>
+                                                            <th>สถานะ</th>
+                                                        <?php } else { ?>
+                                                            
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -138,26 +145,33 @@ include 'layout/header.php';
                                                         <td><?= $result['us_id'] ?></td>
                                                         <td><?= $result['username'] ?></td>
                                                         <td><?= $result['us_date'] ?></td>
-                                                        <td><?= $result['service_name'] ?> </td>
-                                                        <td><?= $result['us_price'] ?> บาท</td>
+                                                        <td><?= $result['service_name'] ?> บาท</td>
+                                                        <td><?= number_format($result['us_price'] , 2) ?> บาท</td>
+                                                        <?php if (isset($_GET['status'])) { ?>
+                                                            <?php if ($_GET['status'] == "all") { ?>
+                                                                <td><?= $result['status_name'] ?></td>
+                                                            <?php } else { ?>
+
+                                                            <?php } ?>
+                                                        <?php } ?>
 
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
 
                                         </table>
-                                        <?php
+                                        <?php 
                                         $sql_report = "SELECT *, sum(us_price) as total FROM use_service $where";
                                         $query_report = mysqli_query($conn, $sql_report);
                                         $report = mysqli_fetch_assoc($query_report);
                                         ?>
                                         <div class="col-md-12">
-                                            <div class="row justify-content-start">
+                                            <div class="row justify-content-end">
                                                 <div class="col-md-2 bg-success py-3">
-                                                    <span class="text-center text-white">ทั้งหมด : <?= mysqli_num_rows($query2) ?></span>
+                                                    <span class="text-center text-white">ทั้งหมด : <?=mysqli_num_rows($query2)?> รายการ</span>
                                                 </div>
                                                 <div class="col-md-2 bg-danger py-3">
-                                                    <span class="text-center text-white">ยอดเงิน : <?= number_format($report['total'], 2) ?></span>
+                                                    <span class="text-center text-white">ยอดเงิน : <?=number_format($report['total'] , 2)?> บาท</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -178,7 +192,7 @@ include 'layout/header.php';
                                                         < </a>
                                                 </li>
                                                 <?php for ($i = 1; $i <= $total_page; $i++) { ?>
-                                                    <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link d-flex" href="report_service.php?page=<?php echo $i; ?><?= $page_parameter ?>"><?php echo $i; ?></a></li>
+                                                    <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link " href="report_service.php?page=<?php echo $i; ?><?= $page_parameter ?>"><?php echo $i; ?></a></li>
                                                 <?php } ?>
                                                 <li class="page-item <?= $page == $total_page ? 'disabled' : '' ?>"><a class="page-link" href="report_service.php?page=<?= $page + 1 ?><?= $page_parameter ?>">></a></li>
                                             </ul>

@@ -62,9 +62,9 @@ include 'layout/header.php';
                                         <div class="card-header form-inline">
                                             <h4>ประวัติการฝากเลี้ยง</h4>
                                             <?php if (isset($_GET['start'])) { ?>
-                                                <a href="generate_pdf.php?start=<?= $_GET['start'] ?>&end=<?= $_GET['end'] ?>" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
+                                                <a href="generate_pdf.php?action=report_deposit&start=<?= $_GET['start'] ?>&end=<?= $_GET['end'] ?>&status=<?= $_GET['status'] ?>" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
                                             <?php } else { ?>
-                                                <a href="generate_pdf.php" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
+                                                <a href="generate_pdf.php?action=report_deposit&status=all" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
                                             <?php } ?>
 
                                             <div class="form-group ml-auto">
@@ -129,6 +129,13 @@ include 'layout/header.php';
                                                     <th>จำนวนวันที่ฝากเลี้ยง</th>
                                                     <th>ราคา/วัน</th>
                                                     <th>ราคารวม</th>
+                                                    <?php if (isset($_GET['status'])) { ?>
+                                                        <?php if ($_GET['status'] == "all") { ?>
+                                                            <th>สถานะ</th>
+                                                        <?php } else { ?>
+
+                                                        <?php } ?>
+                                                    <?php } ?>
 
                                                 </tr>
                                             </thead>
@@ -143,7 +150,14 @@ include 'layout/header.php';
                                                         <td><?= $result['dep_sdate'] ?></td>
                                                         <td><?= $result['dep_day'] ?></td>
                                                         <td><?= $result['room_price'] ?> บาท</td>
-                                                        <td><?= $result['dep_price'] ?> บาท</td>
+                                                        <td><?= number_format($result['dep_price'], 2) ?> บาท</td>
+                                                        <?php if (isset($_GET['status'])) { ?>
+                                                            <?php if ($_GET['status'] == "all") { ?>
+                                                                <td><?= $result['status_name'] ?></td>
+                                                            <?php } else { ?>
+
+                                                            <?php } ?>
+                                                        <?php } ?>
 
                                                     </tr>
                                                 <?php } ?>
@@ -162,12 +176,12 @@ include 'layout/header.php';
                                         $query_get = mysqli_query($conn, $sql_report);
                                         ?>
                                         <div class="col-md-12">
-                                            <div class="row justify-content-start">
+                                            <div class="row justify-content-end">
                                                 <div class="col-md-2 bg-success py-3">
-                                                    <span class="text-center text-white">ทั้งหมด : <?= mysqli_num_rows($query2) ?></span>
+                                                    <span class="text-center text-white">ทั้งหมด : <?= mysqli_num_rows($query2) ?> รายการ</span>
                                                 </div>
                                                 <div class="col-md-2 bg-danger py-3">
-                                                    <span class="text-center text-white">ยอดเงิน : <?= number_format($report['total'], 2) ?></span>
+                                                    <span class="text-center text-white">ยอดเงิน : <?= number_format($report['total'], 2) ?> บาท</span>
                                                 </div>
                                                 <?php if (isset($_GET['status'])) { ?>
                                                     <?php if ($_GET['status'] == "3") { ?>
@@ -201,7 +215,7 @@ include 'layout/header.php';
                                                         < </a>
                                                 </li>
                                                 <?php for ($i = 1; $i <= $total_page; $i++) { ?>
-                                                    <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link d-flex" href="report_deposit.php?page=<?php echo $i; ?><?= $page_parameter ?>"><?php echo $i; ?></a></li>
+                                                    <li class="page-item <?= $i == $page ? 'active' : '' ?>"><a class="page-link d-flex form-inline" href="report_deposit.php?page=<?php echo $i; ?><?= $page_parameter ?>"><?php echo $i; ?></a></li>
                                                 <?php } ?>
                                                 <li class="page-item <?= $page == $total_page ? 'disabled' : '' ?>"><a class="page-link" href="report_deposit.php?page=<?= $page + 1 ?><?= $page_parameter ?>">></a></li>
                                             </ul>

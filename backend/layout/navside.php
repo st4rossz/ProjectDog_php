@@ -6,14 +6,6 @@
     <hr style="border-bottom: 1px solid grey;">
 
     <ul style="overflow-y:auto;">
-
-        <li>
-            <a href="dashboard.php">
-                <i style="font-size: 20px; padding-right: 15px;" class="fa fa-bar-chart"></i>
-                สรุปข้อมูลการให้บริการ
-            </a>
-        </li>
-
         <li>
             <a href="adminindex.php">
                 <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-single-02"></i>
@@ -68,7 +60,7 @@
                 <ul class="serv-show">
                     <li>
                         <a href="us_pay.php">
-                            <p>สปาร์สุนัข</p>
+                            <p>สปาสุนัข</p>
                         </a>
                     </li>
                     <li>
@@ -91,7 +83,7 @@
                 <ul class="serv-show">
                     <li>
                         <a href="uscash_pay.php">
-                            <p>สปาร์สุนัข</p>
+                            <p>สปาสุนัข</p>
                         </a>
                     </li>
                     <li>
@@ -114,7 +106,7 @@
                 <ul class="serv-show">
                     <li>
                         <a href="useservice_confirm.php">
-                            <p>สปาร์สุนัข</p>
+                            <p>สปาสุนัข</p>
                         </a>
                     </li>
                     <li>
@@ -138,7 +130,7 @@
                 <ul class="serv-show">
                     <li>
                         <a href="us_record.php">
-                            <p>สปาร์สุนัข</p>
+                            <p>สปาสุนัข</p>
                         </a>
                     </li>
                     <li>
@@ -161,7 +153,7 @@
                 <ul class="serv-show">
                     <li>
                         <a href="us_atstore.php">
-                            <p>สปาร์สุนัข</p>
+                            <p>สปาสุนัข</p>
                         </a>
                     </li>
                     <li>
@@ -199,6 +191,13 @@
 
 
         <li>
+            <a href="dashboard.php">
+                <i style="font-size: 20px; padding-right: 15px;" class="fa fa-bar-chart"></i>
+                สรุปข้อมูลการให้บริการ
+            </a>
+        </li>
+
+        <li>
             <a data-toggle="collapse" href="#report" aria-expanded="false" aria-controls="colret" class="base-btn">
                 <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-single-copy-04"></i>
                 รายงาน
@@ -208,13 +207,18 @@
 
                 <ul class="serv-show">
                     <li>
-                        <a href="report_service.php">
-                            <p>สปาร์สุนัข</p>
+                        <a href="report_service.php?&status=all">
+                            <p>สปาสุนัข</p>
                         </a>
                     </li>
                     <li>
-                        <a href="report_deposit.php">
+                        <a href="report_deposit.php?&status=all">
                             <p>ฝากเลี้ยง</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="report_dog.php">
+                            <p>สุนัข</p>
                         </a>
                     </li>
                 </ul>
