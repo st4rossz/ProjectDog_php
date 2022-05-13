@@ -45,22 +45,44 @@ switch ($get) {
                 }
                 </style>';
 
-        $html .= '
+        if (isset($_GET['start'])) {
+            $date_start = $_GET['start'];
+            $date_end = $_GET['end'];
+        }
+        if (isset($_GET['status'])) {
+            if ($_GET['status'] == 'all') {
+                $status = "ทั้งหมด";
+            } elseif ($_GET['status'] == '0') {
+                $status = "รอชำระเงิน";
+            } elseif ($_GET['status'] == '1') {
+                $status = "ชำระเงินแล้ว/รอเข้าใช้บริการ";
+            } elseif ($_GET['status'] == '2') {
+                $status = "กำลังใช้บริการ";
+            } else {
+                $status = "สิ้นสุดการให้บริการ";
+            }
+
+
+            $html .=
+                '
             <div style="text-align:center;">
                 <img src="../images/logo.jpg" style="width: 70px;" alt="">
                 <h2 style="font-size: 20px;">ร้าน Good Dog Home</h2>
-                <h2 style="font-size: 20px;">สรุปการออกรายงานฝากเลี้ยง</h2>
-            </div>
-         
+                <h2 style="font-size: 20px;">รายงายฝากเลี้ยงสถานะ : ' . $status . '</h2>
+                <h2 style="font-size: 20px;">  ภายในวันที่ : ' . $date_start .  '  ถึงวันที่  : ' . $date_end . '</h2>
+            </div>';
+        }
+
+        $html .= '
             <table style="width: 100%">
                     <thead>
                     <tr align="center">
                         <th style="width: 5%;">ลำดับ</th>
-                        <th style="width: 10%;">รหัสการเข้าใช้บริการ</th>
+                        <th style="width: 5%;">รหัสการเข้าใช้บริการ</th>
                         <th style="width: 10%;">ชื่อลูกค้า</th>
                         <th style="width: 20%;">วันที่เข้าพัก</th>
                         <th style="width: 20%;">วันที่มารับกลับ</th>
-                        <th style="width: 5%;">จำนวนวัน</th>
+                        <th style="width: 10%;">จำนวนวัน</th>
                         <th style="width: 10%;">ราคา/วัน</th>
                         <th style="width: 10%;">ราคารวม</th>';
         if (isset($_GET['status'])) {
@@ -117,16 +139,20 @@ switch ($get) {
         $html .= '</tbody>
                 </table>';
         $html .= '<p style="text-align: right;"><b>ทั้งหมด</b> ' . number_format($row) . ' รายการ</p>';
-        $html .= '<p style="text-align: right;"><b>รายได้ทั้งหมด</b> ' . number_format($total, 2) . ' บาท</p>';
-        $sql_report = "SELECT * FROM deposit WHERE dep_status = '3' AND dep_deliver = 'ต้องการ'";
+        $html .= '<p style="text-align: right;"><b>เป็นจำนวนเงิน</b> ' . number_format($total, 2) . ' บาท</p>';
+        $sql_report = "SELECT * FROM deposit WHERE dep_status = '3' AND dep_deliver = 'ต้องการ' 
+        AND dep_sdate BETWEEN '$date_start' AND '$date_end' 
+        AND dep_edate BETWEEN '$date_start' AND '$date_end'";
         $query_deposit = mysqli_query($conn, $sql_report);
 
-        $sql_report = "SELECT * FROM deposit WHERE dep_status = '3' AND dep_deliver = 'ลูกค้ามารับสุนัข'";
+        $sql_report = "SELECT * FROM deposit WHERE dep_status = '3' AND dep_deliver = 'ลูกค้ามารับสุนัข'
+        AND dep_sdate BETWEEN '$date_start' AND '$date_end' 
+        AND dep_edate BETWEEN '$date_start' AND '$date_end'";
         $query_get = mysqli_query($conn, $sql_report);
         if (isset($_GET['status'])) {
             if ($_GET['status'] == "3") {
-                $html .= '<p style="text-align: right;"><b>ต้องการให้ร้านส่งคืนสุนัข : </b> ' . mysqli_num_rows($query_deposit) .  ' รายการ</p> ';
-                $html .= '<p style="text-align: right;"><b>ลูกค้ามารับสุนัข : </b> ' . mysqli_num_rows($query_get) . ' รายการ</p> ';
+                $html .= '<p style="text-align: right;"><b>ทางร้านนำสุนัขไปส่ง : </b> ' . mysqli_num_rows($query_deposit) .  ' รายการ</p> ';
+                $html .= '<p style="text-align: right;"><b>ลูกค้ามารับสุนัขเอง : </b> ' . mysqli_num_rows($query_get) . ' รายการ</p> ';
             }
         }
         $html .= ' ';
@@ -179,13 +205,35 @@ switch ($get) {
                 }
                 </style>';
 
-        $html .= '
+
+        if (isset($_GET['start'])) {
+            $date_start = $_GET['start'];
+            $date_end = $_GET['end'];
+        }
+        if (isset($_GET['status'])) {
+            if ($_GET['status'] == 'all') {
+                $status = "ทั้งหมด";
+            } elseif ($_GET['status'] == '0') {
+                $status = "รอชำระเงิน";
+            } elseif ($_GET['status'] == '1') {
+                $status = "ชำระเงินแล้ว/รอเข้าใช้บริการ";
+            } elseif ($_GET['status'] == '2') {
+                $status = "กำลังใช้บริการ";
+            } else {
+                $status = "สิ้นสุดการให้บริการ";
+            }
+
+
+            $html .=
+                '
             <div style="text-align:center;">
                 <img src="../images/logo.jpg" style="width: 70px;" alt="">
                 <h2 style="font-size: 20px;">ร้าน Good Dog Home</h2>
-                <h2 style="font-size: 20px;">สรุปการออกรายงานสปาสุนัข</h2>
-
-            </div>
+                <h2 style="font-size: 20px;">รายงายสปาสถานะ : ' . $status . '</h2>
+                <h2 style="font-size: 20px;">  ภายในวันที่ : ' . $date_start .  '  ถึงวันที่  : ' . $date_end . '</h2>
+            </div>';
+        }
+        $html .= '
             <table style="width: 100%">
                     <thead>
                     <tr align="center">

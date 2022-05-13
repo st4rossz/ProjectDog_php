@@ -6,6 +6,14 @@
     <hr style="border-bottom: 1px solid grey;">
 
     <ul style="overflow-y:auto;">
+
+        <li>
+            <a href="dashboard.php">
+                <i style="font-size: 20px; padding-right: 15px;" class="fa fa-bar-chart"></i>
+                สรุปข้อมูลการให้บริการ
+            </a>
+        </li>
+
         <li>
             <a href="adminindex.php">
                 <i style="font-size: 20px; padding-right: 15px;" class="nc-icon nc-single-02"></i>
@@ -189,13 +197,6 @@
             </div>
         </li>
 
-
-        <li>
-            <a href="dashboard.php">
-                <i style="font-size: 20px; padding-right: 15px;" class="fa fa-bar-chart"></i>
-                สรุปข้อมูลการให้บริการ
-            </a>
-        </li>
 
         <li>
             <a data-toggle="collapse" href="#report" aria-expanded="false" aria-controls="colret" class="base-btn">

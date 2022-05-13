@@ -19,7 +19,7 @@ include 'layout/header.php';
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-12">
-                            <h4 class="title" style="color: black;">รายงานการใช้บริการสปาร์</h4>
+                            <h4 class="title" style="color: black;">รายงานการใช้บริการสปา</h4>
                             <!-- <a href="#" class="btn btn-primary active fixed-center" role="button" aria-pressed="true"><i class="fa fa-print" aria-hidden="true"></i>  พิมพ์รายงาน</a> -->
                         </div>
                         <?php
@@ -60,9 +60,9 @@ include 'layout/header.php';
                                 <div class="card">
                                     <form action="report_service.php" method="get">
                                         <div class="card-header form-inline">
-                                            <h4>ประวัติการใช้บริการสปาร์</h4>
+                                            <h4>ประวัติการใช้บริการสปา</h4>
                                             <?php if (isset($_GET['start'])) { ?>
-                                                <a href="generate_pdf.php?action=report_service&start=<?= $_GET['start'] ?>&end=<?= $_GET['end'] ?>>&status=<?= $_GET['status']?>" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
+                                                <a href="generate_pdf.php?action=report_service&start=<?= $_GET['start'] ?>&end=<?= $_GET['end'] ?>&status=<?= $_GET['status'] ?>" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
                                             <?php } else { ?>
                                                 <a href="generate_pdf.php?action=report_service&status=all" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
                                             <?php } ?>
@@ -131,10 +131,10 @@ include 'layout/header.php';
                                                         <?php if ($_GET['status'] == "all") { ?>
                                                             <th>สถานะ</th>
                                                         <?php } else { ?>
-                                                            
+
                                                         <?php } ?>
                                                     <?php } ?>
-                                                    
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -146,7 +146,7 @@ include 'layout/header.php';
                                                         <td><?= $result['username'] ?></td>
                                                         <td><?= $result['us_date'] ?></td>
                                                         <td><?= $result['service_name'] ?> บาท</td>
-                                                        <td><?= number_format($result['us_price'] , 2) ?> บาท</td>
+                                                        <td><?= number_format($result['us_price'], 2) ?> บาท</td>
                                                         <?php if (isset($_GET['status'])) { ?>
                                                             <?php if ($_GET['status'] == "all") { ?>
                                                                 <td><?= $result['status_name'] ?></td>
@@ -160,7 +160,7 @@ include 'layout/header.php';
                                             </tbody>
 
                                         </table>
-                                        <?php 
+                                        <?php
                                         $sql_report = "SELECT *, sum(us_price) as total FROM use_service $where";
                                         $query_report = mysqli_query($conn, $sql_report);
                                         $report = mysqli_fetch_assoc($query_report);
@@ -168,10 +168,10 @@ include 'layout/header.php';
                                         <div class="col-md-12">
                                             <div class="row justify-content-end">
                                                 <div class="col-md-2 bg-success py-3">
-                                                    <span class="text-center text-white">ทั้งหมด : <?=mysqli_num_rows($query2)?> รายการ</span>
+                                                    <span class="text-center text-white">ทั้งหมด : <?= mysqli_num_rows($query2) ?> รายการ</span>
                                                 </div>
                                                 <div class="col-md-2 bg-danger py-3">
-                                                    <span class="text-center text-white">ยอดเงิน : <?=number_format($report['total'] , 2)?> บาท</span>
+                                                    <span class="text-center text-white">ยอดเงิน : <?= number_format($report['total'], 2) ?> บาท</span>
                                                 </div>
                                             </div>
                                         </div>

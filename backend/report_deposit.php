@@ -169,10 +169,10 @@ include 'layout/header.php';
                                         $query_report = mysqli_query($conn, $sql_report);
                                         $report = mysqli_fetch_assoc($query_report);
 
-                                        $sql_report = "SELECT * FROM deposit WHERE dep_status = '3' AND dep_deliver = 'ต้องการ'";
+                                        $sql_report = "SELECT * FROM deposit $where AND dep_deliver = 'ต้องการ'";
                                         $query_deposit = mysqli_query($conn, $sql_report);
 
-                                        $sql_report = "SELECT * FROM deposit WHERE dep_status = '3' AND dep_deliver = 'ลูกค้ามารับสุนัข'";
+                                        $sql_report = "SELECT * FROM deposit $where AND dep_deliver = 'ลูกค้ามารับสุนัข'";
                                         $query_get = mysqli_query($conn, $sql_report);
                                         ?>
                                         <div class="col-md-12">
@@ -186,10 +186,10 @@ include 'layout/header.php';
                                                 <?php if (isset($_GET['status'])) { ?>
                                                     <?php if ($_GET['status'] == "3") { ?>
                                                         <div class="col-md-2 bg-info py-3">
-                                                            <span class="text-center text-white">ต้องการให้ร้านส่งคืนสุนัข : <?= mysqli_num_rows($query_deposit) ?></span>
+                                                            <span class="text-center text-white">ทางร้านนำสุนัขไปส่ง : <?= mysqli_num_rows($query_deposit) ?> รายการ</span>
                                                         </div>
                                                         <div class="col-md-2 bg-info py-3">
-                                                            <span class="text-center text-white">ลูกค้ามารับสุนัข : <?= mysqli_num_rows($query_get) ?></span>
+                                                            <span class="text-center text-white">ลูกค้ามารับสุนัข : <?= mysqli_num_rows($query_get) ?> รายการ</span>
                                                         </div>
                                                     <?php } else { ?>
 

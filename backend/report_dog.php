@@ -124,7 +124,7 @@ include 'layout/header.php';
                                         <div class="col-md-12">
                                             <div class="row justify-content-end">
                                                 <div class="col-md-2 bg-success py-3">
-                                                    <span class="text-center text-white">จำนวนสุนัขทั้งหมด : <?= mysqli_num_rows($query2) ?></span>
+                                                    <span class="text-center text-white">จำนวนสุนัขทั้งหมด : <?= mysqli_num_rows($query2) ?> รายการ</span>
                                                 </div>
                                                 <!-- <div class="col-md-2 bg-danger py-3">
                                                     <span class="text-center text-white">ยอดเงิน : <?= number_format($report['total'], 2) ?></span>
