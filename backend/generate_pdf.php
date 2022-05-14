@@ -68,8 +68,15 @@ switch ($get) {
             <div style="text-align:center;">
                 <img src="../images/logo.jpg" style="width: 70px;" alt="">
                 <h2 style="font-size: 20px;">ร้าน Good Dog Home</h2>
-                <h2 style="font-size: 20px;">รายงายฝากเลี้ยงสถานะ : ' . $status . '</h2>
-                <h2 style="font-size: 20px;">  ภายในวันที่ : ' . $date_start .  '  ถึงวันที่  : ' . $date_end . '</h2>
+                <h2 style="font-size: 20px;">รายงายฝากเลี้ยงสถานะ : ' . $status . '</h2> ';
+                if (isset($_GET['start'])) {
+                    $date_start = $_GET['start'];
+                    $date_end = $_GET['end'];
+                    if($_GET['start']){
+                        $html .= '<h2 style="font-size: 20px;">  ภายในวันที่ : ' . $date_start .  '  ถึงวันที่  : ' . $date_end . '</h2> ';
+                    }
+                }
+                $html .= '
             </div>';
         }
 
@@ -78,7 +85,7 @@ switch ($get) {
                     <thead>
                     <tr align="center">
                         <th style="width: 5%;">ลำดับ</th>
-                        <th style="width: 5%;">รหัสการเข้าใช้บริการ</th>
+                        <th style="width: 4%;">รหัสการเข้าใช้บริการ</th>
                         <th style="width: 10%;">ชื่อลูกค้า</th>
                         <th style="width: 20%;">วันที่เข้าพัก</th>
                         <th style="width: 20%;">วันที่มารับกลับ</th>
@@ -143,7 +150,7 @@ switch ($get) {
         $sql_report = "SELECT * FROM deposit WHERE $where AND dep_deliver = 'ต้องการ' ";
         $query_deposit = mysqli_query($conn, $sql_report);
 
-        $sql_report = "SELECT * FROM deposit WHERE WHERE $where AND dep_deliver = 'ลูกค้ามารับสุนัข' ";
+        $sql_report = "SELECT * FROM deposit WHERE $where AND dep_deliver = 'ลูกค้ามารับสุนัข' ";
         $query_get = mysqli_query($conn, $sql_report);
         if (isset($_GET['status'])) {
             if ($_GET['status'] == "3") {
@@ -225,8 +232,15 @@ switch ($get) {
             <div style="text-align:center;">
                 <img src="../images/logo.jpg" style="width: 70px;" alt="">
                 <h2 style="font-size: 20px;">ร้าน Good Dog Home</h2>
-                <h2 style="font-size: 20px;">รายงายสปาสถานะ : ' . $status . '</h2>
-                <h2 style="font-size: 20px;">  ภายในวันที่ : ' . $date_start .  '  ถึงวันที่  : ' . $date_end . '</h2>
+                <h2 style="font-size: 20px;">รายงายสปาสถานะ : ' . $status . '</h2>';
+                if (isset($_GET['start'])) {
+                    $date_start = $_GET['start'];
+                    $date_end = $_GET['end'];
+                    if($_GET['start']){
+                        $html .= '<h2 style="font-size: 20px;">  ภายในวันที่ : ' . $date_start .  '  ถึงวันที่  : ' . $date_end . '</h2> ';
+                    }
+                }
+                $html .= '
             </div>';
         }
         $html .= '
