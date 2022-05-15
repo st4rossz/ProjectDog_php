@@ -27,9 +27,8 @@ include 'layout/header.php';
               $sql = "SELECT * FROM service WHERE service_id ='$service_id' ";
               $query = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_assoc($query)) {
-
-                ?>
-                <form method="POST" action="../api/service/editservicedb.php">
+              ?>
+                <form id="editService">
                   <input type="hidden" name="service_id" value="<?= $row['service_id']; ?>" id="inputserviceid">
                   <div class="col-md-12">
                     <label for="inputservicename" class="form-label">ชื่อบริการ</label>
@@ -44,9 +43,31 @@ include 'layout/header.php';
                   </div>
                 </form>
               <?php } ?>
-              <?php
-              include 'layout/footer.php';
-              ?>
+              <?php include 'layout/footer.php'; ?>
+              <script>
+                $("#editService").submit(function(e) {
+                  e.preventDefault()
+                  var formData = new FormData(this)
+                  jQuery.ajax({
+                    url: "../api/service/editservicedb.php",
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                      var output = jQuery.parseJSON(data);
+                      if (output.success) {
+                        swal("แก้ไขข้อมูลบริการสำเร็จ", " ", "success").then(function() {
+                          window.location = "base_service.php"
+                        })
+                      } else {
+                        swal(" " + output.msg, " ", "error")
+                      }
+                    }
+                  })
+                })
+              </script>
+
 </body>
 
 </html>

@@ -28,8 +28,8 @@ include 'layout/header.php';
               $query = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_assoc($query)) {
 
-                ?>
-                <form method="POST" action="../api/store/editstoredb.php" enctype="multipart/form-data">
+              ?>
+                <form id="editStore">
                   <input type="hidden" name="store_id" value="<?= $row['store_id']; ?>" id="inputstoreid">
                   <div class="col-md-12">
                     <label for="inputstorename" class="form-label">ชื่อร้าน :</label>
@@ -59,6 +59,29 @@ include 'layout/header.php';
               <?php
               include 'layout/footer.php';
               ?>
+              <script>
+                $("#editStore").submit(function(e) {
+                  e.preventDefault()
+                  var formData = new FormData(this)
+                  jQuery.ajax({
+                    url: "../api/store/editstoredb.php",
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                      var output = jQuery.parseJSON(data);
+                      if (output.success) {
+                        swal("แก้ไขข้อมูลร้านสำเร็จ", " ", "success").then(function() {
+                          window.location = "base_store.php"
+                        })
+                      } else {
+                        swal(" " + output.msg, " ", "error")
+                      }
+                    }
+                  })
+                })
+              </script>
 </body>
 
 </html>

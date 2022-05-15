@@ -17,64 +17,94 @@ include 'layout/header.php';
       <!-- Content -->
       <div class="content">
         <div class="row">
-        <div class="col-md-12">
-            <div class="col-12" >
+          <div class="col-md-12">
+            <div class="col-12">
               <h4 class="title" style="color: black;">ข้อมูลบริการ</h4>
             </div>
             <hr>
-          <div class="col-md-12">
-            <div class="card">
-              <!-- <div class="header"> -->
-              <!-- <h4 class="title">ข้อมูลบริการ</h4> -->
-              <!-- <p class="category">Here is a subtitle for this table</p> -->
-              <!-- </div> -->
-              <!-- ปุ่มเพิ่มร้าน -->
-              <!-- <div class="d-flex">
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addservice" data-whatever="@mdo">เพิ่มข้อมูลบริการ</button>
-              </div> -->
-              <!-- <p class="category">Here is a subtitle for this table</p> -->
-              <!-- </div> -->
-              <div class="content table-full-width">
-                <table class="table table-striped table-bordered">
-                  <thead>
-                    <tr align="center">
-                      <th>รหัส</th>
-                      <th>ชื่อประเภทบริการ</th>
-                      <th>อัตราบริการ(บาท)</th>
-                      <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addservice" data-whatever="@mdo">เพิ่มข้อมูลบริการ</button></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $sql = "SELECT * FROM service ";
-                    $query = mysqli_query($conn, $sql);
-                    while ($row = mysqli_fetch_assoc($query)) {
-                      ?>
+            <div class="col-md-12">
+              <div class="card">
+                <div class="content table-full-width">
+                  <table class="table table-striped table-bordered">
+                    <thead>
                       <tr align="center">
-                        <th scope="row"> <?= $row["service_id"] ?> </th>
-                        <td><?= $row["service_name"] ?></td>
-                        <td><?= $row["service_price"] ?></td>
-                        <td>
-                          <a class="btn btn-warning" href="editservice.php?service_id=<?= $row["service_id"] ?>">แก้ไข</a>
-                          <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editstore" data-whatever="@mdo">แก้ไข</button> -->
-                          <a href="../api/service/delservice.php?service_id=<?= $row['service_id'] ?>" onclick="javascript:return confirm('คุณต้องการลบข้อมูลใช่หรือไม่');" class="btn btn-danger">ลบ</a>
-                        </td>
-                        <?php
-                          ?>
+                        <th>รหัส</th>
+                        <th>ชื่อประเภทบริการ</th>
+                        <th>อัตราบริการ(บาท)</th>
+                        <th><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addservice" data-whatever="@mdo">เพิ่มข้อมูลบริการ</button></th>
                       </tr>
-                    <?php } ?>
-                  </tbody>
-                </table>
-
+                    </thead>
+                    <tbody>
+                      <?php
+                      $sql = "SELECT * FROM service ";
+                      $query = mysqli_query($conn, $sql);
+                      while ($row = mysqli_fetch_assoc($query)) {
+                      ?>
+                        <tr align="center">
+                          <th scope="row"> <?= $row["service_id"] ?> </th>
+                          <td><?= $row["service_name"] ?></td>
+                          <td><?= $row["service_price"] ?></td>
+                          <td>
+                            <a class="btn btn-warning" href="editservice.php?service_id=<?= $row["service_id"] ?>">แก้ไข</a>
+                            <a onclick="deleteService(<?= $row['service_id'] ?>)" class="btn btn-danger text-white">ลบ</a>
+                          </td>
+                          <?php
+                          ?>
+                        </tr>
+                      <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+          <?php include 'layout/footer.php'; ?>
+          <script>
+            $("#addService").submit(function(e) {
+              e.preventDefault()
+              var formData = new FormData(this)
+              jQuery.ajax({
+                url: "../api/service/addservice.php",
+                method: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                  var output = jQuery.parseJSON(data);
+                  if (output.success) {
+                    swal("เพิ่มข้อมูลบริการสำเร็จ", " ", "success").then(function() {
+                      location.reload()
+                    })
+                  } else {
+                    swal(" " + output.msg, " ", "error")
+                  }
+                }
+              })
+            })
 
-
-        <?php
-        include 'layout/footer.php';
-        ?>
+            function deleteService(id) {
+              swal({
+                  title: "แจ้งเตือน",
+                  text: "ลบแล้วกู้คืนไม่ได้",
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                    $.post('../api/service/delservice.php', {
+                      id: id
+                    }, function(data) {
+                      if (data.success) {
+                        swal("แจ้งเตือน", "ลบบริการนี้สำเร็จ", "success").then(function() {
+                          location.reload()
+                        })
+                      }
+                    }, 'json')
+                  }
+                });
+            }
+          </script>
 </body>
 
 </html>

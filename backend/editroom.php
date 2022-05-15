@@ -28,8 +28,8 @@ include 'layout/header.php';
               $query = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_assoc($query)) {
 
-                ?>
-                <form method="POST" action="../api/room/editroomdb.php">
+              ?>
+                <form id="editRoom">
                   <input type="hidden" name="room_id" value="<?= $row['room_id']; ?>" id="inputroomid">
                   <div class="col-md-12">
                     <label for="inputroomname" class="form-label">ประเภทห้องพัก</label>
@@ -41,13 +41,13 @@ include 'layout/header.php';
                       <option value="<?= $row['room_quantity']; ?>"><?= $row['room_quantity']; ?></option>
                       <?php
 
-                        for ($i = 1; $i <= 100; $i++) {
-                          ?>
+                      for ($i = 1; $i <= 100; $i++) {
+                      ?>
 
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                       <?php
-                        }
-                        ?>
+                      }
+                      ?>
                     </select>
                   </div>
                   <div class="col-md-12">
@@ -59,9 +59,30 @@ include 'layout/header.php';
                   </div>
                 </form>
               <?php } ?>
-              <?php
-              include 'layout/footer.php';
-              ?>
+              <?php include 'layout/footer.php'; ?>
+              <script>
+                $("#editRoom").submit(function(e) {
+                  e.preventDefault()
+                  var formData = new FormData(this)
+                  jQuery.ajax({
+                    url: "../api/room/editroomdb.php",
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                      var output = jQuery.parseJSON(data);
+                      if (output.success) {
+                        swal("แก้ไขข้อมูลห้องพักสำเร็จ", " ", "success").then(function() {
+                          window.location = "base_room.php"
+                        })
+                      } else {
+                        swal(" " + output.msg, " ", "error")
+                      }
+                    }
+                  })
+                })
+              </script>
 </body>
 
 </html>

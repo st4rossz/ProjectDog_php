@@ -251,7 +251,7 @@ $user_id = $_SESSION['user_id'];
                             <div class="modal fade" id="depor_del<?php echo $row["dep_id"] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                        <form method="post" action="api/cancel/dep_cancel.php">
+                                        <form id="deleteDeposit">
                                             <input type="hidden" name="dep_id" value="<?= $row['dep_id']; ?>">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">โปรดยืนยัน</h5>
@@ -268,7 +268,7 @@ $user_id = $_SESSION['user_id'];
                                             </div>
 
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-success btn-lg">ยืนยัน</button>
+                                                <button type="submit" class="btn btn-dark btn-lg">ยืนยัน</button>
                                                 <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">ปิด</button>
                                             </div>
                                         </form>
@@ -281,14 +281,22 @@ $user_id = $_SESSION['user_id'];
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
     <?php include('userlayout/footer.php') ?>
+    <script>
+        $("#deleteDeposit").submit(function(e) {
+            e.preventDefault()
+            var formData = $(this).serialize()
+            $.post('api/cancel/dep_cancel.php', formData, function(data) {
+                if (data.success) {
+                    swal("ยกเลิกการจองสำเร็จ", " ", "success").then(function() {
+                        window.location = "userdepositorder.php";
+                    })
+                } else {
+                    swal(" " + data.msg, " ", "error")
+                }
+            }, 'json')
+        })
+    </script>
 </body>
 
 </html>

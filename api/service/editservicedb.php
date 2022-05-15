@@ -1,18 +1,17 @@
-<?php 
+<?php
 include '../server.php';
-$service_id = $_POST['service_id'];
-$service_name = $_POST['service_name'];
-$service_price = $_POST['service_price'];
+try {
 
-$sql = "UPDATE service SET service_name = '$service_name', service_price = '$service_price' WHERE service_id = '$service_id'";
-$query = mysqli_query($conn,$sql);
+    $service_id = $_POST['service_id'];
+    $service_name = $_POST['service_name'];
+    $service_price = $_POST['service_price'];
 
-if($query){
-    echo "<script>";
-    echo "alert(\"แก้ไขข้อมูลบริการสำเร็จ!\");";
-    echo "window.location=\"../../backend/base_service.php\"";
-    echo "</script>";
+    $sql = "UPDATE service SET service_name = '$service_name', service_price = '$service_price' WHERE service_id = '$service_id'";
+    $query = mysqli_query($conn, $sql);
+
+    $data['success'] = true;
+} catch (Exception $th) {
+    $data['success'] = false;
+    $data['msg'] = $th->getMessage();
 }
-?>
-
-
+echo json_encode($data);

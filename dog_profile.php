@@ -13,7 +13,8 @@ if ($_SESSION['status'] == 0) {
     echo "</script>";
 } elseif ($_SESSION['status'] == 2) {
     header('location: backend/adminindex.php');
-} else { }
+} else {
+}
 
 // if (isset($_SESSION['user_id'])){
 //     echo "<script>";
@@ -61,7 +62,7 @@ $user_id = $_SESSION['user_id'];
                         $sql = "SELECT * FROM dog WHERE user_id = '$user_id' ORDER BY dog_id desc";
                         $query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
                         while ($row = mysqli_fetch_assoc($query)) {
-                            ?>
+                        ?>
                             <tr class="table-light">
                                 <th scope="row"> <?= $row["dog_name"] ?> </th>
                                 <td><?= $row["dog_type"] ?></td>
@@ -69,9 +70,10 @@ $user_id = $_SESSION['user_id'];
                                 <td><?= $row["dog_age"] ?></td>
                                 <td><?= $row["dog_sickness"]; ?></td>
                                 <td>
-                                    <button type="button" class="btn btn-success " data-toggle="modal" data-target="#adddog_img<?php echo $row['dog_id'] ?>" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button></td>
+                                    <button type="button" class="btn btn-success " data-toggle="modal" data-target="#adddog_img<?php echo $row['dog_id'] ?>" data-whatever="@mdo" style="margin-left: 3%;"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></button>
+                                </td>
                                 <?php
-                                    ?>
+                                ?>
                             </tr>
                             <!-- หน้า Order การจองฝากเลี้ยง (Deposit) -->
                             <div class="modal fade" id="showdep_detail<?php echo $row["dep_id"] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,19 +97,19 @@ $user_id = $_SESSION['user_id'];
                                                 </div>
                                                 <div class="col-md-12">
                                                     <?php
-                                                        if (!empty($row['dep_basis'])) {
-                                                            echo '<div class="row"';
-                                                            echo '<div class="col-md-12">';
-                                                            echo '<label for="inputdogsickness" style="color: #16a085;" class="form-label"><i class="fa fa-check-circle-o fa-lg" aria-hidden="true" ></i> หลักฐานการชำระเงิน</label>';
-                                                            echo '<div class="col-md-12">';
-                                                            echo '<img style="width: 100%; height: 100%;" src="api/pay/uploads/' . $row["dep_basis"] . '">';
-                                                            echo '</div>';
-                                                            echo '</div>';
-                                                        } else {
-                                                            echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีหลักฐานการชำระเงิน</p>';
-                                                        }
+                                                    if (!empty($row['dep_basis'])) {
+                                                        echo '<div class="row"';
+                                                        echo '<div class="col-md-12">';
+                                                        echo '<label for="inputdogsickness" style="color: #16a085;" class="form-label"><i class="fa fa-check-circle-o fa-lg" aria-hidden="true" ></i> หลักฐานการชำระเงิน</label>';
+                                                        echo '<div class="col-md-12">';
+                                                        echo '<img style="width: 100%; height: 100%;" src="api/pay/uploads/' . $row["dep_basis"] . '">';
+                                                        echo '</div>';
+                                                        echo '</div>';
+                                                    } else {
+                                                        echo '<p style="color: red;"><i style="margin-right: 1%;" class="fa fa-times-circle-o fa-lg" aria-hidden="true" ></i>ยังไม่มีหลักฐานการชำระเงิน</p>';
+                                                    }
 
-                                                        ?>
+                                                    ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -151,7 +153,7 @@ $user_id = $_SESSION['user_id'];
                             <div class="modal fade" id="adddog_img<?php echo $row["dog_id"] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                        <form method="post" action="api/dog/editdogimg.php" enctype="multipart/form-data">
+                                        <form id="editDogImage">
                                             <input type="hidden" name="dog_id" value="<?= $row['dog_id']; ?>">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">รูปภาพสุนัขของท่าน</h5>
@@ -162,17 +164,17 @@ $user_id = $_SESSION['user_id'];
                                             <div class="modal-body">
                                                 <div class="row justify-content-center">
                                                     <?php
-                                                        if (!empty($row['image'])) {
-                                                            echo '<div class="col-md-12">';
-                                                            echo '<img style="width: 450px; height: 450px;" src="api/dog/uploads/' . $row["image"] . '" alt="">';
-                                                            echo '</div>';
-                                                        } else {
-                                                            echo '<div class="col-md-12">';
-                                                            echo '<h5 style="color: red; margin-top: 3%; margin-left: 2%;">"ท่านยังไม่ได้เพิ่มรูปสุนัข"</h5>';
-                                                            echo '<div class="col-md-6">';
-                                                            echo '</div>';
-                                                        }
-                                                        ?>
+                                                    if (!empty($row['image'])) {
+                                                        echo '<div class="col-md-12">';
+                                                        echo '<img style="width: 450px; height: 450px;" src="api/dog/uploads/' . $row["image"] . '" alt="">';
+                                                        echo '</div>';
+                                                    } else {
+                                                        echo '<div class="col-md-12">';
+                                                        echo '<h5 style="color: red; margin-top: 3%; margin-left: 2%;">"ท่านยังไม่ได้เพิ่มรูปสุนัข"</h5>';
+                                                        echo '<div class="col-md-6">';
+                                                        echo '</div>';
+                                                    }
+                                                    ?>
 
                                                 </div>
                                                 <div class="col-md-12">
@@ -201,14 +203,30 @@ $user_id = $_SESSION['user_id'];
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
     <?php include('userlayout/footer.php') ?>
+    <script>
+        $("#editDogImage").submit(function(e) {
+            e.preventDefault()
+            var formData = new FormData(this)
+            jQuery.ajax({
+                url: "api/dog/editdogimg.php",
+                method: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    var output = jQuery.parseJSON(data);
+                    if (output.success) {
+                        swal("เพิ่มรูปภาพสุนัขของท่านสำเร็จ", " ", "success").then(function() {
+                            location.reload()
+                        })
+                    } else {
+                        swal(" " + output.msg, " ", "error")
+                    }
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>

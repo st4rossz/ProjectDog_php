@@ -51,7 +51,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="../api/service/addservice.php">
+        <form id="addService">
           <div class="form-group">
             <label for="" class="col-form-label">ชื่อบริการ : </label>
             <input type="text" class="form-control" name="service_name" id="inputservice_name" placeholder="กรอกบริการที่ต้องการเพิ่ม" required>
@@ -84,7 +84,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="../api/room/addroom.php">
+        <form id="addRoom">
           <div class="form-group">
             <label for="" class="col-form-label">ประเภทห้องพัก : </label>
             <input type="text" class="form-control" name="room_type" id="inputroom_type" placeholder="กรอกประเภทห้องที่ต้องการเพิ่ม" required>
@@ -104,7 +104,6 @@
               }
               ?>
             </select>
-            <!-- <input type="text" class="form-control" name="room_quantity" id="inputroom_quantity" placeholder="จำนวนห้อง" required> -->
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">ราคาห้อง : </label>
@@ -152,7 +151,6 @@
               }
               ?>
             </select>
-            <!-- <input type="text" class="form-control" name="dog_type" id="inputdog_type" placeholder="พันธุ์สุนัข" required> -->
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">น้ำหนักสุนัข (กิโลกรัม) : </label>
@@ -168,7 +166,6 @@
               }
               ?>
             </select>
-            <!-- <input type="text" class="form-control" name="dog_weight" id="inputdog_weight" placeholder="น้ำหนักสุนัข" required> -->
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">อายุสุนัข (ปี) : </label>
@@ -184,7 +181,6 @@
               }
               ?>
             </select>
-            <!-- <input type="text" class="form-control" name="dog_age" id="inputdog_age" placeholder="น้ำหนักสุนัข" required> -->
           </div>
           <div class="form-group">
             <label for="" class="col-form-label">โรคประจำตัว,อาหารที่แพ้ (หากมี) : </label>
@@ -202,89 +198,8 @@
   </div>
 </div>
 
-<!-- EDIT STORE MODAL -->
-<!-- <?php
-      $sql = "SELECT * FROM store ";
-      $query = mysqli_query($conn, $sql);
-      while ($row = mysqli_fetch_assoc($query)) {
-      ?>
-                      <div class="modal fade" id="editstore" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">แก้ไขข้อมูล</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <form method="post" action="../api/store/editstore.php">
-                                <div class="form-group">
-                                  <label for="" class="col-form-label">ชื่อ : </label>
-                                  <input type="text" value="<?php echo $row['store_name']; ?>" class="form-control" name="store_name" id="editstore_name">
-                                </div>
-                                <div class="form-group">
-                                  <label for="" class="col-form-label">ที่อยู่ : </label>
-                                  <textarea class="form-control" value="<?= $row["store_add"] ?>" name="store_add" id="editstore_add"></textarea>
-                                </div>
-                              
-                            </div>
-                            <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary btn-lg">บักทึก</button>
-                            </div>
-                            </form>
-                            <?php } ?>
-                          </div>
-                        </div>
-                      </div> -->
-
-
-<!-- USER DETAIL -->
-<!-- <div class="modal fade" id="userdetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">โปรดกรอกข้อมูลสุนัข</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <?php
-      $sql = "SELECT * FROM user WHERE user_id ='$user_id'";
-      $query = mysqli_query($conn, $sql);
-      while ($row = mysqli_fetch_assoc($query)) {
-      ?>
-        <div class="modal-body">
-          <form method="POST" action="../api/dog/editdogdb.php">
-            <label for="userid_detail" class="form-label">รหัสผู้ใช้ :</label>
-            <input name="user_id" value="<?= $row['user_id']; ?>" type="text" class="form-control" disabled>
-            <div class="form-group">
-              <label for="username_detail" class="form-label">ชื่อผู้ใช้ :</label>
-              <input name="username" value="<?= $row['username']; ?>" type="text" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="useremail_detail" class="form-label">อีเมล์ผู้ใช้ :</label>
-              <input name="email" value="<?= $row['email']; ?>" type="text" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <label for="userstatus_detail" class="form-label">สถานะผู้ใช้ :</label>
-              <input name="status" value="<?= $row['status']; ?>" type="text" class="form-control" disabled>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-success">ยืนยันสิทธิ์</button>
-            </div>
-          <?php } ?>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">ปิด</button>
-          <button type="submit" class="btn btn-primary btn-lg">เพิ่ม</button>
-        </div>
-        </form>
-    </div>
-  </div>
-</div> -->
-
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!--   Core JS Files   -->
 <script src="assets/js/core/jquery.min.js"></script>
 <script src="assets/js/core/popper.min.js"></script>

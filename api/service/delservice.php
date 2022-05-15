@@ -1,13 +1,14 @@
 <?php
- include '../server.php';
+include '../server.php';
+try {
+    $service_id = $_POST['id'];
+    $sql = "DELETE FROM service WHERE service_id='$service_id'";
+    $query = mysqli_query($conn, $sql);
 
- $service_id = $_REQUEST["service_id"];
- $sql = "DELETE FROM service WHERE service_id='$service_id'" ;
- $query = mysqli_query($conn,$sql) ;
 
- echo "<script>";
- echo "alert(\"ลบข้อมูลเสร็จสิ้น!\");";
- echo "window.location=\"../../backend/base_service.php\"";
- echo "</script>";
-
-?> 
+    $data['success'] = true;
+} catch (Exception $th) {
+    $data['success'] = false;
+    $data['msg'] = $th->getMessage();
+}
+echo json_encode($data);

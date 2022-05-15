@@ -33,7 +33,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="api/dog/uadddog.php" enctype="multipart/form-data">
+        <form id="addDog">
           <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>" id="">
           <div class="form-group">
             <label for="" class="col-form-label">ชื่อสุนัข : </label>
@@ -72,10 +72,9 @@
           <div class="form-group">
             <label for="" class="col-form-label">อายุสุนัข (ปี) : </label>
             <select name="dog_age" class="form-control" id="" required>
-              <option value="0">0</option>
+              <option value="0">ไม่ระบุอายุ</option>
               <?php
-
-              for ($i = $abc; $i <= 50; $i++) {
+              for ($i = 1; $i <= 50; $i++) {
               ?>
                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
               <?php
@@ -94,9 +93,6 @@
               <input type="file" name="image" id="inputdogimage" class="form-control">
             </div>
           </div>
-
-
-
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-lg">เพิ่มสุนัข</button>
@@ -535,6 +531,28 @@
       }
     }, 'json');
   }
+
+  $("#addDog").submit(function(e) {
+    e.preventDefault()
+    var formData = new FormData(this)
+    jQuery.ajax({
+      url: "api/dog/uadddog.php",
+      method: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(data) {
+        var output = jQuery.parseJSON(data);
+        if (output.success) {
+          swal("เพิ่มข้อมูลสุนัขสำเร็จ", " ", "success").then(function() {
+            location.reload()
+          })
+        } else {
+          swal(" " + output.msg, " ", "error")
+        }
+      }
+    })
+  })
 
   function dogUpdate(dog_id) {
     console.log(dog_id)

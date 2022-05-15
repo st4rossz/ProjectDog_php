@@ -241,7 +241,7 @@ $user_id = $_SESSION['user_id'];
                             <div class="modal fade" id="usor_del<?php echo $row["us_id"] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                        <form method="post" action="api/cancel/us_cancel.php">
+                                        <form id="deleteUs">
                                             <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">โปรดยืนยัน</h5>
@@ -271,14 +271,22 @@ $user_id = $_SESSION['user_id'];
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
     <?php include('userlayout/footer.php') ?>
+    <script>
+        $("#deleteUs").submit(function(e) {
+            e.preventDefault()
+            var formData = $(this).serialize()
+            $.post('api/cancel/us_cancel.php', formData, function(data) {
+                if (data.success) {
+                    swal("ยกเลิกการจองสำเร็จ", " ", "success").then(function() {
+                        window.location = "userserviceorder.php";
+                    })
+                } else {
+                    swal(" " + data.msg, " ", "error")
+                }
+            }, 'json')
+        })
+    </script>
 </body>
 
 </html>
