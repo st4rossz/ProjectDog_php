@@ -64,7 +64,7 @@ include 'layout/header.php';
                                             <?php if (isset($_GET['start'])) { ?>
                                                 <a href="generate_pdf.php?action=report_deposit&start=<?= $_GET['start'] ?>&end=<?= $_GET['end'] ?>&status=<?= $_GET['status'] ?>" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
                                             <?php } else { ?>
-                                                <a href="generate_pdf.php?action=report_deposit&status=all" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงานทั้งหมด</a>
+                                                <a href="generate_pdf.php?action=report_deposit&status=<?= $_GET['status'] ?>" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงานทั้งหมด</a>
                                             <?php } ?>
 
                                             <div class="form-group ml-auto">
