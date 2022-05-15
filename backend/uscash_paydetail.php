@@ -150,7 +150,7 @@
                             window.location = "uscash_pay.php";
                         })
                     } else {
-                        swal("แจ้งเตือน", "ไม่สำเร็จ!", "error")
+                        swal("แจ้งเตือน", " " + data.msg, "error")
                     }
                 }, 'json')
             })
