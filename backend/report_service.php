@@ -72,7 +72,7 @@ include 'layout/header.php';
                                                 <input type="date" class="form-control" name="start" value="<?= isset($_GET['start']) ? $_GET['start'] : '' ?>" id="dep_sdateid" placeholder="วันที่เริ่มเข้าพัก" required>
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group ml-4">
                                                 <label for="" class="col-form-label">วันที่สิ้นสุดการเข้าพัก : </label>
                                                 <input type="date" class="form-control" name="end" value="<?= isset($_GET['end']) ? $_GET['end'] : '' ?>" id="dep_edateid" placeholder="วันที่สิ้นสุดการเข้าพัก" required>
                                             </div>

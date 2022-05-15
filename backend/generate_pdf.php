@@ -138,12 +138,13 @@ switch ($get) {
 
         $html .= '</tbody>
                 </table>';
+                
         $html .= '<p style="text-align: right;"><b>ทั้งหมด</b> ' . number_format($row) . ' รายการ</p>';
         $html .= '<p style="text-align: right;"><b>เป็นจำนวนเงิน</b> ' . number_format($total, 2) . ' บาท</p>';
-        $sql_report = "SELECT * FROM deposit WHERE $where AND dep_deliver = 'ต้องการ' ";
+        $sql_report = "SELECT * FROM deposit $where AND dep_deliver = 'ต้องการ' ";
         $query_deposit = mysqli_query($conn, $sql_report);
 
-        $sql_report = "SELECT * FROM deposit WHERE WHERE $where AND dep_deliver = 'ลูกค้ามารับสุนัข' ";
+        $sql_report = "SELECT * FROM deposit $where AND dep_deliver = 'ลูกค้ามารับสุนัข' ";
         $query_get = mysqli_query($conn, $sql_report);
         if (isset($_GET['status'])) {
             if ($_GET['status'] == "3") {

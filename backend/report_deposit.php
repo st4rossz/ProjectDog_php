@@ -64,7 +64,7 @@ include 'layout/header.php';
                                             <?php if (isset($_GET['start'])) { ?>
                                                 <a href="generate_pdf.php?action=report_deposit&start=<?= $_GET['start'] ?>&end=<?= $_GET['end'] ?>&status=<?= $_GET['status'] ?>" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
                                             <?php } else { ?>
-                                                <a href="generate_pdf.php?action=report_deposit&status=all" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
+                                                <a href="generate_pdf.php?action=report_deposit&status=all" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงานทั้งหมด</a>
                                             <?php } ?>
 
                                             <div class="form-group ml-auto">
@@ -72,7 +72,7 @@ include 'layout/header.php';
                                                 <input type="date" class="form-control" name="start" value="<?= isset($_GET['start']) ? $_GET['start'] : '' ?>" id="dep_sdateid" placeholder="วันที่เริ่มเข้าพัก" required>
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group ml-4">
                                                 <label for="" class="col-form-label">วันที่สิ้นสุดการเข้าพัก : </label>
                                                 <input type="date" class="form-control" name="end" value="<?= isset($_GET['end']) ? $_GET['end'] : '' ?>" id="dep_edateid" placeholder="วันที่สิ้นสุดการเข้าพัก" required>
                                             </div>
@@ -136,7 +136,6 @@ include 'layout/header.php';
 
                                                         <?php } ?>
                                                     <?php } ?>
-
                                                 </tr>
                                             </thead>
                                             <tbody>
