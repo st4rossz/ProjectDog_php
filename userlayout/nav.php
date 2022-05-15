@@ -29,7 +29,7 @@
             ข้อมูลส่วนตัว
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="userdepositorder.php">ข้อมูลผู้ใช้</a>
+            <a class="dropdown-item" href="user_profile.php">ข้อมูลผู้ใช้</a>
             <a class="dropdown-item" href="dog_profile.php">ข้อมูลสุนัข</a></a>
           </div>
         </div>

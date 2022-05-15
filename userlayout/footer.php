@@ -417,6 +417,63 @@
 </div>
 
 
+<!-- รายละเอียดการเพิ่มสุนัข -->
+<div class="modal fade" id="adddog_detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 style="font-family: Kanit;" class="modal-title" id="exampleModalLabel">ทำไมต้องเพิ่มสุนัขในระบบ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 text-center">
+          <p style="font-family: Kanit;">ทางร้านจะเก็บข้อมูลสุนัขของลูกค้าสำหรับการใช้บริการครั้งถัดไป เพื่อบันทึกอาการสุนัข จำนวนครั้งที่ใช้บริการ ค่าใช้จ่ายเพื่อเป็นประวัติของสุนัข</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- รายละเอียดบริการ -->
+<div class="modal fade" id="use_detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 style="font-family: Kanit;" class="modal-title" id="exampleModalLabel">รายละเอียดบริการ</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12">
+          <h5 style="font-family: Kanit Light;">บริการสปาสุนัข</h5>
+          <p style="font-family: Kanit Light;">ให้บริการอาบน้ำและตัดขนสุนัขโดยเจ้าหน้าที่ ที่เข้าใจธรรมชาติของผิวและขนของสุนัขแต่ละสายพันธุ์ และมีการเลือกใช้ผลิตภัณฑ์ที่เหมาะสม ซึ่งจะช่วยให้สุนัขมีผิวพรรณที่สะอาดชุ่มชื้นและมีขนเงางามอยู่เสมอ </p>
+          <hr>
+        </div>
+        <div class="col-md-12">
+          <h5 style="font-family: Kanit Light;">บริการฝากเลี้ยงสุนัข</h5>
+          <p style="font-family: Kanit Light;">บ้าน​ Good​ Dog​ Home​ 🐾🐾🥰
+            บริการรับฝากสุนัข 🐶🐺 ขอนแก่น
+            บ้านเราเน้นพักผ่อนกันแบบส่วนตัว​
+            มีพี่ๆ​ ดูแล​อย่างใกล้ชิด​
+            น้อง​ๆ​ จะไม่เหงา​ และไม่แออัด
+            พร้อมดูแลเหมือนอยู่ที่บ้าน</p>
+          <hr>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- หน้า Order การจองสปาร์ (Use_Service) -->
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

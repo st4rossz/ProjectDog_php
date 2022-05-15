@@ -281,7 +281,7 @@ switch ($get) {
         INNER JOIN dog ON use_service.dog_id = dog.dog_id
         INNER JOIN user ON dog.user_id = user.user_id
         INNER JOIN service ON use_service.service_id = service.service_id 
-        $where";
+        $where ORDER BY us_id";
         $total = 0;
         $query = mysqli_query($conn, $sql);
         $row = mysqli_num_rows($query);

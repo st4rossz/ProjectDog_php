@@ -163,15 +163,13 @@ include 'userlayout/header.php';
                         <hr style="width: 75%; margin-left: 15%;">
                     </div>
                     <div class="card-footer">
-                        <button onclick="gologin()" type="button" class="btn btn-warning btn-lg" style="font-family: Kanit Thin; color:black; box-shadow: 2px 2px 0px;">รายละเอียด</button>
-                        <!-- <a class="btn btn-danger" href="adddeposit.php">ทดสอบเพิ่มวันที่</a> -->
+                        <button type="button" data-toggle="modal" data-target="#adddog_detail" class="btn btn-warning btn-lg" style="font-family: Kanit Thin; color:black; box-shadow: 2px 2px 0px;">รายละเอียด</button>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 text-center d-flex justify-content-center">
                 <div class="card text-center rounded-0" style="width: 20rem; margin-top: 3%; margin-right: 40%;  margin-bottom: 10%; box-shadow: 0px 0px 10px #3C3B3D;">
                     <img class="card-img-top rounded-0" src="images/choose.jpg" alt="Card image cap">
-                    <!-- <div class="numberCircle">2</div> -->
                     <div class="card-body">
                         <h5 class="card-title" style="font-family: Kanit; font-size: 20px;">เลือกบริการ</h5>
                         <hr style="width: 75%; margin-left: 15%;">
@@ -179,7 +177,7 @@ include 'userlayout/header.php';
                         <hr style="width: 75%; margin-left: 15%;">
                     </div>
                     <div class="card-footer">
-                        <button onclick="gologin()" type="button" class="btn btn-warning btn-lg" style="font-family: Kanit Thin; color:black; box-shadow: 2px 2px 0px;">รายละเอียด</button>
+                        <button type="button" data-toggle="modal" data-target="#use_detail" class="btn btn-warning btn-lg" style="font-family: Kanit Thin; color:black; box-shadow: 2px 2px 0px;">รายละเอียด</button>
                     </div>
                 </div>
             </div>
@@ -199,14 +197,14 @@ include 'userlayout/header.php';
                         $sql = "SELECT * FROM dog WHERE user_id = '$user_id' ";
                         $query = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($query)) {
-                            ?>
+                        ?>
                             <tr>
                                 <th scope="row"> <?= $row["dog_name"] ?> </th>
                                 <td><?= $row["dog_type"] ?></td>
                                 <td><?= $row["dog_weight"] ?></td>
                                 <td><?= $row["dog_age"] ?></td>
                                 <?php
-                                    ?>
+                                ?>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -260,14 +258,14 @@ include 'userlayout/header.php';
                     $sql = "SELECT * FROM dog WHERE user_id = '$user_id' ";
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($query)) {
-                        ?>
+                    ?>
                         <tr>
                             <th scope="row"> <?= $row["dog_id"] ?> </th>
                             <td><?= $row["dog_name"] ?></td>
                             <td><?= $row["dog_type"] ?></td>
                             <td><?= $row["dog_weight"] ?></td>
                             <?php
-                                ?>
+                            ?>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -388,30 +386,119 @@ include 'userlayout/header.php';
             </div>
             <div class="col-md-2 text-center justify-content-center">
                 <p style="font-family: Kanit medium; font-size: 35px;">แกลเลอรี่</p>
-                <!-- <hr style="width: 65%; margin-left: 18%;"> -->
             </div>
             <div class="col-md-5 justify-content-center ">
                 <hr style="width: 90%; margin-right: 30%; margin-top: 3%;">
             </div>
 
-            <div class="col-md-6 justify-content-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="images/gal1.jpg" alt="First slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="images/gal2.jpg" alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="images/gal3.jpg" alt="Third slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="images/gal4.jpg" alt="Third slide">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a data-toggle="modal" data-target="#r1">
+                                    <img src="images/r1.jpg" class="w-100" alt="">
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a data-toggle="modal" data-target="#r2">
+                                    <img src="images/r2.jpg" class="w-100" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <a data-toggle="modal" data-target="#r3">
+                                    <img src="images/r5.jpg" class="w-100" alt="">
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a data-toggle="modal" data-target="#r4">
+                                    <img src="images/r4.jpg" class="w-100" alt="">
+                                </a>
+                            </div>
+                        </div>
 
-
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 justify-content-center">
+        </div>
+    </div>
+    <?php include('userlayout/footer.php') ?>
 
+    <div class="modal fade" id="r1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <img src="images/r1.jpg" class="w-100" alt="">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <div class="modal fade" id="r2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <img src="images/r2.jpg" class="w-100" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="modal fade" id="r3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <img src="images/r5.jpg" class="w-100" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-
-
-
-    <?php include('userlayout/footer.php') ?>
-
+    <div class="modal fade" id="r4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <img src="images/r4.jpg" class="w-100" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
