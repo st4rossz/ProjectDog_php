@@ -418,9 +418,9 @@ switch ($get) {
             $date_start = $_GET['start'];
             $date_end = $_GET['end'];
             
-            $where3 .= "us_date BETWEEN '$date_start' AND '$date_end' AND us_date BETWEEN '$date_start' AND '$date_end' AND us_status = '2'";
+            $where3 .= "us_date BETWEEN '$date_start' AND '$date_end' AND us_date BETWEEN '$date_start' AND '$date_end' AND us_status = '3'";
         } elseif (!isset($_GET['start'])) {
-            $where3 .= "us_status = '2'";
+            $where3 .= "us_status = '3'";
         }
 
         
@@ -439,6 +439,12 @@ switch ($get) {
         $query_p1 = mysqli_query($conn, $sql_p1);
         $result_p1 = mysqli_fetch_array($query_p1);
 
+        $sql_s2 = "SELECT * FROM use_service WHERE  $where3"; // ไม่ได้เลือกวันที่ status=2
+        $query_s2 = mysqli_query($conn, $sql_s2);
+        $sql_p2 = "SELECT *, sum(us_price) as total FROM use_service WHERE $where3 ";  // ไม่ได้เลือกวันที่ status=2
+        $query_p2 = mysqli_query($conn, $sql_p2);
+        $result_p2 = mysqli_fetch_array($query_p2);
+
         $sql_s3 = "SELECT * FROM use_service WHERE  $where3"; // ไม่ได้เลือกวันที่ status=2
         $query_s3 = mysqli_query($conn, $sql_s3);
         $sql_p3 = "SELECT *, sum(us_price) as total FROM use_service WHERE $where3 ";  // ไม่ได้เลือกวันที่ status=2
@@ -451,6 +457,8 @@ switch ($get) {
                 <b>เป็นจำนวนเงิน</b> ' . number_format($result_p0['total'], 2). ' บาท </p> ';
                 $html .= '<p style="text-align: right;"><b>ยืนยันชำระเงิน/รอเข้าใช้บริการ : </b> ' . mysqli_num_rows($query_s1) .  ' รายการ
                 <b>เป็นจำนวนเงิน</b> ' . number_format($result_p1['total'], 2). ' บาท </p> ';
+                $html .= '<p style="text-align: right;"><b>กำลังใช้บริการ : </b> ' . mysqli_num_rows($query_s2) .  ' รายการ
+                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p2['total'], 2). ' บาท </p> ';
                 $html .= '<p style="text-align: right;"><b>สิ้นสุดให้บริการ : </b> ' . mysqli_num_rows($query_s3) .  ' รายการ
                 <b>เป็นจำนวนเงิน</b> ' . number_format($result_p3['total'], 2). ' บาท </p> ';
 
