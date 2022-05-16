@@ -185,6 +185,16 @@ switch ($get) {
             $where3 .= "dep_status = '3'";
         }
 
+        $where10 = "";
+        if (isset($_GET['start'])) {
+            $date_start = $_GET['start'];
+            $date_end = $_GET['end'];
+            
+            $where10 .= "dep_sdate BETWEEN '$date_start' AND '$date_end' AND dep_edate BETWEEN '$date_start' AND '$date_end' AND dep_status = '10'";
+        } elseif (!isset($_GET['start'])) {
+            $where10 .= "dep_status = '10'";
+        }
+
         $html .= '<p style="text-align: right;"><b>ทั้งหมด</b> ' . number_format($row) . ' รายการ
         <b>เป็นจำนวนเงิน</b> ' . number_format($total, 2) . ' บาท</p>';
         $sql_report = "SELECT * FROM deposit $where AND dep_deliver = 'ต้องการ' ";
@@ -218,6 +228,12 @@ switch ($get) {
         $query_p3 = mysqli_query($conn, $sql_p3);
         $result_p3 = mysqli_fetch_array($query_p3);
 
+        $sql_s10 = "SELECT * FROM deposit WHERE  $where10"; // ไม่ได้เลือกวันที่ status=3
+        $query_s10 = mysqli_query($conn, $sql_s10);
+        $sql_p10 = "SELECT *, sum(dep_price) as total FROM deposit WHERE $where3 ";  // ไม่ได้เลือกวันที่ status=3
+        $query_p10 = mysqli_query($conn, $sql_p10);
+        $result_p10 = mysqli_fetch_array($query_p10);
+
         // $sql_s0 = "SELECT * FROM deposit $where AND dep_status = '0'";
         // $query_s0 = mysqli_query($conn, $sql_s0);
 
@@ -242,6 +258,8 @@ switch ($get) {
                 <b>เป็นจำนวนเงิน</b> ' . number_format($result_p2['total'], 2). ' บาท </p> ';
                 $html .= '<p style="text-align: right;"><b>สิ้นสุดให้บริการ : </b> ' . mysqli_num_rows($query_s3) .  ' รายการ
                 <b>เป็นจำนวนเงิน</b> ' . number_format($result_p3['total'], 2). ' บาท </p> ';
+                $html .= '<p style="text-align: right;"><b>ยกเลิกบริการ : </b> ' . mysqli_num_rows($query_s10) .  ' รายการ
+                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p10['total'], 2). ' บาท </p> ';
  
 
             } elseif ($_GET['status'] == "3") {
