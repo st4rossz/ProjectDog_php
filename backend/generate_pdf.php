@@ -440,6 +440,15 @@ switch ($get) {
         } elseif (!isset($_GET['start'])) {
             $where3 .= "us_status = '3'";
         }
+        $where10 = "";
+        if (isset($_GET['start'])) {
+            $date_start = $_GET['start'];
+            $date_end = $_GET['end'];
+            
+            $where10 .= "us_date BETWEEN '$date_start' AND '$date_end' AND us_date BETWEEN '$date_start' AND '$date_end' AND us_status = '10'";
+        } elseif (!isset($_GET['start'])) {
+            $where10 .= "us_status = '10'";
+        }
 
         
         $html .= '<p style="text-align: right;"><b>ทั้งหมด</b> ' . number_format($row) . ' รายการ
@@ -469,6 +478,12 @@ switch ($get) {
         $query_p3 = mysqli_query($conn, $sql_p3);
         $result_p3 = mysqli_fetch_array($query_p3);
 
+        $sql_s10 = "SELECT * FROM use_service WHERE  $where3"; // ไม่ได้เลือกวันที่ status=2
+        $query_s10 = mysqli_query($conn, $sql_s10);
+        $sql_p10 = "SELECT *, sum(us_price) as total FROM use_service WHERE $where3 ";  // ไม่ได้เลือกวันที่ status=2
+        $query_p10 = mysqli_query($conn, $sql_p10);
+        $result_p10 = mysqli_fetch_array($query_p10);
+
         if (isset($_GET['status'])) {
             if ($_GET['status'] == "all") {
                 $html .= '<p style="text-align: right;"><b>รายการรอชำระเงิน : </b> ' . mysqli_num_rows($query_s0) .  ' รายการ
@@ -479,6 +494,8 @@ switch ($get) {
                 <b>เป็นจำนวนเงิน</b> ' . number_format($result_p2['total'], 2). ' บาท </p> ';
                 $html .= '<p style="text-align: right;"><b>สิ้นสุดให้บริการ : </b> ' . mysqli_num_rows($query_s3) .  ' รายการ
                 <b>เป็นจำนวนเงิน</b> ' . number_format($result_p3['total'], 2). ' บาท </p> ';
+                $html .= '<p style="text-align: right;"><b>ยกเลิกบริการ : </b> ' . mysqli_num_rows($query_s10) .  ' รายการ
+                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p10['total'], 2). ' บาท </p> ';
 
  
 
