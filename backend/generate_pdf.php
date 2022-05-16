@@ -228,9 +228,9 @@ switch ($get) {
         $query_p3 = mysqli_query($conn, $sql_p3);
         $result_p3 = mysqli_fetch_array($query_p3);
 
-        $sql_s10 = "SELECT * FROM deposit WHERE  $where10"; // ไม่ได้เลือกวันที่ status=3
+        $sql_s10 = "SELECT * FROM deposit WHERE  $where10"; // ไม่ได้เลือกวันที่ status=10
         $query_s10 = mysqli_query($conn, $sql_s10);
-        $sql_p10 = "SELECT *, sum(dep_price) as total FROM deposit WHERE $where3 ";  // ไม่ได้เลือกวันที่ status=3
+        $sql_p10 = "SELECT *, sum(dep_price) as total FROM deposit WHERE $where10 ";  // ไม่ได้เลือกวันที่ status=10
         $query_p10 = mysqli_query($conn, $sql_p10);
         $result_p10 = mysqli_fetch_array($query_p10);
 
@@ -462,7 +462,7 @@ switch ($get) {
 
         $sql_s1 = "SELECT * FROM use_service WHERE  $where1"; // ไม่ได้เลือกวันที่ status=1
         $query_s1 = mysqli_query($conn, $sql_s1);
-        $sql_p1 = "SELECT *, sum(us_price) as total FROM use_service WHERE $where1 ";  // ไม่ได้เลือกวันที่ status=0
+        $sql_p1 = "SELECT *, sum(us_price) as total FROM use_service WHERE $where1 ";  // ไม่ได้เลือกวันที่ status=1
         $query_p1 = mysqli_query($conn, $sql_p1);
         $result_p1 = mysqli_fetch_array($query_p1);
 
@@ -478,9 +478,9 @@ switch ($get) {
         $query_p3 = mysqli_query($conn, $sql_p3);
         $result_p3 = mysqli_fetch_array($query_p3);
 
-        $sql_s10 = "SELECT * FROM use_service WHERE  $where3"; // ไม่ได้เลือกวันที่ status=2
+        $sql_s10 = "SELECT * FROM use_service WHERE  $where10"; // ไม่ได้เลือกวันที่ status=10
         $query_s10 = mysqli_query($conn, $sql_s10);
-        $sql_p10 = "SELECT *, sum(us_price) as total FROM use_service WHERE $where3 ";  // ไม่ได้เลือกวันที่ status=2
+        $sql_p10 = "SELECT *, sum(us_price) as total FROM use_service WHERE $where10 ";  // ไม่ได้เลือกวันที่ status=10
         $query_p10 = mysqli_query($conn, $sql_p10);
         $result_p10 = mysqli_fetch_array($query_p10);
 
