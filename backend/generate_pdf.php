@@ -149,7 +149,7 @@ switch ($get) {
         if (isset($_GET['start'])) {
             $date_start = $_GET['start'];
             $date_end = $_GET['end'];
-            
+
             $where0 .= "dep_sdate BETWEEN '$date_start' AND '$date_end' AND dep_edate BETWEEN '$date_start' AND '$date_end' AND dep_status = '0'";
         } elseif (!isset($_GET['start'])) {
             $where0 .= "dep_status = '0'";
@@ -159,7 +159,7 @@ switch ($get) {
         if (isset($_GET['start'])) {
             $date_start = $_GET['start'];
             $date_end = $_GET['end'];
-            
+
             $where1 .= "dep_sdate BETWEEN '$date_start' AND '$date_end' AND dep_edate BETWEEN '$date_start' AND '$date_end' AND dep_status = '1'";
         } elseif (!isset($_GET['start'])) {
             $where1 .= "dep_status = '1'";
@@ -169,7 +169,7 @@ switch ($get) {
         if (isset($_GET['start'])) {
             $date_start = $_GET['start'];
             $date_end = $_GET['end'];
-            
+
             $where2 .= "dep_sdate BETWEEN '$date_start' AND '$date_end' AND dep_edate BETWEEN '$date_start' AND '$date_end' AND dep_status = '2'";
         } elseif (!isset($_GET['start'])) {
             $where2 .= "dep_status = '2'";
@@ -179,7 +179,7 @@ switch ($get) {
         if (isset($_GET['start'])) {
             $date_start = $_GET['start'];
             $date_end = $_GET['end'];
-            
+
             $where3 .= "dep_sdate BETWEEN '$date_start' AND '$date_end' AND dep_edate BETWEEN '$date_start' AND '$date_end' AND dep_status = '3'";
         } elseif (!isset($_GET['start'])) {
             $where3 .= "dep_status = '3'";
@@ -189,7 +189,7 @@ switch ($get) {
         if (isset($_GET['start'])) {
             $date_start = $_GET['start'];
             $date_end = $_GET['end'];
-            
+
             $where10 .= "dep_sdate BETWEEN '$date_start' AND '$date_end' AND dep_edate BETWEEN '$date_start' AND '$date_end' AND dep_status = '10'";
         } elseif (!isset($_GET['start'])) {
             $where10 .= "dep_status = '10'";
@@ -203,7 +203,7 @@ switch ($get) {
         $sql_report = "SELECT * FROM deposit $where AND dep_deliver = 'ลูกค้ามารับสุนัข' ";
         $query_get = mysqli_query($conn, $sql_report);
 
-        
+
         $sql_s0 = "SELECT * FROM deposit WHERE  $where0"; // ไม่ได้เลือกวันที่ status=0
         $query_s0 = mysqli_query($conn, $sql_s0);
         $sql_p0 = "SELECT *, sum(dep_price) as total FROM deposit WHERE $where0 ";  // ไม่ได้เลือกวันที่ status=0
@@ -251,17 +251,15 @@ switch ($get) {
         if (isset($_GET['status'])) {
             if ($_GET['status'] == "all") {
                 $html .= '<p style="text-align: right;"><b>รายการรอชำระเงิน : </b> ' . mysqli_num_rows($query_s0) .  ' รายการ
-                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p0['total'], 2). ' บาท </p> ';
-                $html .= '<p style="text-align: right;"><b>ยืนยันชำระเงิน/รอเข้าใช้บริการ : </b> ' . mysqli_num_rows($query_s1) .  ' รายการ
-                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p1['total'], 2). ' บาท </p> ';
+                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p0['total'], 2) . ' บาท </p> ';
+                $html .= '<p style="text-align: right;"><b>ชำระเงินแล้ว/รอเข้าใช้บริการ : </b> ' . mysqli_num_rows($query_s1) .  ' รายการ
+                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p1['total'], 2) . ' บาท </p> ';
                 $html .= '<p style="text-align: right;"><b>กำลังใช้บริการ : </b> ' . mysqli_num_rows($query_s2) .  ' รายการ
-                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p2['total'], 2). ' บาท </p> ';
+                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p2['total'], 2) . ' บาท </p> ';
                 $html .= '<p style="text-align: right;"><b>สิ้นสุดให้บริการ : </b> ' . mysqli_num_rows($query_s3) .  ' รายการ
-                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p3['total'], 2). ' บาท </p> ';
+                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p3['total'], 2) . ' บาท </p> ';
                 $html .= '<p style="text-align: right;"><b>ยกเลิกบริการ : </b> ' . mysqli_num_rows($query_s10) .  ' รายการ
-                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p10['total'], 2). ' บาท </p> ';
- 
-
+                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p10['total'], 2) . ' บาท </p> ';
             } elseif ($_GET['status'] == "3") {
                 $html .= '<p style="text-align: right;"><b>ทางร้านนำสุนัขไปส่ง : </b> ' . mysqli_num_rows($query_deposit) .  ' รายการ</p> ';
                 $html .= '<p style="text-align: right;"><b>ลูกค้ามารับสุนัขเอง : </b> ' . mysqli_num_rows($query_get) . ' รายการ</p> ';
@@ -417,7 +415,7 @@ switch ($get) {
         if (isset($_GET['start'])) {
             $date_start = $_GET['start'];
             $date_end = $_GET['end'];
-            
+
             $where0 .= "us_date BETWEEN '$date_start' AND '$date_end' AND us_date BETWEEN '$date_start' AND '$date_end' AND us_status = '0'";
         } elseif (!isset($_GET['start'])) {
             $where0 .= "us_status = '0'";
@@ -426,16 +424,25 @@ switch ($get) {
         if (isset($_GET['start'])) {
             $date_start = $_GET['start'];
             $date_end = $_GET['end'];
-            
+
             $where1 .= "us_date BETWEEN '$date_start' AND '$date_end' AND us_date BETWEEN '$date_start' AND '$date_end' AND us_status = '1'";
         } elseif (!isset($_GET['start'])) {
             $where1 .= "us_status = '1'";
+        }
+        $where2 = "";
+        if (isset($_GET['start'])) {
+            $date_start = $_GET['start'];
+            $date_end = $_GET['end'];
+
+            $where2 .= "us_date BETWEEN '$date_start' AND '$date_end' AND us_date BETWEEN '$date_start' AND '$date_end' AND us_status = '2'";
+        } elseif (!isset($_GET['start'])) {
+            $where2 .= "us_status = '2'";
         }
         $where3 = "";
         if (isset($_GET['start'])) {
             $date_start = $_GET['start'];
             $date_end = $_GET['end'];
-            
+
             $where3 .= "us_date BETWEEN '$date_start' AND '$date_end' AND us_date BETWEEN '$date_start' AND '$date_end' AND us_status = '3'";
         } elseif (!isset($_GET['start'])) {
             $where3 .= "us_status = '3'";
@@ -444,13 +451,13 @@ switch ($get) {
         if (isset($_GET['start'])) {
             $date_start = $_GET['start'];
             $date_end = $_GET['end'];
-            
+
             $where10 .= "us_date BETWEEN '$date_start' AND '$date_end' AND us_date BETWEEN '$date_start' AND '$date_end' AND us_status = '10'";
         } elseif (!isset($_GET['start'])) {
             $where10 .= "us_status = '10'";
         }
 
-        
+
         $html .= '<p style="text-align: right;"><b>ทั้งหมด</b> ' . number_format($row) . ' รายการ
         <b>เป็นจำนวนเงิน</b> ' . number_format($total, 2) . ' บาท</p>';
 
@@ -466,9 +473,9 @@ switch ($get) {
         $query_p1 = mysqli_query($conn, $sql_p1);
         $result_p1 = mysqli_fetch_array($query_p1);
 
-        $sql_s2 = "SELECT * FROM use_service WHERE  $where3"; // ไม่ได้เลือกวันที่ status=2
+        $sql_s2 = "SELECT * FROM use_service WHERE  $where2"; // ไม่ได้เลือกวันที่ status=2
         $query_s2 = mysqli_query($conn, $sql_s2);
-        $sql_p2 = "SELECT *, sum(us_price) as total FROM use_service WHERE $where3 ";  // ไม่ได้เลือกวันที่ status=2
+        $sql_p2 = "SELECT *, sum(us_price) as total FROM use_service WHERE $where2 ";  // ไม่ได้เลือกวันที่ status=2
         $query_p2 = mysqli_query($conn, $sql_p2);
         $result_p2 = mysqli_fetch_array($query_p2);
 
@@ -487,18 +494,15 @@ switch ($get) {
         if (isset($_GET['status'])) {
             if ($_GET['status'] == "all") {
                 $html .= '<p style="text-align: right;"><b>รายการรอชำระเงิน : </b> ' . mysqli_num_rows($query_s0) .  ' รายการ
-                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p0['total'], 2). ' บาท </p> ';
-                $html .= '<p style="text-align: right;"><b>ยืนยันชำระเงิน/รอเข้าใช้บริการ : </b> ' . mysqli_num_rows($query_s1) .  ' รายการ
-                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p1['total'], 2). ' บาท </p> ';
+                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p0['total'], 2) . ' บาท </p> ';
+                $html .= '<p style="text-align: right;"><b>ชำระเงินแล้ว/รอเข้าใช้บริการ : </b> ' . mysqli_num_rows($query_s1) .  ' รายการ
+                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p1['total'], 2) . ' บาท </p> ';
                 $html .= '<p style="text-align: right;"><b>กำลังใช้บริการ : </b> ' . mysqli_num_rows($query_s2) .  ' รายการ
-                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p2['total'], 2). ' บาท </p> ';
+                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p2['total'], 2) . ' บาท </p> ';
                 $html .= '<p style="text-align: right;"><b>สิ้นสุดให้บริการ : </b> ' . mysqli_num_rows($query_s3) .  ' รายการ
-                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p3['total'], 2). ' บาท </p> ';
+                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p3['total'], 2) . ' บาท </p> ';
                 $html .= '<p style="text-align: right;"><b>ยกเลิกบริการ : </b> ' . mysqli_num_rows($query_s10) .  ' รายการ
-                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p10['total'], 2). ' บาท </p> ';
-
- 
-
+                <b>เป็นจำนวนเงิน</b> ' . number_format($result_p10['total'], 2) . ' บาท </p> ';
             } elseif ($_GET['status'] == "3") {
                 $html .= '<p style="text-align: right;"><b>ทางร้านนำสุนัขไปส่ง : </b> ' . mysqli_num_rows($query_deposit) .  ' รายการ</p> ';
                 $html .= '<p style="text-align: right;"><b>ลูกค้ามารับสุนัขเอง : </b> ' . mysqli_num_rows($query_get) . ' รายการ</p> ';
@@ -583,10 +587,8 @@ switch ($get) {
             }
         }
         $i = 1;
-        $sql = "SELECT * FROM use_service
-        INNER JOIN dog ON use_service.dog_id = dog.dog_id
+        $sql = "SELECT * FROM dog
         INNER JOIN user ON dog.user_id = user.user_id
-        INNER JOIN service ON use_service.service_id = service.service_id 
         $where";
         $total = 0;
         $query = mysqli_query($conn, $sql);
@@ -603,7 +605,7 @@ switch ($get) {
 
         $html .= '</tbody>
                 </table>';
-        $html .= '<p style="text-align: right;"><b>จำนวนสุนัขทั้งหมด</b> ' . number_format($row) . ' รายการ</p>';
+        $html .= '<p style="text-align: right;"><b>จำนวนสุนัขทั้งหมด</b> ' . number_format($row) . ' ตัว</p>';
 
         $mpdf->WriteHTML($html);
         $file_name = 'dog_report.pdf';

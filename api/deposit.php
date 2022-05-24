@@ -29,8 +29,8 @@ try {
     $result = mysqli_fetch_assoc($query);
 
 
-    if (isset($_POST['dog_age'])) {
-        $dog_age = $_POST['dog_age'];
+    if (isset($_POST['dog_age2'])) {
+        $dog_age = $_POST['dog_age2'];
         $sql = "UPDATE dog SET dog_age = '$dog_age' WHERE dog_id = '$dog_id'";
         $query = mysqli_query($conn, $sql);
     }

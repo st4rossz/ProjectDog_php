@@ -47,12 +47,6 @@ include 'layout/header.php';
                     echo '</div>';
                   }
                   ?>
-                  <!-- <div class="col-md-12">
-                    <label for="inputdogsickness" class="form-label">รูปภาพสุนัข</label>
-                    <div class="col-md-6">
-                      <img class="w-50" src="../api/dog/uploads/<?= $row['image']; ?>" alt="">
-                    </div>
-                  </div> -->
                   <div class="col-md-12">
                     <label for="inputdogname" class="form-label">ชื่อสุนัข :</label>
                     <input name="dog_name" value="<?= $row['dog_name']; ?>" type="text" class="form-control" id="inputdogname" placeholder="ชื่อสุนัข" disabled>
@@ -123,7 +117,6 @@ include 'layout/header.php';
                     <hr>
                   </div>
 
-
                   <!-- ส่งข้อมูลอัพเดทการติดตาม -->
                   <div class="col-md-12">
                     <label for="inputdogsickness" class="form-label">กรอกบันทึกการติดตามสุนัขครั้งนี้ :</label>
@@ -153,27 +146,7 @@ include 'layout/header.php';
                       <label for="deprec_topic8"> น้ำหนักลดลง</label><br>
                     </div>
                   </div>
-
-
-
-
-
-
-                  <!-- <div class="form-check">
-                      <input class="form-check-input" type="radio" name="deprec_topic1" id="flexRadioDefault1" value="อัพเดทสถานะสุนัข" checked>
-                      <label style="margin-left: -2%;" class="form-check-label" for="flexRadioDefault1">
-                        อัพเดทสถานะสุนัข
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="deprec_topic2" id="flexRadioDefault2" value="สุนัขมีความผิดปกติ">
-                      <label class="form-check-label" style="margin-left: -2%;" for="flexRadioDefault2">
-                        สุนัขมีความผิดปกติ
-                      </label>
-                    </div> -->
             </div>
-
-
             <div class="col-md-12">
               <label for="inputdogsickness" class="form-label">หมายเหตุ</label>
             </div>

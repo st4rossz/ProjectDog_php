@@ -178,13 +178,8 @@
 
             <div class="form-group">
               <label for="" class="col-form-label">อายุปัจจุบันสุนัข (ปี) : </label>
-              <select name="dog_age" class="form-control" id="dog_age" required>
-                <option value="0">น้อยกว่า 1 ปี</option>
-                <?php for ($i = 1; $i <= 50; $i++) {  ?>
-                  <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                <?php } ?>
-
-              </select>
+              <input type="text" class="form-control" name="dog_age" id="dog_age" disabled>
+              <input type="hidden" class="form-control" name="dog_age2" id="dog_age2">
             </div>
           </div>
 
@@ -256,9 +251,9 @@
         </button>
       </div>
       <div class="modal-body">
+
         <form id="updateForm2">
           <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>" id="">
-
           <div class="form-group">
             <label for="" class="col-form-label">สุนัขของท่าน : </label>
             <select name="dog_id" class="form-control" id="">
@@ -272,11 +267,18 @@
               <?php } ?>
             </select>
           </div>
-
-
+          <div class="form-group">
+            <label for="" class="col-form-label">ขนาดสุนัข : </label>
+            <select onchange="getPrice()" name="dog_size" class="form-control" id="size" required>
+              <option value="" selected>กรุณาเลือกขนาดสุนัข</option>
+              <option value="0">ขนาดเล็ก</option>
+              <option value="100">ขนาดกลาง [+100 บาท]</option>
+              <option value="150">ขนาดใหญ่ [+150 บาท]</option>
+            </select>
+          </div>
           <div class="form-group">
             <label for="" class="col-form-label">เลือกบริการ : </label>
-            <select onchange="sendService(this.value)" name="service_id" class="form-control" id="" required>
+            <select onchange="getPrice()" name="service_id" class="form-control" id="service_id" required>
               <option value="" selected disabled>เลือกบริการ</option>
               <?php
               $sql = "SELECT * FROM service";
@@ -287,8 +289,6 @@
               <?php } ?>
             </select>
           </div>
-
-
           <div class="form-group">
             <label for="" class="col-form-label">ค่าบริการ :</label>
             <input type="text" class="form-control" name="show_price" id="us_price" disabled>
@@ -299,9 +299,6 @@
             <input type="date" class="form-control" name="us_date" id="us_date" placeholder="วันเข้าใช้บริการ" required>
           </div>
       </div>
-
-
-
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-lg">ยืนยัน</button>
         <button type="reset" class="btn btn-dark btn-lg">ล้างค่า</button>
@@ -532,6 +529,7 @@
     }, 'json');
   }
 
+
   $("#addDog").submit(function(e) {
     e.preventDefault()
     var formData = new FormData(this)
@@ -554,25 +552,39 @@
     })
   })
 
+  // function dogUpdate(dog_id) {
+  //   console.log(dog_id)
+  //   $.post('api/dogage.php', {
+  //     dog_id: dog_id
+  //   }, function(data) {
+  //     if (data.success) {
+  //       var test = document.getElementById("dog_age").value = data.age
+  //       document.getElementById("dog_age").onchange = function() {
+  //         var ch = document.getElementById("dog_age").value
+  //         console.log(ch)
+  //         console.log(data.age)
+  //         if (ch < data.age) {
+  //           swal("โปรดกรอกอายุปัจจุบันของสุนัข", " ", "warning")
+  //           var test = document.getElementById("dog_age").value = data.age
+  //         }
+  //       };
+
+
+
+  //     }
+
+  //   }, 'json');
+  // }
+
   function dogUpdate(dog_id) {
     console.log(dog_id)
     $.post('api/dogage.php', {
       dog_id: dog_id
     }, function(data) {
       if (data.success) {
-        var test = document.getElementById("dog_age").value = data.age
-        document.getElementById("dog_age").onchange = function() {
-          var ch = document.getElementById("dog_age").value
-          console.log(ch)
-          console.log(data.age)
-          if (ch < data.age) {
-            swal("โปรดกรอกอายุปัจจุบันของสุนัข", " ", "warning")
-            var test = document.getElementById("dog_age").value = data.age
-          }
-        };
-
-
-
+        document.getElementById("dog_age").value = data.current
+        document.getElementById("dog_age2").value = data.current
+        console.log(data.current)
       }
 
     }, 'json');
@@ -596,6 +608,26 @@
         document.getElementById("loadroom1").value = data.cal1
         document.getElementById("loadroom2").value = data.cal2
         document.getElementById("loadroom3").value = data.cal3
+      } else {
+        console.log("ผิดพลาด")
+      }
+    }, 'json');
+  }
+
+  function getPrice() {
+    var size = document.getElementById('size').value
+    var service_id = document.getElementById('service_id').value
+    console.log(size)
+    console.log(service_id)
+    $.post('api/service/priceload.php', {
+      size: size,
+      service_id: service_id,
+    }, function(data) {
+      if (data.success) {
+        console.log("ส่งข้อมูลได้")
+        document.getElementById("us_price").value = data.price
+        document.getElementById("us_price2").value = data.price
+        console.log(data.success)
       } else {
         console.log("ผิดพลาด")
       }

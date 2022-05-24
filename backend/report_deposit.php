@@ -62,9 +62,11 @@ include 'layout/header.php';
                                         <div class="card-header form-inline">
                                             <h4>ประวัติการฝากเลี้ยง</h4>
                                             <?php if (isset($_GET['start'])) { ?>
-                                                <a href="generate_pdf.php?action=report_deposit&start=<?= $_GET['start'] ?>&end=<?= $_GET['end'] ?>&status=<?= $_GET['status'] ?>" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
+                                                <a href="generate_pdf.php?action=report_deposit&start=<?= $_GET['start'] ?>&end=<?= $_GET['end'] ?>&status=<?= $_GET['status'] ?>" 
+                                                target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงาน</a>
                                             <?php } else { ?>
-                                                <a href="generate_pdf.php?action=report_deposit&status=<?= $_GET['status'] ?>" target="_blank" class="btn btn-primary active ml-4"><i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงานทั้งหมด</a>
+                                                <a href="generate_pdf.php?action=report_deposit&status=<?= $_GET['status'] ?>" target="_blank" class="btn btn-primary active ml-4">
+                                                <i class="fa fa-print" aria-hidden="true"></i> พิมพ์รายงานทั้งหมด</a>
                                             <?php } ?>
 
                                             <div class="form-group ml-auto">
@@ -88,15 +90,8 @@ include 'layout/header.php';
                                                     <option value="3" <?= $get_status == '3' ? 'selected' : '' ?>>สิ้นสุดการให้บริการ</option>
                                                     <!-- <option value="4" <?= $get_status == '4' ? 'selected' : '' ?>>ใช้บริการเสร็จสิ้น</option> -->
                                                 </select>
-                                                <!-- <input type="text" class="form-control" name="dog_type" id="inputdog_type" placeholder="พันธุ์สุนัข" required> -->
                                             </div>
-
-                                            <!-- <div class="form-group">
-                                    <label for="" class="col-form-label">วันที่สิ้นสุดการเข้าพัก : </label>
-                                    <input type="date" class="form-control" name="end" id="dep_edateid" placeholder="วันที่สิ้นสุดการเข้าพัก" required>
-                                </div> -->
                                             <button type="submit" class="btn btn-primary active ml-4"><i class="fa fa-search" aria-hidden="true"></i></button>
-
                                         </div><!-- card-header -->
                                     </form>
 

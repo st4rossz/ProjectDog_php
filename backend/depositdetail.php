@@ -25,13 +25,13 @@
                         <div class="col-2" style="padding-top: 1%;">
                             <form id="updateForm">
                                 <input type="hidden" name="dep_id" value="<?= $row['dep_id']; ?>" id="dep_id">
-                                <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยันยันการจองหรือไม่?');">ยืนยันการจอง</button>
+                                <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยืนยันการเข้าใช้บริการนี้');">ยืนยันสถานะ</button>
                             </form>
                         </div>
                         <div class="col-2" style="padding-top: 1%;">
                             <form id="deleteForm">
                                 <input type="hidden" name="dep_id" value="<?= $row['dep_id']; ?>" id="dep_id">
-                                <button type="submit" class="btn btn-danger btn-lg btn-block" onclick="javascript:return confirm('แน่ใจว่าจะยกเลิกการจองนี้?');">ยกเลิกการจอง</button>
+                                <button type="submit" class="btn btn-danger btn-lg btn-block" onclick="javascript:return confirm('ท่านแน่ใจที่จะยกเลิกการเข้าใช้บริการนี้หรือไม่?');">ยกเลิก</button>
                             </form>
                         </div>
                     <?php } ?>

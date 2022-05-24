@@ -4,19 +4,6 @@ include 'server.php';
 $dep_sdate = $_POST["dep_sdateid"];
 $dep_edate = $_POST["dep_edateid"];
 $room_id = $_POST["deproom_id"];
-// $id_room = $_POST["id_room"];
-
-
-// $bookdatecheck2 = "SELECT COUNT(dep_id) AS depcheck1 FROM deposit WHERE room_id = '$room_id' AND(dep_sdate BETWEEN '$dep_sdate' AND '$dep_edate') AND (dep_edate BETWEEN '$dep_sdate' AND '$dep_edate')";
-// $query2 = mysqli_query($conn, $bookdatecheck2);
-// $result2 = mysqli_fetch_assoc($query2);
-
-// echo $result2['depcheck1'];
-
-
-//  echo $rs['rq'];
-//  $sql = "SELECT * FROM room WHERE room_id = '$room_id' ";
-//  $query = mysqli_query($conn, $sql);
 
 $emptyroom1 = "SELECT COUNT(dep_id) AS emp1 FROM deposit WHERE room_id = 1 AND dep_sdate = CURRENT_DATE OR dep_edate = CURRDENT_DATE";
 

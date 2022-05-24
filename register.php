@@ -75,7 +75,6 @@ include('api/server.php');
                 <a href="index.php">Homepage</a>
             </div>
         </div>
-
     </form>
 </body>
 

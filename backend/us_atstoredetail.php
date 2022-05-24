@@ -25,7 +25,7 @@
                         <div class="col-4" style="padding-top: 1%;">
                             <form id="updateForm">
                                 <input type="hidden" name="us_id" value="<?= $row['us_id']; ?>" id="us_id">
-                                <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยืนยัน?');">อัพเดทสถานะ</button>
+                                <button type="submit" class="btn btn-success btn-lg btn-block" onclick="javascript:return confirm('ยืนยันสถานะสิ้นสุดการให้บริการในครั้งนี้หรือไม่?');">ยืนยันสถานะ</button>
                             </form>
                         </div>
                     <?php } ?>

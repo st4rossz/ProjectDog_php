@@ -37,7 +37,7 @@ include 'layout/header.php';
                   </div>
                   <div class="col-md-12">
                     <label for="inputdogtype" class="form-label">พันธุ์สุนัข</label>
-                    <select name="dog_type" id="" class="form-control">
+                    <select name="dog_type" id="" class="form-control" required>
                       <option value="<?= $row['dog_type']; ?>"><?= $row['dog_type']; ?></option>
                       <?php
                       $sql2 = "SELECT * FROM dog_breed";

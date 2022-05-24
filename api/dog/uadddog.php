@@ -9,8 +9,12 @@ try {
     $dog_sickness = $_POST['dog_sickness'];
     $user_id = $_POST['user_id'];
 
+    //calculate dog_age as date
+    $calyear = date("Y") - $dog_age;
+    $dog_birthdate = date("$calyear-01-01");
+
     if ($_FILES['image']['size'] == 0) {
-        $sql = "INSERT INTO dog (dog_name, dog_type, dog_weight, dog_age, dog_sickness, user_id) VALUES ('$dog_name', ' $dog_type', '$dog_weight', '$dog_age', '$dog_sickness', '$user_id')";
+        $sql = "INSERT INTO dog (dog_name, dog_type, dog_weight, dog_age, dog_birthdate, dog_sickness, user_id) VALUES ('$dog_name', ' $dog_type', '$dog_weight', '$dog_age','$dog_birthdate','$dog_sickness', '$user_id')";
         $query = mysqli_query($conn, $sql);
 
         if (!$query) {
@@ -40,7 +44,7 @@ try {
             move_uploaded_file($_FILES['image']['tmp_name'], $path_copy);
         }
 
-        $sql = "INSERT INTO dog (dog_name, dog_type, dog_weight, dog_age, dog_sickness, user_id, image) VALUES ('$dog_name', ' $dog_type', '$dog_weight', '$dog_age', '$dog_sickness', '$user_id', '$newname')";
+        $sql = "INSERT INTO dog (dog_name, dog_type, dog_weight, dog_age, dog_birthdate, dog_sickness, user_id, image) VALUES ('$dog_name', ' $dog_type', '$dog_weight', '$dog_age','$dog_birthdate', '$dog_sickness', '$user_id', '$newname')";
         $query = mysqli_query($conn, $sql);
 
         if (!$query) {

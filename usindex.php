@@ -59,7 +59,6 @@ $user_id = $_SESSION['user_id'];
             $sql = "SELECT * FROM dog WHERE user_id = '$user_id'";
             $query = mysqli_query($conn, $sql);
             if ($query != "") {
-                
             }
             ?>
             <div class="col-6 text-center d-flex">
@@ -124,7 +123,7 @@ $user_id = $_SESSION['user_id'];
                     <img class="card-img-top rounded-0" src="images/bath_dog.jpg" alt="Card image cap">
                     <div class="numberCircle">2</div>
                     <div class="card-body">
-                        <h5 class="card-title" style="font-family: Kanit; font-size: 20px;">สปาร์สุนัข</h5>
+                        <h5 class="card-title" style="font-family: Kanit; font-size: 20px;">สปาสุนัข</h5>
                         <hr style="width: 75%; margin-left: 15%;">
                         <p class="card-text" style="font-family: Kanit Thin; font-size: 16px;">บริการอาบน้ำ ตัดขน ตัดเล็บสุนัขครบวงจร</p>
                         <hr style="width: 75%; margin-left: 15%;">
